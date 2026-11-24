@@ -5,7 +5,7 @@ description: >-
   changes, navigation) in React, Vue, Svelte, Solid, or plain CSS/JS. Use when
   the user says "add a transition", "animate the modal", "make the drawer
   slide", "the dropdown pops", "smooth out this accordion", "swap this text",
-  "show a success check", "shake the invalid field",   "animate the skeleton", "slide between list and detail", "open a command
+  "show a success check", "shake the invalid field", "animate the skeleton", "slide between list and detail", "open a command
   palette", "make the bottom sheet rise", "reveal the theme", "swap the icon",
   "show a like burst", "confirm a copy", "morph the spinner", "pop the count",
   "advance the progress bar", "move through a stepper", "rename inline",

@@ -312,13 +312,26 @@ for (const file of markdownFiles) {
   const dir = path.dirname(file);
   const links = [...source.matchAll(/\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)].map((m) => m[1]);
   for (const link of links) {
-    if (/^(https?:|mailto:|#|\{)/.test(link)) continue;
+    if (link.startsWith("#")) {
+      errors.push(`${file}: anchor links are not allowed (${link})`);
+      continue;
+    }
+    if (/^(https?:|mailto:|\{)/.test(link)) continue;
     const [target] = link.split("#");
     if (!target) continue;
     const resolved = path.normalize(path.join(dir, target));
     if (!(await exists(resolved))) {
       warnings.push(`${file}: relative link not found: ${link}`);
     }
+  }
+}
+
+// ── README shape ──────────────────────────────────────────────────────────
+if (await exists("README.md")) {
+  const readme = await text("README.md");
+  if (!/^## FAQ\s*$/m.test(readme)) errors.push("README.md is missing a short FAQ section");
+  if (!/npx skills add terravidhal\/motionfold/.test(readme)) {
+    errors.push("README.md must show the install command near the top");
   }
 }
 

@@ -17,6 +17,23 @@ respects reduced motion.
 
 ![The thirty recipes in the live demo.](assets/demo.gif)
 
+## Why motionfold
+
+Most transition snippets stop at one stack and one happy path. motionfold is built around
+three differences that matter in a real project:
+
+- **Five stacks, one contract.** Every recipe ships as plain CSS + vanilla JS, React, Vue,
+  Svelte, and Solid with the same classes, tokens, and ARIA. Port between frameworks without
+  re-learning the motion.
+- **Accessible and tunable in one line.** Every recipe carries a `prefers-reduced-motion`
+  guard plus a `data-motion` app override. Change every duration with `--mf-scale`, every
+  curve with `--mf-ease`, or one recipe with a single token.
+- **Prove it before you ship it.** A zero-build live demo runs all thirty recipes offline, and
+  a local audit scores a real project and suggests fixes without touching a file.
+
+No animation library, no runtime dependency, no hosted service. The recipes, text, and
+assets are original and released under MIT.
+
 ## What it does
 
 - **Thirty transitions** for real product moments: surfaces, state changes, feedback, and
@@ -221,6 +238,34 @@ npm run lint:capture      # screenshots
 npm run lint:gif          # assets/demo.gif
 npm run demo              # open the demo
 ```
+
+## FAQ
+
+**Does it add a runtime dependency?**
+No. The skill ships CSS and framework components only. Playwright and ffmpeg are used to
+build the captures, never at runtime.
+
+**Which frameworks are covered?**
+Plain CSS + vanilla JS, React, Vue, Svelte 5, and Solid. The same recipe keeps the same classes,
+tokens, and accessibility contract in each.
+
+**How do I change the timing across the app?**
+Set `--mf-scale` once on `:root` (for example `0.8` for 20% faster) or override `--mf-ease`. One
+recipe can be tuned with its own token, such as `--mf-modal-duration`.
+
+**What happens for users who prefer reduced motion?**
+Every recipe keeps a `prefers-reduced-motion` guard. You can also force `data-motion="reduced"`
+or `data-motion="full"` from an app setting, a demo, or a test.
+
+**Does it work with Tailwind or CSS Modules?**
+Yes. The recipes are plain classes and CSS variables, so they compose with any styling system.
+See `references/stacks.md` for the details.
+
+**Can I preview everything first?**
+Run `npm run demo` and open the local gallery. All thirty recipes run offline with no build.
+
+**Is it free for commercial use?**
+Yes, under the MIT license.
 
 ## License
 
