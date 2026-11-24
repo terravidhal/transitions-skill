@@ -1,0 +1,26 @@
+# Reference and scratch work
+ref/
+.vague/
+
+# Dependencies and builds
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Local env and logs
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+
+# Editor and OS
+.DS_Store
+.idea/
+.vscode/
+
+# Demo artifacts (keep the committed screenshots in assets/)
+examples/.vite/
+examples/stacks/dist/
