@@ -1,0 +1,68 @@
+/* Switch — an immediate boolean setting with a moving thumb. */
+
+.mf-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.125rem 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.mf-switch-track {
+  position: relative;
+  flex: none;
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, CanvasText 20%, Canvas);
+  transition: background-color var(--mf-switch-duration) var(--mf-switch-ease);
+}
+
+.mf-switch-thumb {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background: Canvas;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.28);
+  transform: translateX(0);
+  transition: transform var(--mf-switch-duration) var(--mf-switch-ease);
+}
+
+.mf-switch[aria-checked="true"] .mf-switch-track {
+  background: color-mix(in oklab, CanvasText 76%, Canvas);
+}
+
+.mf-switch[aria-checked="true"] .mf-switch-thumb {
+  transform: translateX(var(--mf-switch-travel));
+}
+
+.mf-switch:focus-visible {
+  outline: none;
+}
+
+.mf-switch:focus-visible .mf-switch-track {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-switch-thumb {
+    transform: none;
+    transition-duration: 1ms;
+  }
+
+  :root:not([data-motion="full"]) .mf-switch-track {
+    transition-duration: 1ms;
+  }
+
+  :root:not([data-motion="full"]) .mf-switch[aria-checked="true"] .mf-switch-thumb {
+    transform: translateX(var(--mf-switch-travel));
+  }
+}

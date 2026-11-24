@@ -1,0 +1,90 @@
+/* Tooltip — a short hint on hover or keyboard focus, quiet on exit. */
+
+.mf-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mf-tooltip-bubble {
+  position: absolute;
+  z-index: 60;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  max-width: 16rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.5rem;
+  background: #1f2328;
+  color: #f6f8fa;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, var(--mf-tooltip-distance)) scale(var(--mf-tooltip-scale));
+  transform-origin: bottom center;
+  transition:
+    opacity var(--mf-duration-micro) var(--mf-tooltip-ease),
+    transform var(--mf-duration-micro) var(--mf-tooltip-ease),
+    visibility 0s linear var(--mf-duration-micro);
+  visibility: hidden;
+}
+
+.mf-tooltip:hover .mf-tooltip-bubble,
+.mf-tooltip:focus-within .mf-tooltip-bubble {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  visibility: visible;
+  transition:
+    opacity var(--mf-tooltip-duration) var(--mf-tooltip-ease),
+    transform var(--mf-tooltip-duration) var(--mf-tooltip-ease),
+    visibility 0s linear 0s;
+  transition-delay: var(--mf-tooltip-delay);
+}
+
+.mf-tooltip[data-mf-side="bottom"] .mf-tooltip-bubble {
+  top: calc(100% + 0.5rem);
+  bottom: auto;
+  transform: translate(-50%, calc(var(--mf-tooltip-distance) * -1)) scale(var(--mf-tooltip-scale));
+  transform-origin: top center;
+}
+
+.mf-tooltip[data-mf-side="bottom"]:hover .mf-tooltip-bubble,
+.mf-tooltip[data-mf-side="bottom"]:focus-within .mf-tooltip-bubble {
+  transform: translate(-50%, 0) scale(1);
+}
+
+.mf-tooltip[data-mf-side="left"] .mf-tooltip-bubble {
+  left: auto;
+  right: calc(100% + 0.5rem);
+  top: 50%;
+  bottom: auto;
+  transform: translate(var(--mf-tooltip-distance), -50%) scale(var(--mf-tooltip-scale));
+  transform-origin: right center;
+}
+
+.mf-tooltip[data-mf-side="left"]:hover .mf-tooltip-bubble,
+.mf-tooltip[data-mf-side="left"]:focus-within .mf-tooltip-bubble {
+  transform: translate(0, -50%) scale(1);
+}
+
+.mf-tooltip[data-mf-side="right"] .mf-tooltip-bubble {
+  left: calc(100% + 0.5rem);
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translate(calc(var(--mf-tooltip-distance) * -1), -50%) scale(var(--mf-tooltip-scale));
+  transform-origin: left center;
+}
+
+.mf-tooltip[data-mf-side="right"]:hover .mf-tooltip-bubble,
+.mf-tooltip[data-mf-side="right"]:focus-within .mf-tooltip-bubble {
+  transform: translate(0, -50%) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-tooltip-bubble {
+    transform: translate(-50%, 0);
+    transition-duration: 80ms;
+  }
+}

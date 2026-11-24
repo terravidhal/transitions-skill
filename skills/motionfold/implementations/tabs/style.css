@@ -1,0 +1,70 @@
+/* Tabs — peer views with one moving indicator. Width is animated on purpose. */
+
+.mf-tabs {
+  position: relative;
+  display: inline-flex;
+  gap: 0.125rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, CanvasText 8%, Canvas);
+  isolation: isolate;
+}
+
+.mf-tabs-indicator {
+  position: absolute;
+  z-index: 0;
+  top: 0.25rem;
+  left: 0;
+  width: 0;
+  height: calc(100% - 0.5rem);
+  border-radius: 999px;
+  background: var(--mf-tabs-indicator);
+  opacity: 0.12;
+  transform: translateX(0);
+  transition:
+    transform var(--mf-tabs-duration) var(--mf-tabs-ease),
+    width var(--mf-tabs-duration) var(--mf-tabs-ease);
+  pointer-events: none;
+}
+
+.mf-tabs[data-mf-no-animate="true"] .mf-tabs-indicator {
+  transition: none;
+}
+
+.mf-tab {
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: transparent;
+  color: color-mix(in oklab, CanvasText 62%, Canvas);
+  font: inherit;
+  cursor: pointer;
+  transition: color var(--mf-tabs-duration) var(--mf-tabs-ease);
+}
+
+.mf-tab[aria-selected="true"] {
+  color: CanvasText;
+}
+
+.mf-tab:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+.mf-tabpanel {
+  margin-top: 0.75rem;
+}
+
+.mf-tabpanel[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-tabs-indicator,
+  :root:not([data-motion="full"]) .mf-tab {
+    transition-duration: 1ms;
+  }
+}

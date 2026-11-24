@@ -1,0 +1,245 @@
+{
+  "name": "motionfold",
+  "version": 1,
+  "baseline": "A deck of polished UI transitions for every stack — accessible by default, tunable in one line.",
+  "prefix": "mf",
+  "stacks": ["vanilla", "react", "vue", "svelte", "solid"],
+  "families": {
+    "surface": "A layer that opens over the page and later leaves.",
+    "state": "A control or region that changes state in place.",
+    "feedback": "A short confirmation or correction after an action.",
+    "navigation": "A move between two views of the same level."
+  },
+  "recipes": [
+    {
+      "slug": "modal",
+      "title": "Modal",
+      "family": "surface",
+      "when": "A blocking decision or a short focused task that needs the page to wait.",
+      "notWhen": "A non-blocking confirmation (use toast) or a contextual menu (use popover).",
+      "primitive": "dialog",
+      "tokens": [
+        "--mf-modal-duration",
+        "--mf-modal-close-duration",
+        "--mf-modal-ease",
+        "--mf-modal-distance",
+        "--mf-modal-scale"
+      ],
+      "a11y": ["focus-trap", "escape", "focus-return", "aria-modal", "labelled"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "modal"
+    },
+    {
+      "slug": "drawer",
+      "title": "Drawer",
+      "family": "surface",
+      "when": "A side panel for navigation, filters, or details that keeps the page in context.",
+      "notWhen": "A short menu (use popover) or a centered blocking task (use modal).",
+      "primitive": "dialog",
+      "tokens": [
+        "--mf-drawer-duration",
+        "--mf-drawer-close-duration",
+        "--mf-drawer-ease",
+        "--mf-drawer-distance"
+      ],
+      "a11y": ["focus-trap", "escape", "focus-return", "aria-modal", "labelled"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "drawer"
+    },
+    {
+      "slug": "popover",
+      "title": "Popover",
+      "family": "surface",
+      "when": "A contextual menu or action panel anchored to a trigger.",
+      "notWhen": "A blocking decision (use modal) or the main navigation.",
+      "primitive": "popover",
+      "tokens": [
+        "--mf-popover-duration",
+        "--mf-popover-close-duration",
+        "--mf-popover-ease",
+        "--mf-popover-distance",
+        "--mf-popover-scale"
+      ],
+      "a11y": ["aria-expanded", "aria-controls", "escape", "light-dismiss", "keyboard"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "popover"
+    },
+    {
+      "slug": "tooltip",
+      "title": "Tooltip",
+      "family": "surface",
+      "when": "A short hint that complements a control on hover or keyboard focus.",
+      "notWhen": "Essential information, long text, or a touch-only target.",
+      "primitive": "css",
+      "tokens": [
+        "--mf-tooltip-duration",
+        "--mf-tooltip-delay",
+        "--mf-tooltip-ease",
+        "--mf-tooltip-distance",
+        "--mf-tooltip-scale"
+      ],
+      "a11y": ["aria-describedby", "focus-visible", "not-touch-only", "decorative-motion"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "tooltip"
+    },
+    {
+      "slug": "toast",
+      "title": "Toast",
+      "family": "surface",
+      "when": "A transient confirmation of an asynchronous action.",
+      "notWhen": "An error that needs a decision or information that must persist.",
+      "primitive": "live-region",
+      "tokens": [
+        "--mf-toast-duration",
+        "--mf-toast-close-duration",
+        "--mf-toast-ease",
+        "--mf-toast-distance",
+        "--mf-toast-scale"
+      ],
+      "a11y": ["role-status", "aria-live", "pause-on-hover", "close-button", "no-focus-steal"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "toast"
+    },
+    {
+      "slug": "accordion",
+      "title": "Accordion",
+      "family": "state",
+      "when": "A header reveals a body in a constrained space: settings groups, FAQs, show more.",
+      "notWhen": "Primary navigation or content that should stay visible.",
+      "primitive": "disclosure",
+      "tokens": ["--mf-accordion-duration", "--mf-accordion-ease", "--mf-accordion-blur"],
+      "a11y": ["aria-expanded", "aria-controls", "inert-when-closed", "focus-visible"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "accordion"
+    },
+    {
+      "slug": "tabs",
+      "title": "Tabs",
+      "family": "state",
+      "when": "Peer views switch in place with a shared moving indicator.",
+      "notWhen": "Sequential steps or page-level navigation.",
+      "primitive": "tablist",
+      "tokens": ["--mf-tabs-duration", "--mf-tabs-ease", "--mf-tabs-indicator"],
+      "a11y": ["role-tablist", "roving-tabindex", "arrow-keys", "aria-selected"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "tabs"
+    },
+    {
+      "slug": "switch",
+      "title": "Switch",
+      "family": "state",
+      "when": "A boolean setting that applies immediately.",
+      "notWhen": "A form choice that is submitted later (use a checkbox or radio group).",
+      "primitive": "switch",
+      "tokens": [
+        "--mf-switch-duration",
+        "--mf-switch-ease",
+        "--mf-switch-travel",
+        "--mf-switch-overshoot"
+      ],
+      "a11y": ["role-switch", "aria-checked", "space-and-enter", "focus-visible"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "switch"
+    },
+    {
+      "slug": "checkbox",
+      "title": "Checkbox",
+      "family": "state",
+      "when": "Multiple selection or consent inside a form.",
+      "notWhen": "An instant setting (use switch) or a single exclusive choice (use radios).",
+      "primitive": "checkbox",
+      "tokens": [
+        "--mf-checkbox-duration",
+        "--mf-checkbox-ease",
+        "--mf-checkbox-draw-duration"
+      ],
+      "a11y": ["native-input", "label", "focus-visible", "not-color-only"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "checkbox"
+    },
+    {
+      "slug": "skeleton",
+      "title": "Skeleton",
+      "family": "state",
+      "when": "Content is loading and its structure is already known.",
+      "notWhen": "The wait is very short or the final layout is unknown.",
+      "primitive": "busy-region",
+      "tokens": [
+        "--mf-skeleton-duration",
+        "--mf-skeleton-ease",
+        "--mf-skeleton-reveal-duration",
+        "--mf-skeleton-reveal-distance"
+      ],
+      "a11y": ["aria-busy", "announce-complete", "no-placeholder-spam", "stable-layout"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "skeleton"
+    },
+    {
+      "slug": "success-check",
+      "title": "Success check",
+      "family": "feedback",
+      "when": "An action just completed and the moment is worth confirming.",
+      "notWhen": "A passive status change or a signal without any text.",
+      "primitive": "status",
+      "tokens": [
+        "--mf-check-duration",
+        "--mf-check-ease",
+        "--mf-check-draw-duration",
+        "--mf-check-distance"
+      ],
+      "a11y": ["role-status", "visible-text", "path-length", "replay-safe"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "success-check"
+    },
+    {
+      "slug": "error-shake",
+      "title": "Error shake",
+      "family": "feedback",
+      "when": "A form submission failed validation and the field needs attention.",
+      "notWhen": "A system failure, an already announced error, or a whole form.",
+      "primitive": "alert",
+      "tokens": [
+        "--mf-shake-duration",
+        "--mf-shake-ease",
+        "--mf-shake-distance"
+      ],
+      "a11y": ["role-alert", "aria-invalid", "message-is-truth", "focus-field"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "error-shake"
+    },
+    {
+      "slug": "text-swap",
+      "title": "Text swap",
+      "family": "state",
+      "when": "A short status label changes in place and the change matters.",
+      "notWhen": "Long paragraphs or the main content of a view.",
+      "primitive": "live-region",
+      "tokens": [
+        "--mf-text-swap-duration",
+        "--mf-text-swap-ease",
+        "--mf-text-swap-distance",
+        "--mf-text-swap-blur"
+      ],
+      "a11y": ["aria-live", "single-announcement", "reserved-width", "no-duplicate-text"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "text-swap"
+    },
+    {
+      "slug": "page-slide",
+      "title": "Page slide",
+      "family": "navigation",
+      "when": "Moving between two views of the same level: list to detail, step to step.",
+      "notWhen": "Very frequent keyboard navigation or an unsupported browser with no fallback.",
+      "primitive": "view-transition",
+      "tokens": [
+        "--mf-page-duration",
+        "--mf-page-ease",
+        "--mf-page-distance",
+        "--mf-page-blur"
+      ],
+      "a11y": ["view-transition", "fallback", "focus-heading", "no-keyboard-block"],
+      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "demo": "page-slide"
+    }
+  ]
+}

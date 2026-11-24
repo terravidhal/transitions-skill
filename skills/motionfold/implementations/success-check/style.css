@@ -1,0 +1,97 @@
+/* Success check — a one-shot confirmation with a drawn check and visible text. */
+
+.mf-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mf-success-icon {
+  display: block;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  overflow: visible;
+  transform-origin: center;
+  opacity: 0;
+  transform: translateY(var(--mf-check-distance)) scale(0.92) rotate(-10deg);
+  filter: blur(var(--mf-blur-md));
+}
+
+.mf-success[data-mf-state="success"] .mf-success-icon {
+  animation: mf-check-pop var(--mf-check-duration) var(--mf-check-ease) forwards;
+}
+
+.mf-success-path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--mf-check-path-length, 22);
+  stroke-dashoffset: var(--mf-check-path-length, 22);
+}
+
+.mf-success[data-mf-state="success"] .mf-success-path {
+  animation: mf-check-draw var(--mf-check-draw-duration) var(--mf-check-ease) 80ms forwards;
+}
+
+.mf-success-text {
+  opacity: 0;
+  transform: translateY(2px);
+  transition:
+    opacity var(--mf-duration-base) var(--mf-check-ease),
+    transform var(--mf-duration-base) var(--mf-check-ease);
+}
+
+.mf-success[data-mf-state="success"] .mf-success-text {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes mf-check-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--mf-check-distance)) scale(0.92) rotate(-10deg);
+    filter: blur(var(--mf-blur-md));
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1.04) rotate(2deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes mf-check-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-success-icon,
+  :root:not([data-motion="full"]) .mf-success-path {
+    animation: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-success-icon {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-success-path {
+    stroke-dashoffset: 0;
+  }
+
+  :root:not([data-motion="full"]) .mf-success-text {
+    opacity: 1;
+    transform: none;
+    transition-duration: 120ms;
+  }
+}

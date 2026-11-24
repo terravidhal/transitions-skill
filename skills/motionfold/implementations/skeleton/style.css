@@ -1,0 +1,95 @@
+/* Skeleton — a pulsing placeholder that cross-fades to the real content. */
+
+.mf-skeleton {
+  position: relative;
+  min-height: 4rem;
+}
+
+.mf-skeleton-placeholder,
+.mf-skeleton-content {
+  transition:
+    opacity var(--mf-skeleton-reveal-duration) var(--mf-skeleton-ease),
+    transform var(--mf-skeleton-reveal-duration) var(--mf-skeleton-ease),
+    filter var(--mf-skeleton-reveal-duration) var(--mf-skeleton-ease);
+}
+
+.mf-skeleton-placeholder {
+  display: grid;
+  gap: 0.5rem;
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.mf-skeleton-content {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(var(--mf-skeleton-reveal-distance));
+  filter: blur(var(--mf-blur-sm));
+}
+
+.mf-skeleton[data-mf-state="ready"] .mf-skeleton-placeholder {
+  opacity: 0;
+  transform: translateY(calc(var(--mf-skeleton-reveal-distance) * -1));
+  filter: blur(var(--mf-blur-sm));
+}
+
+.mf-skeleton[data-mf-state="ready"] .mf-skeleton-content {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.mf-skeleton-line,
+.mf-skeleton-block {
+  display: block;
+  border-radius: 0.5rem;
+  background: color-mix(in oklab, CanvasText 12%, Canvas);
+  animation: mf-skeleton-pulse var(--mf-skeleton-duration) var(--mf-skeleton-ease) infinite;
+}
+
+.mf-skeleton-line {
+  height: 0.75rem;
+}
+
+.mf-skeleton-line[data-width="short"] {
+  width: 38%;
+}
+
+.mf-skeleton-line[data-width="medium"] {
+  width: 64%;
+}
+
+.mf-skeleton-block {
+  height: 3.5rem;
+}
+
+.mf-skeleton[data-mf-state="ready"] .mf-skeleton-line,
+.mf-skeleton[data-mf-state="ready"] .mf-skeleton-block {
+  animation: none;
+}
+
+@keyframes mf-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.46;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-skeleton-line,
+  :root:not([data-motion="full"]) .mf-skeleton-block {
+    animation: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-skeleton-placeholder,
+  :root:not([data-motion="full"]) .mf-skeleton-content {
+    transform: none;
+    filter: none;
+    transition-duration: 120ms;
+  }
+}

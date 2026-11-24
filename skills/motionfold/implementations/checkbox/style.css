@@ -1,0 +1,71 @@
+/* Checkbox — native input, custom box, measured check stroke. */
+
+.mf-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.mf-checkbox input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mf-checkbox-box {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.12rem;
+  border: 1.5px solid color-mix(in oklab, CanvasText 38%, Canvas);
+  border-radius: 0.3rem;
+  background: Canvas;
+  transition:
+    background-color var(--mf-checkbox-duration) var(--mf-checkbox-ease),
+    border-color var(--mf-checkbox-duration) var(--mf-checkbox-ease);
+}
+
+.mf-checkbox input:checked + .mf-checkbox-box {
+  background: CanvasText;
+  border-color: CanvasText;
+}
+
+.mf-checkbox input:focus-visible + .mf-checkbox-box {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.mf-checkbox-check {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: Canvas;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--mf-checkbox-path-length, 14);
+  stroke-dashoffset: var(--mf-checkbox-path-length, 14);
+  transition: stroke-dashoffset var(--mf-checkbox-draw-duration) var(--mf-checkbox-ease) 30ms;
+}
+
+.mf-checkbox input:checked + .mf-checkbox-box .mf-checkbox-check {
+  stroke-dashoffset: 0;
+}
+
+.mf-checkbox-label {
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-checkbox-box,
+  :root:not([data-motion="full"]) .mf-checkbox-check {
+    transition-duration: 1ms;
+  }
+}

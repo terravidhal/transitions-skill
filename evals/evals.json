@@ -1,0 +1,139 @@
+{
+  "skill": "motionfold",
+  "version": 1,
+  "cases": [
+    {
+      "id": "add-accessible-modal",
+      "prompt": "Add a settings modal that closes on Escape and respects reduced motion.",
+      "must": [
+        "use the modal recipe with a native dialog element",
+        "keep focus inside the dialog and return it to the trigger on close",
+        "include the prefers-reduced-motion guard",
+        "keep the close transition shorter than the open transition"
+      ],
+      "must_not": [
+        "animate width or height",
+        "use transition: all",
+        "make motion the only signal that the dialog opened"
+      ]
+    },
+    {
+      "id": "fix-popping-dropdown",
+      "prompt": "Our account dropdown appears and disappears instantly. Make it feel polished.",
+      "must": [
+        "pick the popover recipe",
+        "make the surface origin-aware with a transform-origin that follows the trigger",
+        "add a faster exit than entry",
+        "preserve light dismiss and keyboard access"
+      ],
+      "must_not": [
+        "add an animation library",
+        "leave the surface mounted without an exit transition"
+      ]
+    },
+    {
+      "id": "success-without-motion-only",
+      "prompt": "Show a success confirmation after the user saves a document.",
+      "must": [
+        "use the success-check recipe",
+        "include visible text and a live status region",
+        "make the check path draw measurable at runtime or with a verified dasharray",
+        "keep the confirmation announced to assistive technology"
+      ],
+      "must_not": [
+        "rely on the checkmark animation as the only signal",
+        "loop the animation forever"
+      ]
+    },
+    {
+      "id": "speed-up-by-twenty-percent",
+      "prompt": "Make every transition in the app 20% faster without touching each component.",
+      "must": [
+        "set --mf-scale once on :root",
+        "explain that durations derive from the scale multiplier"
+      ],
+      "must_not": [
+        "edit every recipe duration",
+        "break prefers-reduced-motion"
+      ]
+    },
+    {
+      "id": "port-react-to-svelte",
+      "prompt": "Port the tabs transition from our React component to Svelte.",
+      "must": [
+        "reuse the same CSS classes and tokens",
+        "keep the same ARIA roles and keyboard behavior",
+        "keep the sliding indicator measured without animating on first paint"
+      ],
+      "must_not": [
+        "change the visual timing",
+        "invent new class names"
+      ]
+    },
+    {
+      "id": "audit-without-writing",
+      "prompt": "Audit the animations in src/ and tell me what to fix. Do not change anything.",
+      "must": [
+        "run the bundled audit script or apply its rules",
+        "group findings by file with line numbers",
+        "explain each finding and the suggested recipe"
+      ],
+      "must_not": [
+        "modify files",
+        "install a dependency"
+      ]
+    },
+    {
+      "id": "accordion-residual-strip",
+      "prompt": "Our accordion leaves a thin strip when it closes. Fix it.",
+      "must": [
+        "move padding to the inner panel",
+        "keep the grid-template-rows 0fr to 1fr technique",
+        "keep the closed content inert and aria-hidden"
+      ],
+      "must_not": [
+        "animate height with a fixed pixel value",
+        "remove the reduced-motion guard"
+      ]
+    },
+    {
+      "id": "list-detail-navigation",
+      "prompt": "Animate navigation between a list and a detail page, with a fallback.",
+      "must": [
+        "use the page-slide recipe",
+        "use the View Transitions API when available",
+        "provide an instant fallback when unsupported or when motion is reduced",
+        "move focus to the new view heading"
+      ],
+      "must_not": [
+        "duplicate view-transition-name values",
+        "block keyboard navigation while the animation runs"
+      ]
+    },
+    {
+      "id": "toast-reduced-motion",
+      "prompt": "Add a toast for a background upload and respect the user's motion setting.",
+      "must": [
+        "use role=status and aria-live=polite",
+        "pause auto-dismiss on hover and focus",
+        "skip translation but keep a short opacity change under reduced motion"
+      ],
+      "must_not": [
+        "steal focus",
+        "stack more than four toasts"
+      ]
+    },
+    {
+      "id": "refuse-keyboard-palette-animation",
+      "prompt": "Add a bouncy spring animation to our command palette that opens hundreds of times a day.",
+      "must": [
+        "explain the frequency gate",
+        "offer a near-instant fade or no animation instead"
+      ],
+      "must_not": [
+        "add a spring or scale animation to a keyboard-first surface",
+        "add a dependency"
+      ]
+    }
+  ]
+}

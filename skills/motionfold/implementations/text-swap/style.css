@@ -1,0 +1,68 @@
+/* Text swap — a short status label changes in place, with the old value leaving upward. */
+
+.mf-text-swap {
+  position: relative;
+  display: inline-grid;
+  vertical-align: bottom;
+}
+
+.mf-text-swap-value,
+.mf-text-swap-ghost {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.mf-text-swap-ghost {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mf-text-swap[data-mf-swapping="true"] .mf-text-swap-value {
+  animation: mf-text-swap-in var(--mf-text-swap-duration) var(--mf-text-swap-ease);
+}
+
+.mf-text-swap[data-mf-swapping="true"] .mf-text-swap-ghost {
+  opacity: 1;
+  animation: mf-text-swap-out var(--mf-text-swap-duration) var(--mf-text-swap-ease) forwards;
+}
+
+@keyframes mf-text-swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--mf-text-swap-distance));
+    filter: blur(var(--mf-text-swap-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes mf-text-swap-out {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-text-swap-distance) * -1));
+    filter: blur(var(--mf-text-swap-blur));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-text-swap[data-mf-swapping="true"] .mf-text-swap-value,
+  :root:not([data-motion="full"]) .mf-text-swap[data-mf-swapping="true"] .mf-text-swap-ghost {
+    animation: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-text-swap[data-mf-swapping="true"] .mf-text-swap-value {
+    opacity: 1;
+  }
+
+  :root:not([data-motion="full"]) .mf-text-swap[data-mf-swapping="true"] .mf-text-swap-ghost {
+    opacity: 0;
+  }
+}

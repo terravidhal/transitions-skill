@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-motion="full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>motionfold — before / after</title>
+    <link rel="stylesheet" href="../skills/motionfold/implementations/_shared/motion.css" />
+    <link rel="stylesheet" href="./demo.css" />
+    <style>
+      .ba-page {
+        width: min(1160px, calc(100vw - 3rem));
+        margin-inline: auto;
+        padding-block: 2.5rem 3rem;
+      }
+      .ba-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .ba-head h1 {
+        margin: 0;
+        font-size: 2rem;
+        letter-spacing: -0.02em;
+      }
+      .ba-head p {
+        margin: 0.35rem 0 0;
+        color: var(--demo-muted);
+        max-width: 52ch;
+      }
+      .ba-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .ba-col {
+        padding: 1.1rem;
+        border: 1px solid var(--demo-border);
+        border-radius: var(--demo-radius);
+        background: var(--demo-surface);
+        box-shadow: var(--demo-shadow);
+      }
+      .ba-col h2 {
+        margin: 0 0 0.15rem;
+        font-size: 0.95rem;
+      }
+      .ba-col > header p {
+        margin: 0 0 1rem;
+        color: var(--demo-muted);
+        font-size: 0.8rem;
+      }
+      .ba-row {
+        display: grid;
+        grid-template-columns: 5.5rem 1fr;
+        align-items: center;
+        gap: 0.75rem;
+        padding-block: 0.6rem;
+        border-top: 1px dashed var(--demo-border);
+      }
+      .ba-row:first-of-type {
+        border-top: 0;
+      }
+      .ba-label {
+        color: var(--demo-muted);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .ba-before {
+        padding: 0.75rem;
+        border: 2px solid #111111;
+        background: #ffffff;
+        color: #111111;
+        font: 0.82rem/1.4 ui-monospace, monospace;
+      }
+      .ba-before strong {
+        display: block;
+      }
+      .ba-before-badge {
+        display: inline-block;
+        padding: 0.1rem 0.35rem;
+        background: #111111;
+        color: #ffffff;
+        font-size: 0.65rem;
+      }
+      .ba-after {
+        padding: 0.85rem;
+        border: 1px solid var(--demo-border);
+        border-radius: 12px;
+        background: var(--demo-surface-2);
+        box-shadow: 0 14px 30px -22px rgb(0 0 0 / 0.55);
+        font-size: 0.82rem;
+      }
+      .ba-after strong {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+      .ba-after-menu {
+        display: grid;
+        gap: 0.25rem;
+        padding: 0.3rem;
+        border: 1px solid var(--demo-border);
+        border-radius: 10px;
+        background: var(--demo-surface);
+        box-shadow: 0 14px 30px -22px rgb(0 0 0 / 0.55);
+        font-size: 0.8rem;
+      }
+      .ba-after-menu span {
+        padding: 0.3rem 0.5rem;
+        border-radius: 7px;
+      }
+      .ba-after-menu span:first-child {
+        background: color-mix(in oklab, var(--demo-accent) 12%, transparent);
+        color: var(--demo-accent);
+      }
+      .ba-check {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-weight: 600;
+      }
+      .ba-check b {
+        display: inline-grid;
+        place-items: center;
+        width: 1.35rem;
+        height: 1.35rem;
+        border-radius: 50%;
+        background: #1f8f4e;
+        color: #ffffff;
+        font-size: 0.8rem;
+      }
+      .ba-table {
+        margin-top: 1.4rem;
+        border: 1px solid var(--demo-border);
+        border-radius: var(--demo-radius);
+        background: var(--demo-surface);
+        overflow: hidden;
+      }
+      .ba-table table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.82rem;
+      }
+      .ba-table th,
+      .ba-table td {
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+        border-bottom: 1px solid var(--demo-border);
+      }
+      .ba-table th {
+        background: var(--demo-surface-2);
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--demo-muted);
+      }
+      .ba-table tr:last-child td {
+        border-bottom: 0;
+      }
+      .ba-foot {
+        margin-top: 1rem;
+        color: var(--demo-muted);
+        font-size: 0.78rem;
+      }
+      @media (max-width: 760px) {
+        .ba-columns {
+          grid-template-columns: 1fr;
+        }
+        .ba-head {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="ba-page">
+      <header class="ba-head">
+        <div>
+          <p class="demo-kicker">motionfold</p>
+          <h1>Before / after</h1>
+          <p>
+            The same four surfaces. On the left, display toggles and ad-hoc timing. On the right,
+            origin-aware motion, faster exits, one token scale, and a reduced-motion path.
+          </p>
+        </div>
+      </header>
+
+      <div class="ba-columns">
+        <section class="ba-col">
+          <header>
+            <h2>Before</h2>
+            <p>Instant appearance, centered origin, no exit, no shared scale.</p>
+          </header>
+          <div class="ba-row">
+            <span class="ba-label">Modal</span>
+            <div class="ba-before"><strong>Delete project</strong>This dialog appears with display: block. No backdrop transition. Escape snaps it away.</div>
+          </div>
+          <div class="ba-row">
+            <span class="ba-label">Menu</span>
+            <div class="ba-before"><strong>Account</strong>Profile · Billing · Sign out<br /><span class="ba-before-badge">opens from the center</span></div>
+          </div>
+          <div class="ba-row">
+            <span class="ba-label">Toast</span>
+            <div class="ba-before"><strong>Saved</strong>Pops into the corner and disappears after 3s, even if you are reading.</div>
+          </div>
+          <div class="ba-row">
+            <span class="ba-label">Success</span>
+            <div class="ba-before"><strong>✓</strong>A check icon with no text and an infinite pulse.</div>
+          </div>
+        </section>
+
+        <section class="ba-col">
+          <header>
+            <h2>After</h2>
+            <p>Native surfaces, exit faster than entry, reduced motion, readable state.</p>
+          </header>
+          <div class="ba-row">
+            <span class="ba-label">Modal</span>
+            <div class="ba-after"><strong>Delete project</strong>Scale 0.97 → 1 in 240 ms, close in 150 ms. Focus trapped, returned on close. Backdrop fades.</div>
+          </div>
+          <div class="ba-row">
+            <span class="ba-label">Menu</span>
+            <div class="ba-after-menu">
+              <span>Profile</span><span>Billing</span><span>Sign out</span>
+            </div>
+          </div>
+          <div class="ba-row">
+            <span class="ba-label">Toast</span>
+            <div class="ba-after"><strong>Saved</strong>Rises 16 px with a short fade. Pauses on hover and focus. Dismissible. <code>role="status"</code>.</div>
+          </div>
+          <div class="ba-row">
+            <span class="ba-label">Success</span>
+            <div class="ba-after"><span class="ba-check"><b>✓</b> Saved</span> Path draws once, text carries the meaning, static under reduced motion.</div>
+          </div>
+        </section>
+      </div>
+
+      <div class="ba-table">
+        <table>
+          <thead>
+            <tr><th>What changed</th><th>Before</th><th>After</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Origin</td><td>Center or none</td><td>Follows the trigger or the edge</td></tr>
+            <tr><td>Exit</td><td>Missing or same as entry</td><td>Present, faster, interruptible</td></tr>
+            <tr><td>Timing</td><td>Scattered literals</td><td>One token scale, one-line tuning</td></tr>
+            <tr><td>Reduced motion</td><td>Ignored</td><td>Guard in every recipe, app override</td></tr>
+            <tr><td>Meaning</td><td>Motion only</td><td>Text, focus, ARIA, live regions</td></tr>
+            <tr><td>Dependency</td><td>Ad-hoc scripts</td><td>Native dialog, popover, View Transitions</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="ba-foot">
+        This page is our own comparison, built from the motionfold recipes. No screenshot or asset from
+        another library is used.
+      </p>
+    </main>
+  </body>
+</html>

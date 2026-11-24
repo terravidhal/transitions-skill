@@ -7,7 +7,10 @@ node_modules/
 dist/
 build/
 .next/
+out/
 coverage/
+examples/.vite/
+examples/stacks/dist/
 
 # Local env and logs
 .env
@@ -21,6 +24,7 @@ npm-debug.log*
 .idea/
 .vscode/
 
-# Demo artifacts (keep the committed screenshots in assets/)
-examples/.vite/
-examples/stacks/dist/
+# Generated artifacts (keep the committed screenshots in assets/)
+*.tsbuildinfo
+examples/screenshots/
+.demo-frames/

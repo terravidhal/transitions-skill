@@ -1,0 +1,95 @@
+/* Popover — an origin-aware menu on the native Popover API. */
+
+.mf-popover {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  padding: 0.375rem;
+  min-width: 12rem;
+  max-width: min(22rem, calc(100vw - 1rem));
+  border: 1px solid color-mix(in oklab, CanvasText 14%, Canvas);
+  border-radius: 0.75rem;
+  background: Canvas;
+  color: CanvasText;
+  box-shadow: 0 18px 48px -24px rgb(0 0 0 / 0.5);
+  opacity: 0;
+  transform: translateY(calc(var(--mf-popover-distance) * -1)) scale(var(--mf-popover-scale));
+  transform-origin: top center;
+  transition:
+    opacity var(--mf-popover-close-duration) var(--mf-popover-ease),
+    transform var(--mf-popover-close-duration) var(--mf-popover-ease),
+    display var(--mf-popover-close-duration) allow-discrete,
+    overlay var(--mf-popover-close-duration) allow-discrete;
+}
+
+.mf-popover:popover-open {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--mf-popover-duration);
+}
+
+@starting-style {
+  .mf-popover:popover-open {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-popover-distance) * -1)) scale(var(--mf-popover-scale));
+  }
+}
+
+.mf-popover[data-mf-side="top"] {
+  transform-origin: bottom center;
+  transform: translateY(var(--mf-popover-distance)) scale(var(--mf-popover-scale));
+}
+
+.mf-popover[data-mf-side="left"] {
+  transform-origin: right center;
+  transform: translateX(var(--mf-popover-distance)) scale(var(--mf-popover-scale));
+}
+
+.mf-popover[data-mf-side="right"] {
+  transform-origin: left center;
+  transform: translateX(calc(var(--mf-popover-distance) * -1)) scale(var(--mf-popover-scale));
+}
+
+.mf-popover[data-mf-side="bottom"] {
+  transform-origin: top center;
+}
+
+.mf-popover-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mf-popover-item:hover,
+.mf-popover-item:focus-visible {
+  background: color-mix(in oklab, CanvasText 9%, Canvas);
+  outline: none;
+}
+
+.mf-popover-item:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.mf-popover-separator {
+  height: 1px;
+  margin: 0.375rem 0.25rem;
+  background: color-mix(in oklab, CanvasText 12%, Canvas);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-popover {
+    transition-duration: 100ms;
+    transform: none;
+  }
+}

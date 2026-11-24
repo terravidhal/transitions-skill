@@ -1,0 +1,83 @@
+/* Toast — a transient live-region message that rises from the corner. */
+
+.mf-toast-region {
+  position: fixed;
+  z-index: 70;
+  inset-block-end: 1rem;
+  inset-inline-end: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(24rem, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.mf-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid color-mix(in oklab, CanvasText 12%, Canvas);
+  border-radius: 0.75rem;
+  background: Canvas;
+  color: CanvasText;
+  box-shadow: 0 16px 40px -20px rgb(0 0 0 / 0.45);
+  opacity: 0;
+  transform: translateY(var(--mf-toast-distance)) scale(var(--mf-toast-scale));
+  transition:
+    opacity var(--mf-toast-close-duration) var(--mf-toast-ease),
+    transform var(--mf-toast-close-duration) var(--mf-toast-ease);
+}
+
+.mf-toast[data-mf-state="open"] {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--mf-toast-duration);
+}
+
+.mf-toast-body {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.mf-toast-title {
+  display: block;
+  font-weight: 600;
+}
+
+.mf-toast-close {
+  flex: none;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.mf-toast-close:hover {
+  opacity: 1;
+}
+
+.mf-toast-close:focus-visible {
+  opacity: 1;
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+.mf-toast[data-mf-tone="danger"] {
+  border-color: color-mix(in oklab, #c0392b 44%, Canvas);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-toast {
+    transform: none;
+    transition-duration: 120ms;
+  }
+}

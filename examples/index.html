@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en" data-motion="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>motionfold — live demo</title>
+    <meta
+      name="description"
+      content="Fourteen polished UI transitions, shown in the browser with reduced-motion and one-line tuning controls."
+    />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/_shared/motion.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/modal/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/drawer/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/popover/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/tooltip/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/toast/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/accordion/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/tabs/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/switch/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/checkbox/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/skeleton/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/success-check/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/error-shake/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/text-swap/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/page-slide/style.css" />
+    <link rel="stylesheet" href="./demo.css" />
+  </head>
+  <body>
+    <header class="demo-header">
+      <div>
+        <p class="demo-kicker">motionfold</p>
+        <h1>Fourteen transitions, running here.</h1>
+        <p class="demo-lede">
+          Every card below is the real vanilla implementation. Change the theme, force reduced motion, or tune the
+          scale and curve once for the whole page.
+        </p>
+      </div>
+      <div class="demo-controls">
+        <div class="demo-control">
+          <span class="demo-control-label">Theme</span>
+          <div class="demo-segmented" role="group" aria-label="Theme">
+            <button type="button" data-theme-toggle="light" aria-pressed="true">Light</button>
+            <button type="button" data-theme-toggle="dark" aria-pressed="false">Dark</button>
+          </div>
+        </div>
+        <div class="demo-control">
+          <span class="demo-control-label">Motion</span>
+          <div class="demo-segmented" role="group" aria-label="Motion">
+            <button type="button" data-motion-toggle="auto" aria-pressed="true">Auto</button>
+            <button type="button" data-motion-toggle="reduced" aria-pressed="false">Reduced</button>
+            <button type="button" data-motion-toggle="full" aria-pressed="false">Full</button>
+          </div>
+        </div>
+        <label class="demo-control">
+          <span class="demo-control-label">Speed <output id="speed-out">1.00×</output></span>
+          <input id="speed" type="range" min="0.5" max="1.5" step="0.05" value="1" />
+        </label>
+        <label class="demo-control">
+          <span class="demo-control-label">Curve</span>
+          <select id="ease">
+            <option value="cubic-bezier(0.22, 1, 0.36, 1)">Smooth out</option>
+            <option value="cubic-bezier(0.2, 0.8, 0.2, 1)">Snappy</option>
+            <option value="ease-out">Ease out</option>
+            <option value="cubic-bezier(0.34, 1.28, 0.64, 1)">Soft spring</option>
+          </select>
+        </label>
+        <button class="demo-btn demo-btn-primary" type="button" id="replay-all">Replay highlights</button>
+      </div>
+    </header>
+
+    <main class="demo-grid">
+      <article class="demo-card" data-recipe="modal">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Modal</h2>
+          <p>A blocking task scales in and leaves faster than it arrived.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn demo-btn-primary" type="button" data-open-modal>Rename project</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="drawer">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Drawer</h2>
+          <p>A side panel uses the same native dialog guarantees as the modal.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn demo-btn-primary" type="button" data-open-drawer>Open filters</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="popover">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Popover</h2>
+          <p>An anchored menu grows from its trigger and light-dismisses.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn" type="button" id="popover-trigger">Account</button>
+          <div id="account-menu" popover="auto" class="mf-popover" role="menu" data-mf-side="bottom">
+            <button class="mf-popover-item" type="button" role="menuitem">Profile</button>
+            <button class="mf-popover-item" type="button" role="menuitem">Billing</button>
+            <div class="mf-popover-separator"></div>
+            <button class="mf-popover-item" type="button" role="menuitem">Sign out</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="tooltip">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Tooltip</h2>
+          <p>A short hint appears after intent, on hover or keyboard focus.</p>
+        </div>
+        <div class="demo-stage">
+          <span class="mf-tooltip">
+            <button class="demo-icon-btn" type="button" aria-describedby="tip-1" aria-label="Duplicate">⧉</button>
+            <span class="mf-tooltip-bubble" role="tooltip" id="tip-1">Copy to a new draft</span>
+          </span>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="toast">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Toast</h2>
+          <p>A live-region confirmation rises in, pauses on hover, then leaves.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn" type="button" data-toast>Save draft</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="accordion">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Accordion</h2>
+          <p>The body grows with grid rows; the chevron flips without a path morph.</p>
+        </div>
+        <div class="demo-stage demo-stage-block" id="accordion-demo">
+          <div class="mf-accordion" data-mf-open="true">
+            <button class="mf-accordion-trigger" type="button" id="acc-1-trigger" aria-expanded="true" aria-controls="acc-1-panel">
+              <span>What is a motion token?</span>
+              <span class="mf-accordion-chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6.5L8 10.5L12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
+            <div class="mf-accordion-panel" id="acc-1-panel" role="region" aria-labelledby="acc-1-trigger">
+              <div class="mf-accordion-inner">A named value with a documented usage, not a magic number.</div>
+            </div>
+          </div>
+          <div class="mf-accordion" data-mf-open="false">
+            <button class="mf-accordion-trigger" type="button" id="acc-2-trigger" aria-expanded="false" aria-controls="acc-2-panel">
+              <span>Does every recipe ship a reduced-motion guard?</span>
+              <span class="mf-accordion-chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6.5L8 10.5L12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
+            <div class="mf-accordion-panel" id="acc-2-panel" role="region" aria-labelledby="acc-2-trigger" inert>
+              <div class="mf-accordion-inner">Yes. Movement is removed; a short opacity change may remain.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="tabs">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Tabs</h2>
+          <p>One measured indicator slides between peer views.</p>
+        </div>
+        <div class="demo-stage demo-stage-block" id="tabs-demo">
+          <div class="mf-tabs" role="tablist" aria-label="Project views">
+            <span class="mf-tabs-indicator" aria-hidden="true"></span>
+            <button class="mf-tab" type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" tabindex="0">Overview</button>
+            <button class="mf-tab" type="button" role="tab" id="tab-activity" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Activity</button>
+            <button class="mf-tab" type="button" role="tab" id="tab-settings" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Settings</button>
+          </div>
+          <div class="mf-tabpanel demo-panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+            Three views, one shared pill. Arrow keys move the selection.
+          </div>
+          <div class="mf-tabpanel demo-panel" role="tabpanel" id="panel-activity" aria-labelledby="tab-activity" hidden>
+            Recent activity appears here without a page change.
+          </div>
+          <div class="mf-tabpanel demo-panel" role="tabpanel" id="panel-settings" aria-labelledby="tab-settings" hidden>
+            Settings that belong to the same object as the other tabs.
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="switch">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Switch</h2>
+          <p>A boolean setting applies immediately, with a small overshoot.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <button class="mf-switch" type="button" role="switch" aria-checked="true">
+            <span class="mf-switch-track" aria-hidden="true"><span class="mf-switch-thumb"></span></span>
+            <span>Email notifications</span>
+          </button>
+          <button class="mf-switch" type="button" role="switch" aria-checked="false">
+            <span class="mf-switch-track" aria-hidden="true"><span class="mf-switch-thumb"></span></span>
+            <span>Auto-save</span>
+          </button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="checkbox">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Checkbox</h2>
+          <p>The native input keeps the state; the mark draws once it is measured.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <label class="mf-checkbox">
+            <input type="checkbox" checked />
+            <span class="mf-checkbox-box" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path class="mf-checkbox-check" d="M3.5 8.5L6.5 11.5L12.5 4.5" /></svg>
+            </span>
+            <span class="mf-checkbox-label">Email me product updates</span>
+          </label>
+          <label class="mf-checkbox">
+            <input type="checkbox" />
+            <span class="mf-checkbox-box" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path class="mf-checkbox-check" d="M3.5 8.5L6.5 11.5L12.5 4.5" /></svg>
+            </span>
+            <span class="mf-checkbox-label">Include beta features</span>
+          </label>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="skeleton">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Skeleton</h2>
+          <p>A placeholder pulses, then cross-fades to the content in the same slot.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <div class="mf-skeleton demo-skeleton" data-mf-state="loading" aria-busy="true">
+            <div class="mf-skeleton-placeholder" aria-hidden="true">
+              <span class="mf-skeleton-block"></span>
+              <span class="mf-skeleton-line" data-width="medium"></span>
+              <span class="mf-skeleton-line" data-width="short"></span>
+            </div>
+            <div class="mf-skeleton-content demo-panel">
+              <strong>Project Atlas</strong>
+              <span>12 members · updated 2 minutes ago</span>
+            </div>
+            <span class="mf-sr-only" role="status">Loading</span>
+          </div>
+          <button class="demo-btn" type="button" data-skeleton>Reveal</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="success-check">
+        <div class="demo-card-head">
+          <span class="demo-family">feedback</span>
+          <h2>Success check</h2>
+          <p>A one-shot pop and drawn path, with text that carries the meaning.</p>
+        </div>
+        <div class="demo-stage">
+          <span class="mf-success" data-mf-state="success" role="status">
+            <svg class="mf-success-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.35" />
+              <path class="mf-success-path" d="M7 12.5L10.5 16L17 8" />
+            </svg>
+            <span class="mf-success-text">Saved</span>
+          </span>
+          <button class="demo-btn" type="button" data-success>Replay</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="error-shake">
+        <div class="demo-card-head">
+          <span class="demo-family">feedback</span>
+          <h2>Error shake</h2>
+          <p>One short correction; the message and focus do the real work.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <div class="mf-field" data-mf-invalid="false">
+            <label class="mf-field-label" for="demo-email">Email</label>
+            <input class="mf-input" id="demo-email" type="email" placeholder="you@example.com" aria-describedby="demo-email-error" />
+            <p class="mf-field-error" id="demo-email-error" role="alert" hidden>Enter a valid email address.</p>
+          </div>
+          <button class="demo-btn" type="button" data-error>Submit empty</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="text-swap">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Text swap</h2>
+          <p>A short status label changes in place; the old value leaves upward.</p>
+        </div>
+        <div class="demo-stage">
+          <span class="mf-text-swap demo-status" data-mf-swapping="false" aria-live="polite">
+            <span class="mf-text-swap-value">Draft</span>
+            <span class="mf-text-swap-ghost" aria-hidden="true"></span>
+          </span>
+          <button class="demo-btn" type="button" data-text-swap>Publish</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="page-slide">
+        <div class="demo-card-head">
+          <span class="demo-family">navigation</span>
+          <h2>Page slide</h2>
+          <p>A directional move between list and detail, with an instant fallback.</p>
+        </div>
+        <div class="demo-stage demo-stage-block" id="page-demo">
+          <div class="demo-page-frame">
+            <section class="mf-page demo-panel" data-mf-page="list">
+              <h2 tabindex="-1">Projects</h2>
+              <p>Atlas, Basin, Cirrus — choose one to open the detail view.</p>
+            </section>
+            <section class="mf-page demo-panel" data-mf-page="detail" hidden>
+              <h2 tabindex="-1">Project Atlas</h2>
+              <p>Detail view. The heading receives focus; the transition never blocks input.</p>
+            </section>
+          </div>
+          <div class="demo-row">
+            <button class="demo-btn" type="button" data-page-back>Back</button>
+            <button class="demo-btn demo-btn-primary" type="button" data-page-forward>Open detail</button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="demo-footer">
+      <p>
+        motionfold is MIT. The motion layer is <code>motion.css</code>; every recipe ships React, Vue, Svelte, Solid,
+        and vanilla files. Read the skill at <code>skills/motionfold/SKILL.md</code>.
+      </p>
+      <p class="demo-token-readout">scale <code id="scale-out">1</code> · ease <code id="ease-out">smooth</code></p>
+    </footer>
+
+    <dialog class="mf-modal" aria-labelledby="modal-title">
+      <div class="mf-modal-header">
+        <h2 class="mf-modal-title" id="modal-title">Rename project</h2>
+        <button class="mf-modal-close" type="button" data-mf-close aria-label="Close">×</button>
+      </div>
+      <div class="mf-modal-body">
+        <p>This is a native dialog. Focus is trapped, Escape closes, and focus returns to the trigger.</p>
+        <label class="mf-field-label" for="project-name">Project name</label>
+        <input class="mf-input" id="project-name" value="Atlas" autofocus />
+      </div>
+      <div class="mf-modal-actions">
+        <button class="demo-btn" type="button" data-mf-close>Cancel</button>
+        <button class="demo-btn demo-btn-primary" type="button" data-mf-close>Rename</button>
+      </div>
+    </dialog>
+
+    <dialog class="mf-drawer" data-side="right" aria-labelledby="drawer-title">
+      <div class="mf-drawer-header">
+        <h2 class="mf-drawer-title" id="drawer-title">Filters</h2>
+        <button class="mf-drawer-close" type="button" data-mf-close aria-label="Close">×</button>
+      </div>
+      <div class="mf-drawer-body">
+        <p>Full height, same focus contract as the modal, and an origin at the screen edge.</p>
+        <label class="mf-checkbox">
+          <input type="checkbox" checked />
+          <span class="mf-checkbox-box" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path class="mf-checkbox-check" d="M3.5 8.5L6.5 11.5L12.5 4.5" /></svg>
+          </span>
+          <span class="mf-checkbox-label">Active only</span>
+        </label>
+        <label class="mf-checkbox">
+          <input type="checkbox" />
+          <span class="mf-checkbox-box" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path class="mf-checkbox-check" d="M3.5 8.5L6.5 11.5L12.5 4.5" /></svg>
+          </span>
+          <span class="mf-checkbox-label">Archived</span>
+        </label>
+      </div>
+    </dialog>
+
+    <div class="mf-toast-region" role="status" aria-live="polite" data-toast-region></div>
+
+    <script type="module" src="./demo.js"></script>
+  </body>
+</html>

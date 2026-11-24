@@ -1,0 +1,99 @@
+/* Page slide — directional navigation with the View Transitions API and a fallback. */
+
+.mf-page {
+  view-transition-name: mf-page;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(mf-page),
+::view-transition-new(mf-page) {
+  animation-duration: var(--mf-page-duration);
+  animation-timing-function: var(--mf-page-ease);
+  animation-fill-mode: both;
+}
+
+::view-transition-old(mf-page) {
+  animation-name: mf-page-out;
+}
+
+::view-transition-new(mf-page) {
+  animation-name: mf-page-in;
+}
+
+html[data-mf-direction="back"] ::view-transition-old(mf-page) {
+  animation-name: mf-page-out-back;
+}
+
+html[data-mf-direction="back"] ::view-transition-new(mf-page) {
+  animation-name: mf-page-in-back;
+}
+
+.mf-page-enter {
+  animation: mf-page-in var(--mf-page-duration) var(--mf-page-ease);
+}
+
+@keyframes mf-page-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--mf-page-distance));
+    filter: blur(var(--mf-page-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes mf-page-out {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(calc(var(--mf-page-distance) * -1));
+    filter: blur(var(--mf-page-blur));
+  }
+}
+
+@keyframes mf-page-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--mf-page-distance) * -1));
+    filter: blur(var(--mf-page-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes mf-page-out-back {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(var(--mf-page-distance));
+    filter: blur(var(--mf-page-blur));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) ::view-transition-old(mf-page),
+  :root:not([data-motion="full"]) ::view-transition-new(mf-page) {
+    animation-duration: 1ms;
+  }
+
+  :root:not([data-motion="full"]) .mf-page-enter {
+    animation: none;
+  }
+}

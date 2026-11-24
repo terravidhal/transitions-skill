@@ -1,0 +1,15 @@
+{
+  "name": "motionfold-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A deck of polished UI transitions for every stack, packaged as an agent skill.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/check-skill.mjs",
+    "lint:audit-test": "node scripts/audit-test.mjs",
+    "lint:demo": "node examples/scripts/smoke.mjs",
+    "lint:capture": "node examples/scripts/capture.mjs",
+    "demo": "node examples/server.mjs"
+  }
+}
