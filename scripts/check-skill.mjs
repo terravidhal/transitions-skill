@@ -73,6 +73,7 @@ const required = [
   `${skillDir}/scripts/audit.mjs`,
   "scripts/check-skill.mjs",
   "scripts/audit-test.mjs",
+  "scripts/originality.mjs",
   "examples/index.html",
   "examples/demo.css",
   "examples/demo.js",
@@ -236,6 +237,12 @@ if (manifest) {
         if (!tokens.some((token) => source.includes(token))) {
           errors.push(`${relative} does not read any of its declared tokens`);
         }
+        if (source.includes("@starting-style")) {
+          const guard = source.slice(source.lastIndexOf("@media (prefers-reduced-motion: reduce)"));
+          if (!/--mf-[a-z-]+-(?:distance|scale)/.test(guard)) {
+            errors.push(`${relative} must neutralise entry distance or scale under reduced motion`);
+          }
+        }
       } else {
         const imports = [...source.matchAll(/from\s+["']([^"']+)["']/g)].map((m) => m[1]);
         const allowedFrameworks = ["react", "vue", "svelte", "solid-js"];
@@ -243,6 +250,21 @@ if (manifest) {
           if (specifier.startsWith(".") || specifier.startsWith("/")) continue;
           if (allowedFrameworks.includes(specifier)) continue;
           errors.push(`${relative} imports ${specifier}; implementations must be dependency-free`);
+        }
+
+        if (file !== "vanilla.js" && /showModal\s*\(/.test(source)) {
+          if (!/aria-modal[=\s]/.test(source)) {
+            errors.push(`${relative} opens a modal without aria-modal`);
+          }
+          if (!/aria-labelledby|aria-label/.test(source)) {
+            errors.push(`${relative} opens a dialog without an accessible name`);
+          }
+        }
+
+        if (file === "svelte.svelte" && /@render\s+children/.test(source)) {
+          if (!/let\s*\{[^}]*\bchildren\b[^}]*\}\s*=\s*\$props\(\)/s.test(source)) {
+            errors.push(`${relative} renders children without destructuring them from $props()`);
+          }
         }
       }
     }

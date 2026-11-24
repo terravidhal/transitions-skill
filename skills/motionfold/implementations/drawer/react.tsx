@@ -54,6 +54,7 @@ export function Drawer({
       className="mf-drawer"
       data-side={side}
       aria-labelledby={titleId}
+      aria-modal="true"
       style={style}
       onClose={() => onOpenChange(false)}
       onClick={(event) => {

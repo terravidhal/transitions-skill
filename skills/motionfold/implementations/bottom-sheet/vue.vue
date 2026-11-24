@@ -20,6 +20,8 @@ onMounted(() => sync(props.open));
   <dialog
     ref="dialog"
     class="mf-sheet"
+    :aria-label="title"
+    aria-modal="true"
     :style="props.duration ? { '--mf-sheet-duration': props.duration + 'ms' } : undefined"
     @close="emit('close')"
     @cancel.prevent="emit('close')"

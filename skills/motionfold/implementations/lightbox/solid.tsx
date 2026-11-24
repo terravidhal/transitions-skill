@@ -18,7 +18,7 @@ export function Lightbox(props: LightboxProps) {
   });
 
   return (
-    <dialog ref={dialog} class="mf-lightbox" style={props.duration ? { "--mf-lightbox-duration": props.duration + "ms" } : undefined} onClose={props.onClose} onCancel={(event) => { event.preventDefault(); props.onClose(); }}>
+    <dialog ref={dialog} class="mf-lightbox" aria-label={props.caption ?? "Image preview"} aria-modal="true" style={props.duration ? { "--mf-lightbox-duration": props.duration + "ms" } : undefined} onClose={props.onClose} onCancel={(event) => { event.preventDefault(); props.onClose(); }}>
       <figure class="mf-lightbox-figure">
         <div class="mf-lightbox-image" role="img" aria-label={props.caption ?? "Preview"}>{props.children}</div>
         {props.caption ? <figcaption>{props.caption}</figcaption> : null}

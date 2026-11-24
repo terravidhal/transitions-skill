@@ -26,6 +26,8 @@
 <dialog
   bind:this={dialog}
   class="mf-modal"
+  aria-label={title}
+  aria-modal="true"
   style={style}
   oncancel={(event) => {
     event.preventDefault();

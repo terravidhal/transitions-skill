@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { open = false, title, duration, onclose } = $props();
+  let { open = false, title, duration, onclose, children } = $props();
   let dialog: HTMLDialogElement;
 
   $effect(() => {
@@ -11,7 +11,7 @@
   const style = $derived(duration ? "--mf-sheet-duration:" + duration + "ms" : "");
 </script>
 
-<dialog bind:this={dialog} class="mf-sheet" style={style} onclose={onclose} oncancel={(event) => { event.preventDefault(); onclose?.(); }}>
+<dialog bind:this={dialog} class="mf-sheet" aria-label={title} aria-modal="true" style={style} onclose={onclose} oncancel={(event) => { event.preventDefault(); onclose?.(); }}>
   <div class="mf-sheet-handle" aria-hidden="true"></div>
   <div class="mf-sheet-header">
     <h2 class="mf-sheet-title">{title}</h2>

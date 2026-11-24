@@ -21,7 +21,7 @@ export function Lightbox({ open, onClose, caption, duration, children }: Lightbo
   const style = duration ? ({ "--mf-lightbox-duration": duration + "ms" } as CSSProperties) : undefined;
 
   return (
-    <dialog ref={ref} className="mf-lightbox" style={style} onClose={onClose} onCancel={(event) => { event.preventDefault(); onClose(); }}>
+    <dialog ref={ref} className="mf-lightbox" aria-label={caption ?? "Image preview"} aria-modal="true" style={style} onClose={onClose} onCancel={(event) => { event.preventDefault(); onClose(); }}>
       <figure className="mf-lightbox-figure">
         <div className="mf-lightbox-image" role="img" aria-label={caption ?? "Preview"}>
           {children}

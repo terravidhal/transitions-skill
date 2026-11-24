@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { open = false, caption, duration, onclose } = $props();
+  let { open = false, caption, duration, onclose, children } = $props();
   let dialog: HTMLDialogElement;
 
   $effect(() => {
@@ -11,7 +11,7 @@
   const style = $derived(duration ? "--mf-lightbox-duration:" + duration + "ms" : "");
 </script>
 
-<dialog bind:this={dialog} class="mf-lightbox" style={style} onclose={onclose} oncancel={(event) => { event.preventDefault(); onclose?.(); }}>
+<dialog bind:this={dialog} class="mf-lightbox" aria-label={caption ?? "Image preview"} aria-modal="true" style={style} onclose={onclose} oncancel={(event) => { event.preventDefault(); onclose?.(); }}>
   <figure class="mf-lightbox-figure">
     <div class="mf-lightbox-image" role="img" aria-label={caption ?? "Preview"}>{@render children?.()}</div>
     {#if caption}<figcaption>{caption}</figcaption>{/if}

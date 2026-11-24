@@ -101,9 +101,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion="full"]) .mf-drawer,
-  :root:not([data-motion="full"]) .mf-drawer::backdrop {
+  :root:not([data-motion="full"]) .mf-drawer {
+    --mf-drawer-distance: 0%;
     transition-duration: 140ms;
     transform: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-drawer::backdrop {
+    transition-duration: 140ms;
   }
 }

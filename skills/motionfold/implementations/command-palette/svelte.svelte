@@ -25,7 +25,7 @@
   }
 </script>
 
-<dialog bind:this={dialog} class="mf-command" style={style} onclose={onclose} oncancel={(event) => { event.preventDefault(); onclose?.(); }}>
+<dialog bind:this={dialog} class="mf-command" aria-label="Command palette" aria-modal="true" style={style} onclose={onclose} oncancel={(event) => { event.preventDefault(); onclose?.(); }}>
   <input bind:this={input} bind:value={query} class="mf-command-input" type="search" aria-label="Search commands" oninput={() => (active = 0)} onkeydown={onkeydown} />
   <ul class="mf-command-list" role="listbox" aria-label="Commands">
     {#each visible as command, index (command.id)}

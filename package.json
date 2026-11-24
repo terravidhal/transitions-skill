@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "node scripts/check-skill.mjs",
     "lint:audit-test": "node scripts/audit-test.mjs",
+    "lint:originality": "node scripts/originality.mjs",
     "lint:demo": "node examples/scripts/smoke.mjs",
     "lint:capture": "node examples/scripts/capture.mjs",
     "lint:gif": "node examples/scripts/gif.mjs",

@@ -89,6 +89,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root:not([data-motion="full"]) .mf-popover {
+    --mf-popover-distance: 0px;
+    --mf-popover-scale: 1;
     transition-duration: 100ms;
     transform: none;
   }

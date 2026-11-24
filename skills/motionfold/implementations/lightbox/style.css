@@ -121,6 +121,7 @@
   }
 
   :root:not([data-motion="full"]) .mf-lightbox-image {
+    --mf-lightbox-scale: 1;
     transition-duration: 120ms;
     transform: none;
   }

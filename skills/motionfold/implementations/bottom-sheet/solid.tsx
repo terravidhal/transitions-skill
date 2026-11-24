@@ -21,6 +21,8 @@ export function BottomSheet(props: BottomSheetProps) {
     <dialog
       ref={dialog}
       class="mf-sheet"
+      aria-label={props.title}
+      aria-modal="true"
       style={props.duration ? { "--mf-sheet-duration": props.duration + "ms" } : undefined}
       onClose={props.onClose}
       onCancel={(event) => {

@@ -16,7 +16,7 @@ A native `<dialog>` that scales up from the page and leaves faster than it arriv
 ## Anatomy
 
 ```html
-<dialog class="mf-modal" aria-labelledby="modal-title">
+<dialog class="mf-modal" aria-labelledby="modal-title" aria-modal="true">
   <div class="mf-modal-header">
     <h2 class="mf-modal-title" id="modal-title">Rename project</h2>
     <button class="mf-modal-close" type="button" data-mf-close aria-label="Close">×</button>

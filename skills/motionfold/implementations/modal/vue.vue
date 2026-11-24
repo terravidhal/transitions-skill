@@ -49,6 +49,7 @@ const style = () => ({
     ref="dialog"
     class="mf-modal"
     :aria-labelledby="titleId"
+    aria-modal="true"
     :style="style()"
     @cancel.prevent="close"
     @close="close"

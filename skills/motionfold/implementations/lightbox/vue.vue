@@ -17,7 +17,7 @@ onMounted(() => sync(props.open));
 </script>
 
 <template>
-  <dialog ref="dialog" class="mf-lightbox" :style="props.duration ? { '--mf-lightbox-duration': props.duration + 'ms' } : undefined" @close="emit('close')" @cancel.prevent="emit('close')">
+  <dialog ref="dialog" class="mf-lightbox" :aria-label="caption ?? 'Image preview'" aria-modal="true" :style="props.duration ? { '--mf-lightbox-duration': props.duration + 'ms' } : undefined" @close="emit('close')" @cancel.prevent="emit('close')">
     <figure class="mf-lightbox-figure">
       <div class="mf-lightbox-image" role="img" :aria-label="caption ?? 'Preview'"><slot /></div>
       <figcaption v-if="caption">{{ caption }}</figcaption>

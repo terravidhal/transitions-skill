@@ -19,3 +19,6 @@ jobs:
 
       - name: Test the deterministic audit
         run: npm run lint:audit-test
+
+      - name: Compare against the local reference checkout when present
+        run: npm run lint:originality

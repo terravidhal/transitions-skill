@@ -35,6 +35,7 @@ export function Drawer(props: DrawerProps) {
       class="mf-drawer"
       data-side={props.side ?? "right"}
       aria-labelledby={titleId}
+      aria-modal="true"
       style={style()}
       onCancel={(event) => {
         event.preventDefault();

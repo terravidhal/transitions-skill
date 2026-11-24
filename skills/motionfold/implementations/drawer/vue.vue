@@ -50,6 +50,7 @@ const style = () => ({
     class="mf-drawer"
     :data-side="side ?? 'right'"
     :aria-labelledby="titleId"
+    aria-modal="true"
     :style="style()"
     @cancel.prevent="close"
     @close="close"

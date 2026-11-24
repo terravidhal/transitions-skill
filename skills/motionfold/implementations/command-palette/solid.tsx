@@ -33,7 +33,7 @@ export function CommandPalette(props: CommandPaletteProps) {
   }
 
   return (
-    <dialog ref={dialog} class="mf-command" style={props.duration ? { "--mf-command-duration": props.duration + "ms" } : undefined} onClose={props.onClose} onCancel={(event) => { event.preventDefault(); props.onClose(); }}>
+    <dialog ref={dialog} class="mf-command" aria-label="Command palette" aria-modal="true" style={props.duration ? { "--mf-command-duration": props.duration + "ms" } : undefined} onClose={props.onClose} onCancel={(event) => { event.preventDefault(); props.onClose(); }}>
       <input ref={input} class="mf-command-input" type="search" value={query()} aria-label="Search commands" onInput={(event) => { setQuery(event.currentTarget.value); setActive(0); }} onKeyDown={onKeyDown} />
       <ul class="mf-command-list" role="listbox" aria-label="Commands">
         <For each={visible()}>

@@ -33,7 +33,7 @@ onMounted(() => sync(props.open));
 </script>
 
 <template>
-  <dialog ref="dialog" class="mf-command" :style="props.duration ? { '--mf-command-duration': props.duration + 'ms' } : undefined" @close="emit('close')" @cancel.prevent="emit('close')">
+  <dialog ref="dialog" class="mf-command" aria-label="Command palette" aria-modal="true" :style="props.duration ? { '--mf-command-duration': props.duration + 'ms' } : undefined" @close="emit('close')" @cancel.prevent="emit('close')">
     <input ref="input" v-model="query" class="mf-command-input" type="search" aria-label="Search commands" @input="active = 0" @keydown="onKeydown" />
     <ul class="mf-command-list" role="listbox" aria-label="Commands">
       <li v-for="(command, index) in visible" :key="command.id" class="mf-command-item" role="option" :aria-selected="index === active" @click="emit('run', command.id); emit('close')">

@@ -95,9 +95,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion="full"]) .mf-modal,
-  :root:not([data-motion="full"]) .mf-modal::backdrop {
+  :root:not([data-motion="full"]) .mf-modal {
+    --mf-modal-distance: 0px;
+    --mf-modal-scale: 1;
     transition-duration: 120ms;
     transform: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-modal::backdrop {
+    transition-duration: 120ms;
   }
 }

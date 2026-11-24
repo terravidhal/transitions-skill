@@ -1,4 +1,4 @@
-import { createSignal, For, onCleanup, onMount } from "solid-js";
+import { createEffect, createSignal, For, onCleanup, onMount } from "solid-js";
 
 export type DropdownOption = { value: string; label: string };
 
@@ -13,8 +13,17 @@ type DropdownProps = {
 export function Dropdown(props: DropdownProps) {
   let root!: HTMLDivElement;
   let trigger!: HTMLButtonElement;
+  let list!: HTMLUListElement;
   const [open, setOpen] = createSignal(false);
   const [active, setActive] = createSignal(Math.max(0, props.options.findIndex((option) => option.value === props.value)));
+
+  createEffect(() => {
+    if (!open()) return;
+    const index = active();
+    requestAnimationFrame(() => {
+      list?.querySelectorAll<HTMLLIElement>(".mf-dropdown-item")[index]?.focus();
+    });
+  });
 
   onMount(() => {
     const onPointerDown = (event: PointerEvent) => {
@@ -41,11 +50,13 @@ export function Dropdown(props: DropdownProps) {
         <span class="mf-dropdown-value">{current()?.label ?? props.label}</span>
         <span class="mf-dropdown-chevron" aria-hidden="true">⌄</span>
       </button>
-      <ul class="mf-dropdown-list" role="listbox" aria-label={props.label}
+      <ul ref={list} class="mf-dropdown-list" role="listbox" aria-label={props.label}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") { event.preventDefault(); setActive((value) => (value + 1) % props.options.length); }
           else if (event.key === "ArrowUp") { event.preventDefault(); setActive((value) => (value - 1 + props.options.length) % props.options.length); }
-          else if (event.key === "Enter") { event.preventDefault(); choose(active()); }
+          else if (event.key === "Home") { event.preventDefault(); setActive(0); }
+          else if (event.key === "End") { event.preventDefault(); setActive(props.options.length - 1); }
+          else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(active()); }
           else if (event.key === "Escape") { event.preventDefault(); setOpen(false); trigger?.focus(); }
         }}>
         <For each={props.options}>

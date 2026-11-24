@@ -233,6 +233,7 @@ Maintainer checks:
 ```bash
 npm run lint              # frontmatter, manifest, links, JSON, assets, secrets, mini projects
 npm run lint:audit-test   # audit fixtures
+npm run lint:originality  # compare with ref/ when the reference checkout is present
 npm run lint:demo         # Playwright smoke test over the 30 recipes
 npm run lint:capture      # screenshots
 npm run lint:gif          # assets/demo.gif

@@ -38,6 +38,7 @@ entry in the same change. The repository check fails if one is missing.
 ```bash
 npm run lint
 npm run lint:audit-test
+npm run lint:originality
 npm run lint:demo
 npm run demo
 ```

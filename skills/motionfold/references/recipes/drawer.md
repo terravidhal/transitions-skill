@@ -16,7 +16,7 @@ A full-height panel that enters from a screen edge and keeps the page in context
 ## Anatomy
 
 ```html
-<dialog class="mf-drawer" data-side="right" aria-labelledby="filters-title">
+<dialog class="mf-drawer" data-side="right" aria-labelledby="filters-title" aria-modal="true">
   <div class="mf-drawer-header">
     <h2 class="mf-drawer-title" id="filters-title">Filters</h2>
     <button class="mf-drawer-close" type="button" data-mf-close aria-label="Close">×</button>

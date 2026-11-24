@@ -53,6 +53,7 @@ export function Modal({
       ref={ref}
       className="mf-modal"
       aria-labelledby={titleId}
+      aria-modal="true"
       style={style}
       onClose={() => onOpenChange(false)}
       onClick={(event) => {

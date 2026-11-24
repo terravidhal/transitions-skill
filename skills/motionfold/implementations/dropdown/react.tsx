@@ -13,8 +13,14 @@ type DropdownProps = {
 export function Dropdown({ label, options, value, onChange, duration }: DropdownProps) {
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const items = useRef<Array<HTMLLIElement | null>>([]);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(() => Math.max(0, options.findIndex((option) => option.value === value)));
+
+  useEffect(() => {
+    if (!open) return;
+    items.current[active]?.focus();
+  }, [open, active]);
 
   useEffect(() => {
     if (!open) return;
@@ -59,13 +65,16 @@ export function Dropdown({ label, options, value, onChange, duration }: Dropdown
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") { event.preventDefault(); setActive((value) => (value + 1) % options.length); }
           else if (event.key === "ArrowUp") { event.preventDefault(); setActive((value) => (value - 1 + options.length) % options.length); }
-          else if (event.key === "Enter") { event.preventDefault(); choose(active); }
+          else if (event.key === "Home") { event.preventDefault(); setActive(0); }
+          else if (event.key === "End") { event.preventDefault(); setActive(options.length - 1); }
+          else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(active); }
           else if (event.key === "Escape") { event.preventDefault(); setOpen(false); trigger.current?.focus(); }
         }}
       >
         {options.map((option, index) => (
           <li
             key={option.value}
+            ref={(element) => { items.current[index] = element; }}
             className="mf-dropdown-item"
             role="option"
             tabIndex={-1}

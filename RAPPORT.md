@@ -38,9 +38,10 @@
 
 | Commande | Résultat |
 |---|---|
-| `npm run lint` | OK — frontmatter, manifeste, 30 recettes × 6 fichiers, références, mini projets, liens, JSON, assets, GIF, secrets |
+| `npm run lint` | OK — frontmatter, manifeste, 30 recettes × 6 fichiers, références, mini projets, liens, JSON, assets, GIF, secrets, noms de dialogues |
 | `npm run lint:audit-test` | OK — 8 fixtures, règles attendues |
-| `npm run lint:demo` | OK — 30 cartes, toutes les interactions, mouvement réduit, réglage, toast |
+| `npm run lint:originality` | OK — 265 fichiers livrés comparés à 319 fichiers de `ref/`, aucun doublon |
+| `npm run lint:demo` | OK — 30 cartes, toutes les interactions, `aria-modal`, reduced motion OS émulé, réglage, toast |
 | `npm run lint:capture` | OK — 5 captures générées dans `assets/` |
 | `npm run lint:gif` | OK — `assets/demo.gif` généré avec Playwright + ffmpeg |
 
@@ -96,7 +97,27 @@ toast — sans erreur console.
 - Les captures sont générées avec le Chromium disponible localement ; les régénérer avec
   `npm run lint:capture` après une modification visuelle.
 
-## 6. Reste à faire côté propriétaire
+## 6. Passe de consolidation (2026-11-24)
+
+- **Svelte** : `bottom-sheet` et `lightbox` destructurent désormais `children` et rendent leur
+  contenu ; le validateur refuse un `{@render children}` sans prop.
+- **Dialogues** : `modal`, `drawer`, `bottom-sheet`, `command-palette` et `lightbox` portent
+  `aria-modal="true"` et un nom accessible (`aria-labelledby` ou `aria-label`) dans les cinq
+  stacks et dans la démo.
+- **Mouvement réduit** : les six surfaces qui utilisent `@starting-style` neutralisent distance
+  et échelle via leurs tokens ; sous `prefers-reduced-motion`, l'entrée ne se déplace plus et ne
+  grossit plus, seule une courte opacité reste.
+- **Dropdown** : le focus suit l'option active dans React, Vue, Svelte et Solid ; Home, End et
+  Espace fonctionnent ; le déclencheur ouvre au clavier.
+- **Contrôles** : le validateur vérifie les noms de dialogues, `aria-modal` et le `children`
+  Svelte. `scripts/originality.mjs` compare chaque fichier livré à `ref/` par SHA-256 et par
+  fenêtres de 30 tokens ; il se tait proprement quand `ref/` est absent (CI).
+- **Smoke test** : il émule maintenant `prefers-reduced-motion: reduce` au niveau OS et vérifie
+  que modal, drawer et sheet ne bougent pas, que le skeleton ne boucle pas, et que tous les
+  dialogues de la démo sont nommés.
+- Aucun changement de mouvement en mode normal : les captures et le GIF restent valides.
+
+## 7. Reste à faire côté propriétaire
 
 1. Créer le dépôt GitHub `terravidhal/motionfold`.
 2. Pousser les commits locaux (aucun push n'a été fait).

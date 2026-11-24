@@ -33,7 +33,7 @@ export function CommandPalette({ open, commands, onClose, onRun, duration }: Com
   const style = duration ? ({ "--mf-command-duration": duration + "ms" } as CSSProperties) : undefined;
 
   return (
-    <dialog ref={ref} className="mf-command" style={style} onClose={onClose} onCancel={(event) => { event.preventDefault(); onClose(); }}>
+    <dialog ref={ref} className="mf-command" aria-label="Command palette" aria-modal="true" style={style} onClose={onClose} onCancel={(event) => { event.preventDefault(); onClose(); }}>
       <input
         ref={input}
         className="mf-command-input"

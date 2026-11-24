@@ -26,6 +26,8 @@ export function BottomSheet({ open, onClose, title, duration, children }: Bottom
     <dialog
       ref={ref}
       className="mf-sheet"
+      aria-label={title}
+      aria-modal="true"
       style={style}
       onClose={onClose}
       onCancel={(event) => {

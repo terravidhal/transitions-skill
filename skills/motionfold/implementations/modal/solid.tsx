@@ -34,6 +34,7 @@ export function Modal(props: ModalProps) {
       ref={dialog}
       class="mf-modal"
       aria-labelledby={titleId}
+      aria-modal="true"
       style={style()}
       onCancel={(event) => {
         event.preventDefault();

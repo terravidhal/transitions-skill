@@ -2,6 +2,7 @@
   let { label, options = [], value, duration, onchange } = $props();
   let root: HTMLDivElement;
   let trigger: HTMLButtonElement;
+  let list: HTMLUListElement;
   let open = $state(false);
   let active = $state(Math.max(0, options.findIndex((option) => option.value === value)));
   const current = $derived(options.find((option) => option.value === value));
@@ -13,6 +14,14 @@
     };
     document.addEventListener("pointerdown", onpointerdown);
     return () => document.removeEventListener("pointerdown", onpointerdown);
+  });
+
+  $effect(() => {
+    if (!open) return;
+    const index = active;
+    requestAnimationFrame(() => {
+      list?.querySelectorAll<HTMLLIElement>(".mf-dropdown-item")[index]?.focus();
+    });
   });
 
   function choose(index) {
@@ -30,11 +39,13 @@
     <span class="mf-dropdown-value">{current?.label ?? label}</span>
     <span class="mf-dropdown-chevron" aria-hidden="true">⌄</span>
   </button>
-  <ul class="mf-dropdown-list" role="listbox" aria-label={label}
+  <ul bind:this={list} class="mf-dropdown-list" role="listbox" aria-label={label}
     onkeydown={(event) => {
       if (event.key === "ArrowDown") { event.preventDefault(); active = (active + 1) % options.length; }
       else if (event.key === "ArrowUp") { event.preventDefault(); active = (active - 1 + options.length) % options.length; }
-      else if (event.key === "Enter") { event.preventDefault(); choose(active); }
+      else if (event.key === "Home") { event.preventDefault(); active = 0; }
+      else if (event.key === "End") { event.preventDefault(); active = options.length - 1; }
+      else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(active); }
       else if (event.key === "Escape") { event.preventDefault(); open = false; trigger?.focus(); }
     }}>
     {#each options as option, index (option.value)}

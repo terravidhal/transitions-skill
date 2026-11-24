@@ -165,6 +165,12 @@ async function main() {
     await page.click('[data-dropdown-demo] .mf-dropdown-item[data-value="alpha"]');
     const dropdownValue = await page.locator("[data-dropdown-demo] .mf-dropdown-value").textContent();
     if (dropdownValue?.trim() !== "A–Z") problems.push(`dropdown did not select (${dropdownValue})`);
+    await page.focus("[data-dropdown-demo] .mf-dropdown-trigger");
+    await page.keyboard.press("ArrowDown");
+    await page.waitForTimeout(50);
+    const dropdownFocus = await page.evaluate(() => document.activeElement?.className ?? "");
+    if (!String(dropdownFocus).includes("mf-dropdown-item")) problems.push("dropdown did not move focus to an option");
+    await page.keyboard.press("Escape");
 
     // Radio group and segmented control.
     await page.locator("[data-radio-demo] .mf-radio").nth(1).click();
@@ -245,6 +251,55 @@ async function main() {
     await page.click("[data-toast]");
     await page.waitForTimeout(300);
     if ((await page.locator(".mf-toast").count()) === 0) problems.push("HTML mini toast did not appear");
+
+    // Every dialog has a name and modal semantics.
+    const dialogs = await page.evaluate(() =>
+      [...document.querySelectorAll("dialog")].map((dialog) => ({
+        name: dialog.getAttribute("aria-labelledby") ?? dialog.getAttribute("aria-label"),
+        modal: dialog.getAttribute("aria-modal"),
+      })),
+    );
+    if (dialogs.some((dialog) => !dialog.name || dialog.modal !== "true")) {
+      problems.push("a demo dialog is missing aria-modal or an accessible name");
+    }
+
+    // OS-level reduced motion: the starting-style surfaces must not displace or scale.
+    const reduced = await browser.newContext({
+      viewport: { width: 1280, height: 900 },
+      reducedMotion: "reduce",
+    });
+    const reducedPage = await reduced.newPage();
+    reducedPage.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    reducedPage.on("pageerror", (error) => errors.push(error.message));
+    await reducedPage.goto(`${origin}/examples/index.html`, { waitUntil: "networkidle" });
+    const isIdentity = (value) => value === "none" || value === "matrix(1, 0, 0, 1, 0, 0)";
+
+    await reducedPage.click("[data-open-modal]");
+    await reducedPage.waitForTimeout(40);
+    const modalTransform = await reducedPage.evaluate(() => getComputedStyle(document.querySelector("dialog.mf-modal")).transform);
+    if (!isIdentity(modalTransform)) problems.push(`modal moves under reduced motion (${modalTransform})`);
+    await reducedPage.keyboard.press("Escape");
+    await reducedPage.waitForTimeout(250);
+
+    await reducedPage.click("[data-open-drawer]");
+    await reducedPage.waitForTimeout(40);
+    const drawerTransform = await reducedPage.evaluate(() => getComputedStyle(document.querySelector("dialog.mf-drawer")).transform);
+    if (!isIdentity(drawerTransform)) problems.push(`drawer moves under reduced motion (${drawerTransform})`);
+    await reducedPage.keyboard.press("Escape");
+    await reducedPage.waitForTimeout(250);
+
+    await reducedPage.click("[data-open-sheet]");
+    await reducedPage.waitForTimeout(40);
+    const sheetTransform = await reducedPage.evaluate(() => getComputedStyle(document.querySelector("dialog.mf-sheet")).transform);
+    if (!isIdentity(sheetTransform)) problems.push(`bottom sheet moves under reduced motion (${sheetTransform})`);
+    await reducedPage.keyboard.press("Escape");
+    await reducedPage.waitForTimeout(250);
+
+    const skeletonAnimation = await reducedPage.evaluate(() => getComputedStyle(document.querySelector(".mf-skeleton-line")).animationName);
+    if (skeletonAnimation !== "none") problems.push(`skeleton still loops under reduced motion (${skeletonAnimation})`);
+    await reduced.close();
 
     for (const error of errors) problems.push(`console: ${error}`);
   } finally {

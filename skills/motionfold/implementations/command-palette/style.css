@@ -115,6 +115,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root:not([data-motion="full"]) .mf-command {
+    --mf-command-distance: 0px;
+    --mf-command-scale: 1;
     transition-duration: 120ms;
     transform: none;
   }

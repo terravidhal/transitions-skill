@@ -61,8 +61,9 @@ npm run lint:demo
 ```
 
 Loads the page, checks the 30 cards, opens and closes the surfaces, exercises the new controls,
-forces reduced motion, verifies the curve control writes the token, and shows a toast. Playwright
-only; the shipped skill has no dependency.
+checks every dialog's accessible name, emulates OS-level reduced motion to prove entry surfaces
+stay in place, verifies the curve control writes the token, and shows a toast. Playwright only;
+the shipped skill has no dependency.
 
 ## Before / after
 

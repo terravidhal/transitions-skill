@@ -43,8 +43,8 @@ announceable without it.
 
 | Recipe | Required semantics |
 |---|---|
-| modal, drawer, bottom sheet, lightbox | `role="dialog"` (native), `aria-modal="true"`, `aria-labelledby`, optional `aria-describedby` |
-| command palette | native dialog, focused search input, `role="listbox"` + `role="option"` + `aria-selected` |
+| modal, drawer, bottom sheet, lightbox | native `<dialog>`, `aria-modal="true"`, `aria-labelledby` (or `aria-label` when the title is a prop), optional `aria-describedby` |
+| command palette | native dialog with an accessible name, focused search input, `role="listbox"` + `role="option"` + `aria-selected` |
 | popover | `aria-expanded`, `aria-controls`; `role="menu"` only for a real menu |
 | dropdown | `aria-haspopup="listbox"`, `aria-expanded`, `role="option"`, `aria-selected` |
 | banner | `role="status"` or `aria-live="polite"`, a visible dismiss button, persistent text |

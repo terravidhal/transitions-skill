@@ -35,6 +35,8 @@
   bind:this={dialog}
   class="mf-drawer"
   data-side={side}
+  aria-label={title}
+  aria-modal="true"
   style={style}
   oncancel={(event) => {
     event.preventDefault();
