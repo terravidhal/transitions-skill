@@ -80,7 +80,6 @@ evals stay in the repository.
 | Accordion | A header reveals a body in place | Primary navigation |
 | Tabs | Peer views with a moving indicator | Sequential steps or page navigation |
 | Segmented control | Two to four compact peer filters | More than four options |
-| Stepper | Ordered steps in a short wizard | Peer views or a long page flow |
 | Switch | A boolean setting that applies now | A form value submitted later |
 | Checkbox | Multiple selection or consent | An instant setting |
 | Radio group | One exclusive choice in a small set | An immediate on/off setting |
@@ -106,6 +105,7 @@ evals stay in the repository.
 | Recipe | Use it when | Avoid it when |
 |---|---|---|
 | Page slide | List ↔ detail, step ↔ step | A keyboard-heavy or frequent path |
+| Stepper | Ordered steps in a short wizard | Peer views or a long page flow |
 | Theme reveal | A deliberate theme switch deserves a spatial reveal | A theme that must follow the OS instantly |
 
 Full decision rules and exclusions are in
