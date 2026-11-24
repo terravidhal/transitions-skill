@@ -12,6 +12,9 @@ coverage/
 examples/.vite/
 examples/stacks/dist/
 
+# Local tooling pointer (never committed)
+examples/.playwright-module
+
 # Local env and logs
 .env
 .env.*

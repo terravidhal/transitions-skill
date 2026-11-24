@@ -1,0 +1,54 @@
+/* Segmented control — one track and a pill that translates between equal cells. */
+
+.mf-segmented {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  padding: 0.2rem;
+  border-radius: 0.65rem;
+  background: color-mix(in oklab, CanvasText 8%, Canvas);
+}
+
+.mf-segmented-indicator {
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  left: 0.2rem;
+  width: calc((100% - 0.4rem) / var(--mf-seg-count, 3));
+  border-radius: 0.48rem;
+  background: Canvas;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.18);
+  transform: translateX(calc(var(--mf-seg-index, 0) * 100%));
+  transition: transform var(--mf-seg-duration) var(--mf-seg-ease);
+}
+
+.mf-segmented-item {
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.48rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mf-segmented-item[aria-pressed="true"] {
+  font-weight: 600;
+}
+
+.mf-segmented-item:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-segmented-indicator {
+    transition-duration: 1ms;
+  }
+}

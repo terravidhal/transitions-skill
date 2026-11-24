@@ -1,0 +1,99 @@
+/* Dropdown — an anchored listbox that grows from its trigger. */
+
+.mf-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.mf-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid color-mix(in oklab, CanvasText 16%, Canvas);
+  border-radius: 0.55rem;
+  background: Canvas;
+  color: CanvasText;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.mf-dropdown-trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.mf-dropdown-chevron {
+  font-size: 0.8em;
+  transition: transform var(--mf-dropdown-duration) var(--mf-dropdown-ease);
+}
+
+.mf-dropdown[data-mf-state="open"] .mf-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.mf-dropdown-list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  min-width: 100%;
+  max-height: 16rem;
+  overflow: auto;
+  margin: 0;
+  padding: 0.3rem;
+  list-style: none;
+  border: 1px solid color-mix(in oklab, CanvasText 14%, Canvas);
+  border-radius: 0.65rem;
+  background: Canvas;
+  box-shadow: 0 18px 48px -20px rgb(0 0 0 / 0.45);
+  opacity: 0;
+  transform: translateY(calc(var(--mf-dropdown-distance) * -1)) scale(var(--mf-dropdown-scale));
+  transform-origin: top left;
+  transition:
+    opacity var(--mf-dropdown-close-duration) var(--mf-dropdown-ease),
+    transform var(--mf-dropdown-close-duration) var(--mf-dropdown-ease);
+}
+
+.mf-dropdown[data-mf-state="open"] .mf-dropdown-list {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--mf-dropdown-duration);
+}
+
+.mf-dropdown[data-mf-state="closed"] .mf-dropdown-list {
+  display: none;
+}
+
+.mf-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.45rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.mf-dropdown-item[aria-selected="true"] {
+  background: color-mix(in oklab, CanvasText 8%, Canvas);
+  font-weight: 600;
+}
+
+.mf-dropdown-item[aria-selected="true"]::after {
+  content: "✓";
+  font-size: 0.8em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-dropdown-list {
+    transition-duration: 120ms;
+    transform: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-dropdown-chevron {
+    transition-duration: 120ms;
+  }
+}

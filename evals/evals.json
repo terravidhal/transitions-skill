@@ -1,6 +1,6 @@
 {
   "skill": "motionfold",
-  "version": 1,
+  "version": 2,
   "cases": [
     {
       "id": "add-accessible-modal",
@@ -133,6 +133,97 @@
       "must_not": [
         "add a spring or scale animation to a keyboard-first surface",
         "add a dependency"
+      ]
+    },
+    {
+      "id": "mobile-share-sheet",
+      "prompt": "Add a mobile share panel that rises from the bottom of the screen.",
+      "must": [
+        "choose the bottom-sheet recipe, not the desktop drawer",
+        "use a native dialog and keep the modal focus contract",
+        "translate the sheet from the bottom instead of animating height or bottom"
+      ],
+      "must_not": [
+        "stretch a centered modal to the bottom edge",
+        "make the decorative handle the only way to close"
+      ]
+    },
+    {
+      "id": "sort-menu-vs-popover",
+      "prompt": "Add a sort control that opens a short list of sort orders and shows the current one.",
+      "must": [
+        "choose the dropdown recipe because the items choose a value",
+        "keep aria-expanded on the trigger and aria-selected on the options",
+        "return focus to the trigger after selection"
+      ],
+      "must_not": [
+        "use an action popover for a single-value listbox",
+        "animate the list height"
+      ]
+    },
+    {
+      "id": "segmented-filter",
+      "prompt": "Add a Day / Week / Month range filter that slides between the three choices.",
+      "must": [
+        "choose the segmented-control recipe",
+        "move one indicator with transform and a single CSS variable",
+        "keep arrow-key access and aria-pressed"
+      ],
+      "must_not": [
+        "animate left or width",
+        "use more than four segments on mobile"
+      ]
+    },
+    {
+      "id": "copy-link-confirmation",
+      "prompt": "The copy-link button should confirm that the link was copied.",
+      "must": [
+        "choose the copy-button recipe",
+        "wait for the clipboard promise before confirming",
+        "update the icon, the visible label, and the accessible label together"
+      ],
+      "must_not": [
+        "claim success before the clipboard write resolves",
+        "use a check mark without text for assistive technology"
+      ]
+    },
+    {
+      "id": "like-without-motion-only",
+      "prompt": "Add a like button with a little celebration when the user likes a post.",
+      "must": [
+        "choose the like-button recipe",
+        "change aria-pressed, the fill, and the visible count",
+        "stop the ring burst under reduced motion while keeping the state change"
+      ],
+      "must_not": [
+        "make the burst the only confirmation",
+        "scale the button so far that it shifts its neighbors"
+      ]
+    },
+    {
+      "id": "theme-reveal-fallback",
+      "prompt": "Switch the app theme with a circular reveal from the toggle button.",
+      "must": [
+        "use the theme-reveal recipe with startViewTransition when available",
+        "apply the theme immediately when View Transitions are missing or motion is reduced",
+        "compute the circle origin from the button position"
+      ],
+      "must_not": [
+        "gate the theme change on the animation",
+        "duplicate a view-transition-name already used by the page"
+      ]
+    },
+    {
+      "id": "rename-in-place",
+      "prompt": "Let the user rename a project title in place without a modal.",
+      "must": [
+        "choose the inline-edit recipe",
+        "support Enter to save and Escape to cancel",
+        "return focus to the view after saving or cancelling"
+      ],
+      "must_not": [
+        "let the form and the view both take space",
+        "lose the typed value on cancel"
       ]
     }
   ]

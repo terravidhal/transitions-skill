@@ -5,11 +5,15 @@ description: >-
   changes, navigation) in React, Vue, Svelte, Solid, or plain CSS/JS. Use when
   the user says "add a transition", "animate the modal", "make the drawer
   slide", "the dropdown pops", "smooth out this accordion", "swap this text",
-  "show a success check", "shake the invalid field", "animate the skeleton",
-  "slide between list and detail", "respect reduced motion", "speed up the
-  animations", "use motion tokens", "audit our animations", or asks for a
-  toast, tooltip, popover, tabs, switch, checkbox, skeleton, page transition,
-  or feedback motion. Provides fourteen product-focused recipes, each with one
+  "show a success check", "shake the invalid field",   "animate the skeleton", "slide between list and detail", "open a command
+  palette", "make the bottom sheet rise", "reveal the theme", "swap the icon",
+  "show a like burst", "confirm a copy", "morph the spinner", "pop the count",
+  "advance the progress bar", "move through a stepper", "rename inline",
+  "respect reduced motion", "speed up the animations", "use motion tokens",
+  "audit our animations", or asks for a toast, tooltip, popover, dropdown,
+  banner, lightbox, tabs, segmented control, radio group, switch, checkbox,
+  skeleton, page transition, or feedback motion. Provides thirty
+  product-focused recipes, each with one
   CSS file and idiomatic React, Vue, Svelte, Solid, and vanilla implementations;
   prefers-reduced-motion is handled in every recipe; durations and easings are
   tunable in one line with --mf-scale or a single recipe token. Prefers native
@@ -21,7 +25,7 @@ license: MIT
 # motionfold — polished UI transitions for every stack
 
 Your job is to choose the **smallest transition that explains a change**, then apply it
-with the project's own conventions. motionfold is a curated deck of fourteen recipes, not a
+with the project's own conventions. motionfold is a curated deck of thirty recipes, not a
 catalogue of effects. Every recipe has one specification, one shared CSS file, and five
 idiomatic implementations.
 
@@ -105,18 +109,34 @@ motion, light/dark, keyboard, rapid open/close, interruption, resize, and mobile
 |---|---|---|
 | A surface blocks the page and asks for a decision | `modal` | toast, popover |
 | A full-height panel enters from a screen edge | `drawer` | modal, popover |
+| A mobile task rises from the bottom edge | `bottom-sheet` | drawer on desktop |
+| A summoned, searchable command list | `command-palette` | dropdown, modal |
 | A menu or action panel grows from a trigger | `popover` | modal |
+| A listbox keeps the current value visible | `dropdown` | popover for actions |
+| Media opens for a closer look | `lightbox` | inline disclosure |
 | A short hint appears on hover or focus | `tooltip` | popover |
 | A transient message confirms an async action | `toast` | modal |
+| A page-level message stays until dismissed | `banner` | toast |
 | A header reveals a body in place | `accordion` | tabs |
 | Peer views swap with a moving indicator | `tabs` | accordion |
+| Two to four compact peer filters | `segmented-control` | tabs with long labels |
+| Ordered steps in a short wizard | `stepper` | tabs |
 | A boolean setting applies immediately | `switch` | checkbox |
 | Multiple selection or consent in a form | `checkbox` | switch |
+| One exclusive choice in a small set | `radio-group` | switch |
+| Two familiar icons toggle in place | `icon-swap` | text-swap |
 | Loading with a known structure | `skeleton` | spinner |
+| A task with a known completion reports progress | `progress-bar` | skeleton |
+| A short value is renamed in place | `inline-edit` | modal form |
 | An action just succeeded | `success-check` | toast alone |
 | A field failed validation | `error-shake` | success-check |
+| A short task resolves in the same spot | `spinner-to-check` | progress-bar |
+| A lightweight appreciation toggles | `like-button` | switch |
+| A clipboard write succeeds | `copy-button` | toast alone |
+| A small count changes on purpose | `number-pop` | live telemetry |
 | A short status label changes in place | `text-swap` | page-slide |
 | Two views of the same level change (list ↔ detail) | `page-slide` | tabs |
+| A deliberate theme switch deserves a spatial reveal | `theme-reveal` | instant OS theme swap |
 | No clear match | Ask; do not guess | an invented effect |
 
 Full rules, including exclusions and tie-breakers, are in
@@ -126,7 +146,7 @@ Full rules, including exclusions and tie-breakers, are in
 
 The skill exposes four namespaced verbs so it never collides with another skill:
 
-- **`motionfold list`** — print the fourteen recipes with family, use, and reference file.
+- **`motionfold list`** — print the thirty recipes with family, use, and reference file.
   No project access.
 - **`motionfold audit [path]`** — run the deterministic audit
   (`node skills/motionfold/scripts/audit.mjs <path>`), show the score and findings grouped by
@@ -177,18 +197,34 @@ Details, SSR notes, Tailwind, and CSS Modules are in
 | Diagnose popping, stuck exits, layout jank | [troubleshooting.md](references/troubleshooting.md) |
 | Recipe: modal | [recipes/modal.md](references/recipes/modal.md) |
 | Recipe: drawer | [recipes/drawer.md](references/recipes/drawer.md) |
+| Recipe: bottom sheet | [recipes/bottom-sheet.md](references/recipes/bottom-sheet.md) |
+| Recipe: command palette | [recipes/command-palette.md](references/recipes/command-palette.md) |
 | Recipe: popover | [recipes/popover.md](references/recipes/popover.md) |
+| Recipe: dropdown | [recipes/dropdown.md](references/recipes/dropdown.md) |
+| Recipe: lightbox | [recipes/lightbox.md](references/recipes/lightbox.md) |
 | Recipe: tooltip | [recipes/tooltip.md](references/recipes/tooltip.md) |
 | Recipe: toast | [recipes/toast.md](references/recipes/toast.md) |
+| Recipe: banner | [recipes/banner.md](references/recipes/banner.md) |
 | Recipe: accordion | [recipes/accordion.md](references/recipes/accordion.md) |
 | Recipe: tabs | [recipes/tabs.md](references/recipes/tabs.md) |
+| Recipe: segmented control | [recipes/segmented-control.md](references/recipes/segmented-control.md) |
+| Recipe: stepper | [recipes/stepper.md](references/recipes/stepper.md) |
 | Recipe: switch | [recipes/switch.md](references/recipes/switch.md) |
 | Recipe: checkbox | [recipes/checkbox.md](references/recipes/checkbox.md) |
+| Recipe: radio group | [recipes/radio-group.md](references/recipes/radio-group.md) |
+| Recipe: icon swap | [recipes/icon-swap.md](references/recipes/icon-swap.md) |
 | Recipe: skeleton | [recipes/skeleton.md](references/recipes/skeleton.md) |
+| Recipe: progress bar | [recipes/progress-bar.md](references/recipes/progress-bar.md) |
+| Recipe: inline edit | [recipes/inline-edit.md](references/recipes/inline-edit.md) |
 | Recipe: success check | [recipes/success-check.md](references/recipes/success-check.md) |
 | Recipe: error shake | [recipes/error-shake.md](references/recipes/error-shake.md) |
+| Recipe: spinner to check | [recipes/spinner-to-check.md](references/recipes/spinner-to-check.md) |
+| Recipe: like button | [recipes/like-button.md](references/recipes/like-button.md) |
+| Recipe: copy button | [recipes/copy-button.md](references/recipes/copy-button.md) |
+| Recipe: number pop | [recipes/number-pop.md](references/recipes/number-pop.md) |
 | Recipe: text swap | [recipes/text-swap.md](references/recipes/text-swap.md) |
 | Recipe: page slide | [recipes/page-slide.md](references/recipes/page-slide.md) |
+| Recipe: theme reveal | [recipes/theme-reveal.md](references/recipes/theme-reveal.md) |
 
 ## Before you finish
 

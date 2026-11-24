@@ -35,7 +35,11 @@ async function main() {
   try {
     browser = await chromium.launch(executablePath ? { executablePath } : {});
     await waitForServer(`${origin}/examples/index.html`);
-    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    const context = await browser.newContext({
+      viewport: { width: 1280, height: 900 },
+      permissions: ["clipboard-read", "clipboard-write"],
+    });
+    const page = await context.newPage();
     const errors = [];
     page.on("console", (message) => {
       if (message.type() === "error") errors.push(message.text());
@@ -44,7 +48,7 @@ async function main() {
     await page.goto(`${origin}/examples/index.html`, { waitUntil: "networkidle" });
 
     const recipes = await page.locator("[data-recipe]").count();
-    if (recipes !== 14) problems.push(`expected 14 recipe cards, found ${recipes}`);
+    if (recipes !== 30) problems.push(`expected 30 recipe cards, found ${recipes}`);
 
     // Modal: open, Escape, focus return.
     await page.click("[data-open-modal]");
@@ -128,7 +132,87 @@ async function main() {
     const listHidden = await page.evaluate(() => document.querySelector('[data-mf-page="list"]')?.hidden);
     if (listHidden !== false) problems.push("page slide did not return to the list");
 
-    // Theme.
+    // Bottom sheet.
+    await page.click("[data-open-sheet]");
+    if ((await page.locator("dialog.mf-sheet[open]").count()) !== 1) problems.push("bottom sheet did not open");
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(400);
+    if ((await page.locator("dialog.mf-sheet[open]").count()) !== 0) problems.push("bottom sheet did not close");
+
+    // Command palette.
+    await page.click("[data-open-command]");
+    if ((await page.locator("dialog.mf-command[open]").count()) !== 1) problems.push("command palette did not open");
+    await page.fill(".mf-command-input", "settings");
+    const commandVisible = await page.locator(".mf-command-item:not([hidden])").count();
+    if (commandVisible !== 1) problems.push(`command palette filter returned ${commandVisible} items`);
+    await page.keyboard.press("Escape");
+
+    // Banner.
+    await page.click("[data-banner-show]");
+    if ((await page.locator("[data-banner-demo]").getAttribute("data-mf-state")) !== "open") problems.push("banner did not open");
+    await page.click("[data-banner-demo] [data-mf-dismiss]");
+    await page.waitForTimeout(350);
+    if ((await page.locator("[data-banner-demo]").getAttribute("data-mf-state")) !== "closed") problems.push("banner did not close");
+
+    // Lightbox.
+    await page.click("[data-open-lightbox]");
+    if ((await page.locator("dialog.mf-lightbox[open]").count()) !== 1) problems.push("lightbox did not open");
+    await page.keyboard.press("Escape");
+
+    // Dropdown.
+    await page.click("[data-dropdown-demo] .mf-dropdown-trigger");
+    if ((await page.locator("[data-dropdown-demo]").getAttribute("data-mf-state")) !== "open") problems.push("dropdown did not open");
+    await page.click('[data-dropdown-demo] .mf-dropdown-item[data-value="alpha"]');
+    const dropdownValue = await page.locator("[data-dropdown-demo] .mf-dropdown-value").textContent();
+    if (dropdownValue?.trim() !== "A–Z") problems.push(`dropdown did not select (${dropdownValue})`);
+
+    // Radio group and segmented control.
+    await page.locator("[data-radio-demo] .mf-radio").nth(1).click();
+    const radioChecked = await page.locator('[data-radio-demo] input[value="yearly"]').isChecked();
+    if (!radioChecked) problems.push("radio group did not change");
+    await page.click('[data-segmented-demo] .mf-segmented-item:nth-of-type(2)');
+    const segmentIndex = await page.evaluate(() => getComputedStyle(document.querySelector("[data-segmented-demo]")).getPropertyValue("--mf-seg-index").trim());
+    if (segmentIndex !== "1") problems.push(`segmented control did not move (${segmentIndex})`);
+
+    // Icon swap, like, copy.
+    await page.click("[data-icon-swap-demo]");
+    if ((await page.locator("[data-icon-swap-demo]").getAttribute("data-mf-active")) !== "true") problems.push("icon swap did not toggle");
+    await page.click("[data-like-demo]");
+    const likeState = await page.evaluate(() => ({
+      liked: document.querySelector("[data-like-demo]")?.getAttribute("data-mf-liked"),
+      count: document.querySelector("[data-like-demo] .mf-like-count")?.textContent,
+    }));
+    if (likeState.liked !== "true" || likeState.count !== "129") problems.push("like button did not update");
+    await page.click("[data-copy-demo]");
+    await page.waitForTimeout(120);
+    if ((await page.locator("[data-copy-demo]").getAttribute("data-mf-copied")) !== "true") problems.push("copy button did not confirm");
+
+    // Spinner, number, progress, stepper.
+    await page.click("[data-spinner-run]");
+    await page.waitForTimeout(1100);
+    if ((await page.locator("[data-spinner-demo]").getAttribute("data-mf-state")) !== "done") problems.push("spinner did not resolve");
+    await page.click("[data-number-add]");
+    const numberText = await page.locator("[data-number-demo] .mf-number-value").textContent();
+    if (numberText?.trim() !== "3") problems.push(`number pop did not update (${numberText})`);
+    await page.click("[data-progress-advance]");
+    const progressNow = await page.locator("[data-progress-demo] .mf-progress-track").getAttribute("aria-valuenow");
+    if (progressNow !== "60") problems.push(`progress bar did not advance (${progressNow})`);
+    await page.click("[data-stepper-next]");
+    if ((await page.locator("[data-stepper-demo] .mf-stepper").getAttribute("data-mf-step")) !== "1") problems.push("stepper did not advance");
+
+    // Inline edit.
+    await page.click("[data-inline-demo] .mf-inline-edit-view");
+    if ((await page.locator("[data-inline-demo]").getAttribute("data-mf-editing")) !== "true") problems.push("inline edit did not enter editing");
+    await page.fill("[data-inline-demo] .mf-inline-edit-input", "Project Borealis");
+    await page.press("[data-inline-demo] .mf-inline-edit-input", "Enter");
+    const inlineLabel = await page.locator("[data-inline-demo] .mf-inline-edit-label").textContent();
+    if (inlineLabel?.trim() !== "Project Borealis") problems.push(`inline edit did not save (${inlineLabel})`);
+
+    // Theme reveal, then the regular theme toggle.
+    await page.click("[data-theme-reveal]");
+    await page.waitForTimeout(500);
+    const revealThemeValue = await page.evaluate(() => document.documentElement.dataset.theme);
+    if (revealThemeValue !== "dark") problems.push(`theme reveal did not switch (${revealThemeValue})`);
     await page.click("[data-theme-toggle='dark']");
     const theme = await page.evaluate(() => document.documentElement.dataset.theme);
     if (theme !== "dark") problems.push("theme toggle did not apply");
@@ -152,6 +236,16 @@ async function main() {
     await page.waitForTimeout(300);
     if ((await page.locator(".mf-toast").count()) === 0) problems.push("toast did not appear");
 
+    // The HTML mini project uses the same files with no build.
+    await page.goto(`${origin}/examples/mini/html/index.html`, { waitUntil: "networkidle" });
+    if ((await page.locator("[data-mini]").count()) !== 5) problems.push("HTML mini does not show five recipes");
+    await page.click("[data-open-modal]");
+    if ((await page.locator("dialog.mf-modal[open]").count()) !== 1) problems.push("HTML mini modal did not open");
+    await page.keyboard.press("Escape");
+    await page.click("[data-toast]");
+    await page.waitForTimeout(300);
+    if ((await page.locator(".mf-toast").count()) === 0) problems.push("HTML mini toast did not appear");
+
     for (const error of errors) problems.push(`console: ${error}`);
   } finally {
     await browser?.close().catch(() => {});
@@ -162,7 +256,7 @@ async function main() {
     for (const problem of problems) console.error(`fail: ${problem}`);
     process.exit(1);
   }
-  console.log("ok: demo loads, 14 recipes, all interactions, reduced motion, tuning");
+  console.log("ok: demo loads, 30 recipes, all interactions, reduced motion, tuning");
 }
 
 main().catch((error) => {

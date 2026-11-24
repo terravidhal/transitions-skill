@@ -27,18 +27,34 @@ Durations: `--mf-duration-micro` (80), `--mf-duration-fast` (150), `--mf-duratio
 |---|---|
 | modal | `--mf-modal-duration`, `--mf-modal-close-duration`, `--mf-modal-ease`, `--mf-modal-distance`, `--mf-modal-scale` |
 | drawer | `--mf-drawer-duration`, `--mf-drawer-close-duration`, `--mf-drawer-ease`, `--mf-drawer-distance` |
+| bottom-sheet | `--mf-sheet-duration`, `--mf-sheet-close-duration`, `--mf-sheet-ease`, `--mf-sheet-distance` |
+| command-palette | `--mf-command-duration`, `--mf-command-close-duration`, `--mf-command-ease`, `--mf-command-distance`, `--mf-command-scale` |
 | popover | `--mf-popover-duration`, `--mf-popover-close-duration`, `--mf-popover-ease`, `--mf-popover-distance`, `--mf-popover-scale` |
+| dropdown | `--mf-dropdown-duration`, `--mf-dropdown-close-duration`, `--mf-dropdown-ease`, `--mf-dropdown-distance`, `--mf-dropdown-scale` |
+| lightbox | `--mf-lightbox-duration`, `--mf-lightbox-close-duration`, `--mf-lightbox-ease`, `--mf-lightbox-scale` |
 | tooltip | `--mf-tooltip-duration`, `--mf-tooltip-delay`, `--mf-tooltip-ease`, `--mf-tooltip-distance`, `--mf-tooltip-scale` |
 | toast | `--mf-toast-duration`, `--mf-toast-close-duration`, `--mf-toast-ease`, `--mf-toast-distance`, `--mf-toast-scale` |
+| banner | `--mf-banner-duration`, `--mf-banner-close-duration`, `--mf-banner-ease`, `--mf-banner-distance` |
 | accordion | `--mf-accordion-duration`, `--mf-accordion-ease`, `--mf-accordion-blur` |
 | tabs | `--mf-tabs-duration`, `--mf-tabs-ease`, `--mf-tabs-indicator` |
+| segmented-control | `--mf-seg-duration`, `--mf-seg-ease`, `--mf-seg-index` |
+| stepper | `--mf-stepper-duration`, `--mf-stepper-ease`, `--mf-stepper-distance` |
 | switch | `--mf-switch-duration`, `--mf-switch-ease`, `--mf-switch-travel`, `--mf-switch-overshoot` |
 | checkbox | `--mf-checkbox-duration`, `--mf-checkbox-ease`, `--mf-checkbox-draw-duration` |
+| radio-group | `--mf-radio-duration`, `--mf-radio-ease`, `--mf-radio-dot-scale` |
+| icon-swap | `--mf-icon-swap-duration`, `--mf-icon-swap-ease`, `--mf-icon-swap-rotate`, `--mf-icon-swap-scale` |
 | skeleton | `--mf-skeleton-duration`, `--mf-skeleton-ease`, `--mf-skeleton-reveal-duration`, `--mf-skeleton-reveal-distance` |
+| progress-bar | `--mf-progress-duration`, `--mf-progress-ease`, `--mf-progress-sheen` |
+| inline-edit | `--mf-inline-duration`, `--mf-inline-ease`, `--mf-inline-distance` |
 | success-check | `--mf-check-duration`, `--mf-check-ease`, `--mf-check-draw-duration`, `--mf-check-distance` |
 | error-shake | `--mf-shake-duration`, `--mf-shake-ease`, `--mf-shake-distance` |
+| spinner-to-check | `--mf-spinner-duration`, `--mf-spinner-ease`, `--mf-spinner-spin`, `--mf-spinner-draw` |
+| like-button | `--mf-like-duration`, `--mf-like-ease`, `--mf-like-scale`, `--mf-like-burst-duration` |
+| copy-button | `--mf-copy-duration`, `--mf-copy-ease`, `--mf-copy-scale` |
+| number-pop | `--mf-number-duration`, `--mf-number-ease`, `--mf-number-scale`, `--mf-number-distance` |
 | text-swap | `--mf-text-swap-duration`, `--mf-text-swap-ease`, `--mf-text-swap-distance`, `--mf-text-swap-blur` |
 | page-slide | `--mf-page-duration`, `--mf-page-ease`, `--mf-page-distance`, `--mf-page-blur` |
+| theme-reveal | `--mf-theme-duration`, `--mf-theme-ease`, `--mf-theme-radius` |
 
 ## Tune in one line
 

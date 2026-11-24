@@ -10,6 +10,7 @@
     "lint:audit-test": "node scripts/audit-test.mjs",
     "lint:demo": "node examples/scripts/smoke.mjs",
     "lint:capture": "node examples/scripts/capture.mjs",
+    "lint:gif": "node examples/scripts/gif.mjs",
     "demo": "node examples/server.mjs"
   }
 }

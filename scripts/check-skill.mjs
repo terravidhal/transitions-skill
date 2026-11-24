@@ -82,10 +82,40 @@ const required = [
   "examples/scripts/smoke.mjs",
   "examples/README.md",
   "assets/before-after.png",
+  "assets/demo.gif",
   "assets/readme/demo-desktop-light.png",
   "assets/readme/demo-desktop-dark.png",
   "assets/readme/demo-mobile-light.png",
   "assets/readme/demo-mobile-dark.png",
+  "examples/mini/README.md",
+  "examples/mini/shared.css",
+  "examples/mini/html/index.html",
+  "examples/mini/html/app.js",
+  "examples/mini/html/README.md",
+  "examples/mini/react/package.json",
+  "examples/mini/react/index.html",
+  "examples/mini/react/vite.config.js",
+  "examples/mini/react/src/main.jsx",
+  "examples/mini/react/src/App.jsx",
+  "examples/mini/react/README.md",
+  "examples/mini/vue/package.json",
+  "examples/mini/vue/index.html",
+  "examples/mini/vue/vite.config.js",
+  "examples/mini/vue/src/main.js",
+  "examples/mini/vue/src/App.vue",
+  "examples/mini/vue/README.md",
+  "examples/mini/svelte/package.json",
+  "examples/mini/svelte/index.html",
+  "examples/mini/svelte/vite.config.js",
+  "examples/mini/svelte/src/main.js",
+  "examples/mini/svelte/src/App.svelte",
+  "examples/mini/svelte/README.md",
+  "examples/mini/solid/package.json",
+  "examples/mini/solid/index.html",
+  "examples/mini/solid/vite.config.js",
+  "examples/mini/solid/src/main.tsx",
+  "examples/mini/solid/src/App.tsx",
+  "examples/mini/solid/README.md",
 ];
 
 const markdownFiles = [
@@ -218,7 +248,23 @@ if (manifest) {
     }
   }
 
-  if (slugs.size !== 14) warnings.push(`${manifestFile}: ${slugs.size} recipes (design targets 14)`);
+  if (slugs.size !== 30) warnings.push(`${manifestFile}: ${slugs.size} recipes (design targets 30)`);
+}
+
+// ── Mini projects: five real recipes each ─────────────────────────────────
+const miniStacks = ["html", "react", "vue", "svelte", "solid"];
+const miniRecipes = ["modal", "tabs", "switch", "toast", "success-check"];
+for (const stack of miniStacks) {
+  const files = await walk(`examples/mini/${stack}`);
+  let source = "";
+  for (const file of files) {
+    if (/\.(html|js|jsx|ts|tsx|vue|svelte|md)$/.test(file)) source += `\n${await text(file)}`;
+  }
+  for (const slug of miniRecipes) {
+    if (!source.includes(`data-mini="${slug}"`)) {
+      errors.push(`examples/mini/${stack} does not use ${slug}`);
+    }
+  }
 }
 
 // ── Demo coverage ─────────────────────────────────────────────────────────
@@ -281,6 +327,13 @@ for (const file of required.filter((entry) => entry.endsWith(".png"))) {
   if (!(await exists(file))) continue;
   const { size } = await stat(path.join(root, file));
   if (size < 10_000) errors.push(`${file} looks too small (${size} bytes)`);
+}
+
+if (await exists("assets/demo.gif")) {
+  const header = (await readFile(path.join(root, "assets/demo.gif"))).subarray(0, 6).toString("ascii");
+  if (header !== "GIF89a" && header !== "GIF87a") errors.push("assets/demo.gif is not a GIF");
+  const { size } = await stat(path.join(root, "assets/demo.gif"));
+  if (size < 50_000) errors.push(`assets/demo.gif looks too small (${size} bytes)`);
 }
 
 // ── Secrets ───────────────────────────────────────────────────────────────

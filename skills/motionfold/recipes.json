@@ -3,7 +3,13 @@
   "version": 1,
   "baseline": "A deck of polished UI transitions for every stack — accessible by default, tunable in one line.",
   "prefix": "mf",
-  "stacks": ["vanilla", "react", "vue", "svelte", "solid"],
+  "stacks": [
+    "vanilla",
+    "react",
+    "vue",
+    "svelte",
+    "solid"
+  ],
   "families": {
     "surface": "A layer that opens over the page and later leaves.",
     "state": "A control or region that changes state in place.",
@@ -25,8 +31,21 @@
         "--mf-modal-distance",
         "--mf-modal-scale"
       ],
-      "a11y": ["focus-trap", "escape", "focus-return", "aria-modal", "labelled"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "focus-trap",
+        "escape",
+        "focus-return",
+        "aria-modal",
+        "labelled"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "modal"
     },
     {
@@ -42,8 +61,21 @@
         "--mf-drawer-ease",
         "--mf-drawer-distance"
       ],
-      "a11y": ["focus-trap", "escape", "focus-return", "aria-modal", "labelled"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "focus-trap",
+        "escape",
+        "focus-return",
+        "aria-modal",
+        "labelled"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "drawer"
     },
     {
@@ -60,8 +92,21 @@
         "--mf-popover-distance",
         "--mf-popover-scale"
       ],
-      "a11y": ["aria-expanded", "aria-controls", "escape", "light-dismiss", "keyboard"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "aria-expanded",
+        "aria-controls",
+        "escape",
+        "light-dismiss",
+        "keyboard"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "popover"
     },
     {
@@ -78,8 +123,20 @@
         "--mf-tooltip-distance",
         "--mf-tooltip-scale"
       ],
-      "a11y": ["aria-describedby", "focus-visible", "not-touch-only", "decorative-motion"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "aria-describedby",
+        "focus-visible",
+        "not-touch-only",
+        "decorative-motion"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "tooltip"
     },
     {
@@ -96,8 +153,21 @@
         "--mf-toast-distance",
         "--mf-toast-scale"
       ],
-      "a11y": ["role-status", "aria-live", "pause-on-hover", "close-button", "no-focus-steal"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "role-status",
+        "aria-live",
+        "pause-on-hover",
+        "close-button",
+        "no-focus-steal"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "toast"
     },
     {
@@ -107,9 +177,25 @@
       "when": "A header reveals a body in a constrained space: settings groups, FAQs, show more.",
       "notWhen": "Primary navigation or content that should stay visible.",
       "primitive": "disclosure",
-      "tokens": ["--mf-accordion-duration", "--mf-accordion-ease", "--mf-accordion-blur"],
-      "a11y": ["aria-expanded", "aria-controls", "inert-when-closed", "focus-visible"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "tokens": [
+        "--mf-accordion-duration",
+        "--mf-accordion-ease",
+        "--mf-accordion-blur"
+      ],
+      "a11y": [
+        "aria-expanded",
+        "aria-controls",
+        "inert-when-closed",
+        "focus-visible"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "accordion"
     },
     {
@@ -119,9 +205,25 @@
       "when": "Peer views switch in place with a shared moving indicator.",
       "notWhen": "Sequential steps or page-level navigation.",
       "primitive": "tablist",
-      "tokens": ["--mf-tabs-duration", "--mf-tabs-ease", "--mf-tabs-indicator"],
-      "a11y": ["role-tablist", "roving-tabindex", "arrow-keys", "aria-selected"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "tokens": [
+        "--mf-tabs-duration",
+        "--mf-tabs-ease",
+        "--mf-tabs-indicator"
+      ],
+      "a11y": [
+        "role-tablist",
+        "roving-tabindex",
+        "arrow-keys",
+        "aria-selected"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "tabs"
     },
     {
@@ -137,8 +239,20 @@
         "--mf-switch-travel",
         "--mf-switch-overshoot"
       ],
-      "a11y": ["role-switch", "aria-checked", "space-and-enter", "focus-visible"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "role-switch",
+        "aria-checked",
+        "space-and-enter",
+        "focus-visible"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "switch"
     },
     {
@@ -153,8 +267,20 @@
         "--mf-checkbox-ease",
         "--mf-checkbox-draw-duration"
       ],
-      "a11y": ["native-input", "label", "focus-visible", "not-color-only"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "native-input",
+        "label",
+        "focus-visible",
+        "not-color-only"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "checkbox"
     },
     {
@@ -170,8 +296,20 @@
         "--mf-skeleton-reveal-duration",
         "--mf-skeleton-reveal-distance"
       ],
-      "a11y": ["aria-busy", "announce-complete", "no-placeholder-spam", "stable-layout"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "aria-busy",
+        "announce-complete",
+        "no-placeholder-spam",
+        "stable-layout"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "skeleton"
     },
     {
@@ -187,8 +325,20 @@
         "--mf-check-draw-duration",
         "--mf-check-distance"
       ],
-      "a11y": ["role-status", "visible-text", "path-length", "replay-safe"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "role-status",
+        "visible-text",
+        "path-length",
+        "replay-safe"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "success-check"
     },
     {
@@ -203,8 +353,20 @@
         "--mf-shake-ease",
         "--mf-shake-distance"
       ],
-      "a11y": ["role-alert", "aria-invalid", "message-is-truth", "focus-field"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "role-alert",
+        "aria-invalid",
+        "message-is-truth",
+        "focus-field"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "error-shake"
     },
     {
@@ -220,8 +382,20 @@
         "--mf-text-swap-distance",
         "--mf-text-swap-blur"
       ],
-      "a11y": ["aria-live", "single-announcement", "reserved-width", "no-duplicate-text"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "aria-live",
+        "single-announcement",
+        "reserved-width",
+        "no-duplicate-text"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "text-swap"
     },
     {
@@ -237,9 +411,493 @@
         "--mf-page-distance",
         "--mf-page-blur"
       ],
-      "a11y": ["view-transition", "fallback", "focus-heading", "no-keyboard-block"],
-      "files": ["style.css", "vanilla.js", "react.tsx", "vue.vue", "svelte.svelte", "solid.tsx"],
+      "a11y": [
+        "view-transition",
+        "fallback",
+        "focus-heading",
+        "no-keyboard-block"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
       "demo": "page-slide"
+    },
+    {
+      "slug": "bottom-sheet",
+      "title": "Bottom sheet",
+      "family": "surface",
+      "when": "A mobile-first task or choice rises from the bottom edge and keeps the page behind it.",
+      "notWhen": "A desktop side panel (use drawer) or a short menu (use dropdown).",
+      "primitive": "dialog",
+      "tokens": [
+        "--mf-sheet-duration",
+        "--mf-sheet-close-duration",
+        "--mf-sheet-ease",
+        "--mf-sheet-distance"
+      ],
+      "a11y": [
+        "focus-trap",
+        "escape",
+        "focus-return",
+        "aria-modal",
+        "labelled",
+        "drag-handle-decorative"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "bottom-sheet"
+    },
+    {
+      "slug": "command-palette",
+      "title": "Command palette",
+      "family": "surface",
+      "when": "A power user summons a searchable list of commands with a keyboard shortcut.",
+      "notWhen": "A simple menu (use dropdown) or a blocking confirmation (use modal).",
+      "primitive": "dialog",
+      "tokens": [
+        "--mf-command-duration",
+        "--mf-command-close-duration",
+        "--mf-command-ease",
+        "--mf-command-distance",
+        "--mf-command-scale"
+      ],
+      "a11y": [
+        "focus-input",
+        "escape",
+        "arrow-keys",
+        "aria-selected",
+        "labelled",
+        "type-ahead"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "command-palette"
+    },
+    {
+      "slug": "banner",
+      "title": "Banner",
+      "family": "surface",
+      "when": "A page-level message should appear in flow and stay until dismissed or resolved.",
+      "notWhen": "A transient confirmation (use toast) or a blocking decision (use modal).",
+      "primitive": "live-region",
+      "tokens": [
+        "--mf-banner-duration",
+        "--mf-banner-close-duration",
+        "--mf-banner-ease",
+        "--mf-banner-distance"
+      ],
+      "a11y": [
+        "role-status",
+        "aria-live",
+        "dismiss-button",
+        "not-focus-stealing",
+        "persistent-text"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "banner"
+    },
+    {
+      "slug": "lightbox",
+      "title": "Lightbox",
+      "family": "surface",
+      "when": "An image or artwork opens for a closer look and the page waits behind it.",
+      "notWhen": "Inline media that should stay in the document flow (use a disclosure).",
+      "primitive": "dialog",
+      "tokens": [
+        "--mf-lightbox-duration",
+        "--mf-lightbox-close-duration",
+        "--mf-lightbox-ease",
+        "--mf-lightbox-scale"
+      ],
+      "a11y": [
+        "focus-trap",
+        "escape",
+        "focus-return",
+        "aria-modal",
+        "image-alt",
+        "caption"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "lightbox"
+    },
+    {
+      "slug": "dropdown",
+      "title": "Dropdown",
+      "family": "surface",
+      "when": "A trigger opens a short list of choices and the current value stays visible.",
+      "notWhen": "A free-form command search (use command palette) or a block of content (use popover).",
+      "primitive": "listbox",
+      "tokens": [
+        "--mf-dropdown-duration",
+        "--mf-dropdown-close-duration",
+        "--mf-dropdown-ease",
+        "--mf-dropdown-distance",
+        "--mf-dropdown-scale"
+      ],
+      "a11y": [
+        "aria-haspopup",
+        "aria-expanded",
+        "option",
+        "aria-selected",
+        "arrow-keys",
+        "escape",
+        "focus-return"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "dropdown"
+    },
+    {
+      "slug": "radio-group",
+      "title": "Radio group",
+      "family": "state",
+      "when": "One exclusive choice out of a small set, submitted with a form or applied at once.",
+      "notWhen": "An immediate on/off setting (use switch) or multiple choices (use checkbox).",
+      "primitive": "radio",
+      "tokens": [
+        "--mf-radio-duration",
+        "--mf-radio-ease",
+        "--mf-radio-dot-scale"
+      ],
+      "a11y": [
+        "native-input",
+        "fieldset-legend",
+        "focus-visible",
+        "not-color-only"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "radio-group"
+    },
+    {
+      "slug": "segmented-control",
+      "title": "Segmented control",
+      "family": "state",
+      "when": "Two to four peer filters or time ranges share one compact track.",
+      "notWhen": "More than four options (use tabs or a dropdown) or a binary setting (use switch).",
+      "primitive": "group",
+      "tokens": [
+        "--mf-seg-duration",
+        "--mf-seg-ease",
+        "--mf-seg-index"
+      ],
+      "a11y": [
+        "role-group",
+        "aria-pressed",
+        "arrow-keys",
+        "focus-visible",
+        "label"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "segmented-control"
+    },
+    {
+      "slug": "icon-swap",
+      "title": "Icon swap",
+      "family": "state",
+      "when": "A control toggles between two states that each have a familiar icon.",
+      "notWhen": "A long label changes (use text swap) or more than two states.",
+      "primitive": "button",
+      "tokens": [
+        "--mf-icon-swap-duration",
+        "--mf-icon-swap-ease",
+        "--mf-icon-swap-rotate",
+        "--mf-icon-swap-scale"
+      ],
+      "a11y": [
+        "aria-pressed",
+        "accessible-label",
+        "focus-visible",
+        "not-icon-only-meaning"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "icon-swap"
+    },
+    {
+      "slug": "like-button",
+      "title": "Like button",
+      "family": "feedback",
+      "when": "A lightweight appreciation toggles with a small, delightful confirmation.",
+      "notWhen": "A destructive action or a setting that must be quiet.",
+      "primitive": "button",
+      "tokens": [
+        "--mf-like-duration",
+        "--mf-like-ease",
+        "--mf-like-scale",
+        "--mf-like-burst-duration"
+      ],
+      "a11y": [
+        "aria-pressed",
+        "accessible-label",
+        "visible-count",
+        "not-motion-only"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "like-button"
+    },
+    {
+      "slug": "copy-button",
+      "title": "Copy button",
+      "family": "feedback",
+      "when": "A value is copied to the clipboard and the control confirms the write.",
+      "notWhen": "A destructive action or a long-running task.",
+      "primitive": "button",
+      "tokens": [
+        "--mf-copy-duration",
+        "--mf-copy-ease",
+        "--mf-copy-scale"
+      ],
+      "a11y": [
+        "announce-copied",
+        "accessible-label",
+        "focus-visible",
+        "fallback-text"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "copy-button"
+    },
+    {
+      "slug": "spinner-to-check",
+      "title": "Spinner to check",
+      "family": "feedback",
+      "when": "A short task shows progress, then resolves in the same spot with a success mark.",
+      "notWhen": "A long task with a known percentage (use progress bar) or a passive status.",
+      "primitive": "status",
+      "tokens": [
+        "--mf-spinner-duration",
+        "--mf-spinner-ease",
+        "--mf-spinner-spin",
+        "--mf-spinner-draw"
+      ],
+      "a11y": [
+        "role-status",
+        "visible-text",
+        "aria-busy",
+        "replay-safe"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "spinner-to-check"
+    },
+    {
+      "slug": "number-pop",
+      "title": "Number pop",
+      "family": "feedback",
+      "when": "A small count or quantity changes and the new value deserves a beat.",
+      "notWhen": "Continuously updating telemetry or a value read every second.",
+      "primitive": "output",
+      "tokens": [
+        "--mf-number-duration",
+        "--mf-number-ease",
+        "--mf-number-scale",
+        "--mf-number-distance"
+      ],
+      "a11y": [
+        "output",
+        "aria-live-polite",
+        "tabular-nums",
+        "readable-value"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "number-pop"
+    },
+    {
+      "slug": "progress-bar",
+      "title": "Progress bar",
+      "family": "state",
+      "when": "A task with a known or estimated completion reports how far it has advanced.",
+      "notWhen": "A very short wait (use a skeleton) or an unknown duration.",
+      "primitive": "progressbar",
+      "tokens": [
+        "--mf-progress-duration",
+        "--mf-progress-ease",
+        "--mf-progress-sheen"
+      ],
+      "a11y": [
+        "role-progressbar",
+        "aria-valuenow",
+        "aria-valuemin",
+        "aria-valuemax",
+        "visible-label"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "progress-bar"
+    },
+    {
+      "slug": "stepper",
+      "title": "Stepper",
+      "family": "navigation",
+      "when": "A short wizard moves through ordered steps and the current step matters.",
+      "notWhen": "Peer views (use tabs) or a long page-level flow.",
+      "primitive": "progress-steps",
+      "tokens": [
+        "--mf-stepper-duration",
+        "--mf-stepper-ease",
+        "--mf-stepper-distance"
+      ],
+      "a11y": [
+        "aria-current",
+        "step-labels",
+        "focus-heading",
+        "not-keyboard-blocking"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "stepper"
+    },
+    {
+      "slug": "theme-reveal",
+      "title": "Theme reveal",
+      "family": "navigation",
+      "when": "A deliberate theme switch is worth a spatial reveal from the control.",
+      "notWhen": "A theme that must follow the OS instantly, or a keyboard-heavy control.",
+      "primitive": "view-transition",
+      "tokens": [
+        "--mf-theme-duration",
+        "--mf-theme-ease",
+        "--mf-theme-radius"
+      ],
+      "a11y": [
+        "button",
+        "aria-pressed",
+        "reduced-motion-fallback",
+        "instant-fallback"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "theme-reveal"
+    },
+    {
+      "slug": "inline-edit",
+      "title": "Inline edit",
+      "family": "state",
+      "when": "A short value can be renamed in place without leaving the page.",
+      "notWhen": "A long form or a value that needs validation across fields (use a modal).",
+      "primitive": "input",
+      "tokens": [
+        "--mf-inline-duration",
+        "--mf-inline-ease",
+        "--mf-inline-distance"
+      ],
+      "a11y": [
+        "label",
+        "enter-to-save",
+        "escape-to-cancel",
+        "focus-management",
+        "value-as-text"
+      ],
+      "files": [
+        "style.css",
+        "vanilla.js",
+        "react.tsx",
+        "vue.vue",
+        "svelte.svelte",
+        "solid.tsx"
+      ],
+      "demo": "inline-edit"
     }
   ]
 }

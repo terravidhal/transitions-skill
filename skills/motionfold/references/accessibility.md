@@ -19,36 +19,57 @@ announceable without it.
 
 ## Focus
 
-- Modal and drawer: move focus into the dialog, trap it, and return it to the trigger on
-  close. Native `<dialog>` + `showModal()` provides the trap, Escape, top layer, and focus
-  return. Do not reimplement them.
-- Popover: focus the first item when it is a menu; return focus to the trigger on close.
-  Native Popover API provides light dismiss but not focus management.
-- Tabs: roving `tabindex`, arrows, Home, and End. Focus follows the selected tab.
-- Accordion: the trigger is a `<button>` with `aria-expanded` and `aria-controls`. Closed
-  content is `inert` and visually collapsed.
+- Modal, drawer, bottom sheet, command palette, lightbox: move focus into the dialog, trap
+  it, and return it to the trigger on close. Native `<dialog>` + `showModal()` provides the
+  trap, Escape, top layer, and focus return. Do not reimplement them.
+- Command palette: focus the search input on open, keep the active option announced with
+  `aria-selected`, and do not animate the filtered list on every keystroke.
+- Popover and dropdown: focus the first or current item; return focus to the trigger on close.
+  The Popover API provides light dismiss but not focus management.
+- Tabs and segmented control: roving `tabindex`, arrows, Home, and End. Focus follows the
+  selected item.
+- Stepper: mark the current step with `aria-current="step"` and move focus to the new panel
+  heading.
+- Accordion and inline edit: the trigger is a `<button>`; Enter saves, Escape cancels, and
+  focus returns to the view. Closed accordion content is `inert`.
 - Tooltip: show on `focus-visible`, not only hover. The trigger keeps focus.
-- Toast: never steal focus. The close button is reachable with Tab.
-- Page slide: move focus to the new view heading after the update. Do not block the keyboard
-  while the transition runs.
+- Toast and banner: never steal focus. Dismiss controls are reachable with Tab.
+- Page slide and theme reveal: move focus to the new view heading or keep it on the toggle;
+  never block the keyboard while the transition runs.
+- Like, copy, icon swap, switch, radio, and checkbox: the accessible name or visible text
+  states the current action and the new state.
 
 ## ARIA and meaning
 
 | Recipe | Required semantics |
 |---|---|
-| modal, drawer | `role="dialog"` (native), `aria-modal="true"`, `aria-labelledby`, optional `aria-describedby` |
+| modal, drawer, bottom sheet, lightbox | `role="dialog"` (native), `aria-modal="true"`, `aria-labelledby`, optional `aria-describedby` |
+| command palette | native dialog, focused search input, `role="listbox"` + `role="option"` + `aria-selected` |
 | popover | `aria-expanded`, `aria-controls`; `role="menu"` only for a real menu |
+| dropdown | `aria-haspopup="listbox"`, `aria-expanded`, `role="option"`, `aria-selected` |
+| banner | `role="status"` or `aria-live="polite"`, a visible dismiss button, persistent text |
 | tooltip | `role="tooltip"` + `aria-describedby`; never the sole source of essential text |
 | toast | `role="status"` or `aria-live="polite"`; `role="alert"` only for errors |
 | accordion | `aria-expanded`, `aria-controls`, `inert` on the closed region |
 | tabs | `role="tablist"`, `role="tab"`, `role="tabpanel"`, `aria-selected`, `aria-controls` |
+| segmented control | `role="group"`, `aria-pressed` on each item, arrow keys |
+| stepper | `aria-current="step"`, visible step labels, focus moves to the panel heading |
 | switch | `role="switch"`, `aria-checked`; Space and Enter toggle |
 | checkbox | native `<input type="checkbox">` with a `<label>` |
+| radio group | native `<input type="radio">` in a `<fieldset>` with a `<legend>` |
+| icon swap | `aria-pressed` and an accessible name that names the next action |
 | skeleton | `aria-busy="true"` on the region; announce when loading finishes |
+| progress bar | `role="progressbar"`, `aria-valuemin`, `aria-valuemax`, `aria-valuenow`, a label |
+| inline edit | a labelled input, Enter saves, Escape cancels, focus returns to the view |
 | success-check | `role="status"` + visible text; the icon is decorative or named |
 | error-shake | `role="alert"`, `aria-invalid="true"`, `aria-describedby` to the message |
+| spinner-to-check | `role="status"`, `aria-busy`, visible or screen-reader text for done |
+| like-button | `aria-pressed`, accessible name, visible count |
+| copy-button | accessible label, visible label, confirm only after the clipboard promise |
+| number-pop | `<output>` or `aria-live="polite"`, the final value as text |
 | text-swap | one `aria-live="polite"` region; the outgoing layer is `aria-hidden` |
 | page-slide | announce the new view; the heading receives focus |
+| theme-reveal | a button with `aria-pressed` when it reflects a theme; instant fallback |
 
 ## Color and state
 

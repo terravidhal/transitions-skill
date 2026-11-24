@@ -24,7 +24,7 @@ const server = createServer(async (request, response) => {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "localhost"}`);
   let pathname = decodeURIComponent(url.pathname);
   if (pathname === "/") pathname = "/examples/index.html";
-  const filePath = path.join(root, pathname);
+  let filePath = path.join(root, pathname);
 
   if (!filePath.startsWith(root)) {
     response.writeHead(403).end("Forbidden");
@@ -32,10 +32,10 @@ const server = createServer(async (request, response) => {
   }
 
   try {
-    const info = await stat(filePath);
+    let info = await stat(filePath);
     if (info.isDirectory()) {
-      response.writeHead(404).end("Not found");
-      return;
+      filePath = path.join(filePath, "index.html");
+      info = await stat(filePath);
     }
     response.writeHead(200, {
       "content-type": types[path.extname(filePath)] ?? "application/octet-stream",

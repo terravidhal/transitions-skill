@@ -26,7 +26,8 @@ Thanks for helping. The rules are short.
 | One recipe | `references/recipes/<slug>.md` + `implementations/<slug>/` |
 | The recipe list | `skills/motionfold/recipes.json` |
 | Demo | `examples/` |
-| Screenshots | `assets/readme/`, `assets/before-after.png` |
+| Screenshots and GIF | `assets/readme/`, `assets/before-after.png`, `assets/demo.gif` |
+| Mini projects | `examples/mini/` |
 | Evaluation prompts | `evals/evals.json` |
 
 If you change a recipe, update its CSS, all five implementations, its reference, and the demo
@@ -37,6 +38,7 @@ entry in the same change. The repository check fails if one is missing.
 ```bash
 npm run lint
 npm run lint:audit-test
+npm run lint:demo
 npm run demo
 ```
 
@@ -46,6 +48,7 @@ For screenshots and the browser smoke test, install Playwright in `examples/` on
 npm i -D playwright
 npx playwright install chromium
 npm run lint:capture
+npm run lint:gif
 npm run lint:demo
 ```
 

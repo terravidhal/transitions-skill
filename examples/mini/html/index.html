@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" data-motion="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>motionfold mini · HTML</title>
+    <link rel="stylesheet" href="../../../skills/motionfold/implementations/_shared/motion.css" />
+    <link rel="stylesheet" href="../../../skills/motionfold/implementations/modal/style.css" />
+    <link rel="stylesheet" href="../../../skills/motionfold/implementations/tabs/style.css" />
+    <link rel="stylesheet" href="../../../skills/motionfold/implementations/switch/style.css" />
+    <link rel="stylesheet" href="../../../skills/motionfold/implementations/toast/style.css" />
+    <link rel="stylesheet" href="../../../skills/motionfold/implementations/success-check/style.css" />
+    <link rel="stylesheet" href="../shared.css" />
+  </head>
+  <body>
+    <main class="mini">
+      <header>
+        <h1>motionfold mini · HTML + CSS/JS</h1>
+        <p>
+          Five recipes imported from <code>skills/motionfold</code> with no build step: modal, tabs, switch,
+          toast, and success check. Every recipe keeps its reduced-motion guard and its one-line tokens.
+        </p>
+      </header>
+
+      <div class="mini-grid">
+        <section class="mini-card" data-mini="modal">
+          <h2>Modal</h2>
+          <p class="mini-panel">A native dialog with focus trap, Escape, and top layer.</p>
+          <button class="mini-btn primary" type="button" data-open-modal>Rename project</button>
+        </section>
+
+        <section class="mini-card" data-mini="tabs">
+          <h2>Tabs</h2>
+          <div data-tabs>
+            <div class="mf-tabs" role="tablist" aria-label="Views">
+              <span class="mf-tabs-indicator" aria-hidden="true"></span>
+              <button class="mf-tab" type="button" role="tab" id="mini-tab-overview" aria-controls="mini-panel-overview" aria-selected="true" tabindex="0">Overview</button>
+              <button class="mf-tab" type="button" role="tab" id="mini-tab-activity" aria-controls="mini-panel-activity" aria-selected="false" tabindex="-1">Activity</button>
+              <button class="mf-tab" type="button" role="tab" id="mini-tab-settings" aria-controls="mini-panel-settings" aria-selected="false" tabindex="-1">Settings</button>
+            </div>
+            <div class="mini-panel" role="tabpanel" id="mini-panel-overview" aria-labelledby="mini-tab-overview">A shared measured indicator slides between peer views.</div>
+            <div class="mini-panel" role="tabpanel" id="mini-panel-activity" aria-labelledby="mini-tab-activity" hidden>Recent activity appears without a page change.</div>
+            <div class="mini-panel" role="tabpanel" id="mini-panel-settings" aria-labelledby="mini-tab-settings" hidden>Settings for the same object.</div>
+          </div>
+        </section>
+
+        <section class="mini-card" data-mini="switch">
+          <h2>Switch</h2>
+          <button class="mf-switch" type="button" role="switch" aria-checked="true" data-switch>
+            <span class="mf-switch-track" aria-hidden="true"><span class="mf-switch-thumb"></span></span>
+            <span>Email notifications</span>
+          </button>
+        </section>
+
+        <section class="mini-card" data-mini="toast">
+          <h2>Toast</h2>
+          <p class="mini-panel">A live-region confirmation that pauses on hover.</p>
+          <button class="mini-btn" type="button" data-toast>Save draft</button>
+        </section>
+
+        <section class="mini-card" data-mini="success-check">
+          <h2>Success check</h2>
+          <div class="mini-success-row">
+            <span class="mf-success" data-mf-state="idle" role="status" data-success>
+              <svg class="mf-success-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.35" />
+                <path class="mf-success-path" d="M7 12.5L10.5 16L17 8" />
+              </svg>
+              <span class="mf-success-text">Saved</span>
+            </span>
+            <button class="mini-btn" type="button" data-success-replay>Replay</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="mini-toast-region" role="status" aria-live="polite" data-toast-region></div>
+    </main>
+
+    <dialog class="mf-modal" aria-labelledby="mini-modal-title">
+      <div class="mf-modal-header">
+        <h2 class="mf-modal-title" id="mini-modal-title">Rename project</h2>
+        <button class="mf-modal-close" type="button" data-mf-close aria-label="Close">×</button>
+      </div>
+      <div class="mf-modal-body">
+        <p>Focus is trapped, Escape closes, and focus returns to the trigger.</p>
+        <input class="mf-input" value="Atlas" aria-label="Project name" />
+      </div>
+      <div class="mf-modal-actions">
+        <button class="mini-btn" type="button" data-mf-close>Cancel</button>
+        <button class="mini-btn primary" type="button" data-mf-close>Rename</button>
+      </div>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

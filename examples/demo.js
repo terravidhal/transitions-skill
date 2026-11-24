@@ -12,6 +12,22 @@ import { setupSuccess } from "../skills/motionfold/implementations/success-check
 import { setupErrorShake } from "../skills/motionfold/implementations/error-shake/vanilla.js";
 import { createTextSwap } from "../skills/motionfold/implementations/text-swap/vanilla.js";
 import { setupPageSlide } from "../skills/motionfold/implementations/page-slide/vanilla.js";
+import { setupSheet } from "../skills/motionfold/implementations/bottom-sheet/vanilla.js";
+import { setupCommandPalette } from "../skills/motionfold/implementations/command-palette/vanilla.js";
+import { setupBanner } from "../skills/motionfold/implementations/banner/vanilla.js";
+import { setupLightbox } from "../skills/motionfold/implementations/lightbox/vanilla.js";
+import { setupDropdown } from "../skills/motionfold/implementations/dropdown/vanilla.js";
+import { setupRadioGroup } from "../skills/motionfold/implementations/radio-group/vanilla.js";
+import { setupSegmented } from "../skills/motionfold/implementations/segmented-control/vanilla.js";
+import { setupIconSwap } from "../skills/motionfold/implementations/icon-swap/vanilla.js";
+import { setupLike } from "../skills/motionfold/implementations/like-button/vanilla.js";
+import { setupCopy } from "../skills/motionfold/implementations/copy-button/vanilla.js";
+import { setupSpinnerCheck } from "../skills/motionfold/implementations/spinner-to-check/vanilla.js";
+import { setupNumberPop } from "../skills/motionfold/implementations/number-pop/vanilla.js";
+import { setupProgress } from "../skills/motionfold/implementations/progress-bar/vanilla.js";
+import { setupStepper } from "../skills/motionfold/implementations/stepper/vanilla.js";
+import { revealTheme } from "../skills/motionfold/implementations/theme-reveal/vanilla.js";
+import { setupInlineEdit } from "../skills/motionfold/implementations/inline-edit/vanilla.js";
 
 const root = document.documentElement;
 
@@ -116,6 +132,90 @@ textSwapButton?.addEventListener("click", () => {
 const page = setupPageSlide(document.getElementById("page-demo"));
 document.querySelector("[data-page-forward]")?.addEventListener("click", () => page?.show(1, { direction: "forward" }));
 document.querySelector("[data-page-back]")?.addEventListener("click", () => page?.show(0, { direction: "back" }));
+
+// ── Bottom sheet ──
+const sheet = setupSheet(document.querySelector("dialog.mf-sheet"));
+document.querySelector("[data-open-sheet]")?.addEventListener("click", () => sheet?.open());
+
+// ── Command palette ──
+const command = setupCommandPalette(document.querySelector("dialog.mf-command"), {
+  onRun: (id) => createToast(toastRegion, { title: "Command", message: id + " ran successfully.", duration: 4000 }),
+});
+document.querySelector("[data-open-command]")?.addEventListener("click", () => command?.open());
+document.addEventListener("keydown", (event) => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    command?.open();
+  }
+});
+
+// ── Banner ──
+const banner = setupBanner(document.querySelector("[data-banner-demo]"));
+document.querySelector("[data-banner-show]")?.addEventListener("click", () => banner?.open());
+
+// ── Lightbox ──
+const lightbox = setupLightbox(document.querySelector("dialog.mf-lightbox"));
+document.querySelector("[data-open-lightbox]")?.addEventListener("click", () => lightbox?.open());
+
+// ── Dropdown ──
+setupDropdown(document.querySelector("[data-dropdown-demo]"));
+
+// ── Radio group ──
+setupRadioGroup(document.querySelector("[data-radio-demo]"));
+
+// ── Segmented control ──
+setupSegmented(document.querySelector("[data-segmented-demo]"));
+
+// ── Icon swap ──
+setupIconSwap(document.querySelector("[data-icon-swap-demo]"));
+
+// ── Like button ──
+setupLike(document.querySelector("[data-like-demo]"), { count: 128 });
+
+// ── Copy button ──
+setupCopy(document.querySelector("[data-copy-demo]"), {
+  text: "https://motionfold.dev/project/atlas",
+  onCopy: () => createToast(toastRegion, { title: "Link copied", message: "The project link is on your clipboard.", duration: 4000 }),
+});
+
+// ── Spinner to check ──
+const spinner = setupSpinnerCheck(document.querySelector("[data-spinner-demo]"));
+let spinnerTimer;
+document.querySelector("[data-spinner-run]")?.addEventListener("click", () => {
+  clearTimeout(spinnerTimer);
+  spinner?.reset();
+  spinnerTimer = setTimeout(() => spinner?.done(), 900);
+});
+
+// ── Number pop ──
+const number = setupNumberPop(document.querySelector("[data-number-demo]"));
+let numberValue = 2;
+document.querySelector("[data-number-add]")?.addEventListener("click", () => {
+  numberValue += 1;
+  number?.set(numberValue);
+});
+
+// ── Progress bar ──
+const progress = setupProgress(document.querySelector("[data-progress-demo]"), { value: 20 });
+let progressValue = 20;
+document.querySelector("[data-progress-advance]")?.addEventListener("click", () => {
+  progressValue = progressValue >= 100 ? 20 : Math.min(100, progressValue + 40);
+  progress?.set(progressValue);
+});
+
+// ── Stepper ──
+const stepper = setupStepper(document.querySelector("[data-stepper-demo]"));
+document.querySelector("[data-stepper-back]")?.addEventListener("click", () => stepper?.back());
+document.querySelector("[data-stepper-next]")?.addEventListener("click", () => stepper?.next());
+
+// ── Theme reveal ──
+document.querySelector("[data-theme-reveal]")?.addEventListener("click", (event) => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  revealTheme(event.currentTarget, () => setTheme(next));
+});
+
+// ── Inline edit ──
+setupInlineEdit(document.querySelector("[data-inline-demo]"), { value: "Project Atlas" });
 
 // ── Replay highlights ────────────────────────────────────────────────────
 function replayAll() {

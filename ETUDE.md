@@ -5,8 +5,14 @@
 > Solid et CSS/JS pur**, avec **`prefers-reduced-motion` automatique**, des **durées et
 > courbes réglables en une ligne**, et une **page de démo vivante**.
 >
-> Date : 2026-11-24 · Statut : étude terminée, implémentation à venir · Langue du produit :
+> Date : 2026-11-24 · Statut : étude terminée, implémentation livrée · Langue du produit :
 > anglais · Nom de travail : **motionfold** · Propriétaire cible : `terravidhal`.
+>
+> **Mise à jour v2** : le périmètre livré est passé de 14 à **30 recettes**. Les sections 8
+> et suivantes décrivent la v1 ; la liste à jour est dans `skills/motionfold/recipes.json`,
+> le README et `SKILL.md`. Les 16 ajouts couvrent bottom-sheet, command-palette, banner,
+> lightbox, dropdown, radio-group, segmented-control, icon-swap, like-button, copy-button,
+> spinner-to-check, number-pop, progress-bar, stepper, theme-reveal et inline-edit.
 
 ---
 
@@ -786,11 +792,15 @@ Chaque recette respecte le même contrat, quel que soit le stack :
 
 ### 8.4 Ce qu'on ne met pas en v1
 
-- Confetti, gooey, smoky dissolve, card tilt, drag & drop physics, odometer, like button,
-  reasoning stream, matrix loader, shimmer de texte, bannière empilée.
+- Confetti, gooey, smoky dissolve, card tilt, drag & drop physics, odometer, reasoning stream,
+  matrix loader, shimmer de texte, bannière empilée.
 - Raison : effets décoratifs ou très spécifiques, souvent dépendants d'une librairie, ou
-  difficiles à rendre accessibles sans un contexte produit. On les ajoutera seulement s'ils
-  peuvent respecter le contrat a11y et les cinq stacks.
+  difficiles à rendre accessibles sans un contexte produit.
+- **Mise à jour v2** : like button, bannière, bottom sheet, command palette, dropdown,
+  lightbox, radio group, segmented control, icon swap, copy button, spinner→check, number pop,
+  progress bar, stepper, theme reveal et inline edit ont finalement été ajoutés, car ils
+  respectent le contrat a11y et les cinq stacks. Les effets purement décoratifs restent
+  exclus.
 
 ---
 

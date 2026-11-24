@@ -7,9 +7,12 @@
 
 - **Skill installable** : `skills/motionfold/SKILL.md` (frontmatter `name`, `description` de
   déclenchement, `license: MIT`), `recipes.json` comme source de vérité, six références
-  générales et quatorze références de recettes.
-- **Quatorze recettes** : modal, drawer, popover, tooltip, toast, accordion, tabs, switch,
-  checkbox, skeleton, success-check, error-shake, text-swap, page-slide.
+  générales et trente références de recettes.
+- **Trente recettes** : les quatorze de la v1 (modal, drawer, popover, tooltip, toast,
+  accordion, tabs, switch, checkbox, skeleton, success-check, error-shake, text-swap,
+  page-slide) plus bottom-sheet, command-palette, banner, lightbox, dropdown, radio-group,
+  segmented-control, icon-swap, like-button, copy-button, spinner-to-check, number-pop,
+  progress-bar, stepper, theme-reveal, inline-edit.
 - **Cinq stacks par recette** : CSS + `vanilla.js`, `react.tsx`, `vue.vue`, `svelte.svelte`,
   `solid.tsx`. Mêmes classes `mf-*`, mêmes tokens, même contrat ARIA.
 - **Couche de mouvement partagée** : `motion.css` (échelle, distances, blur, tokens de
@@ -22,9 +25,12 @@
 - **Audit déterministe** : `skills/motionfold/scripts/audit.mjs`, sans dépendance, lecture
   seule, score et suggestions, `--json` et `--min-score`.
 - **Démo réelle** : `examples/index.html` importe les vrais fichiers vanilla, avec thème,
-  mouvement auto/réduit/complet, vitesse, courbe, replay, et les quatorze cartes.
+  mouvement auto/réduit/complet, vitesse, courbe, replay, et les trente cartes.
+- **Mini projets par stack** : `examples/mini/{html,react,vue,svelte,solid}` importent chacun
+  cinq vraies recettes (modal, tabs, switch, toast, success-check).
 - **Avant/après original** : `examples/before-after.html`, fabriqué pour ce dépôt.
-- **Captures Playwright Chromium** : desktop/mobile, clair/sombre, plus l'avant/après.
+- **Captures Playwright Chromium** : desktop 1440, mobile 390, clair/sombre, plus l'avant/après
+  et un GIF de démonstration `assets/demo.gif` assemblé avec ffmpeg.
 - **Qualité** : `scripts/check-skill.mjs`, fixtures d'audit, smoke test navigateur, evals,
   workflow GitHub Actions.
 
@@ -32,10 +38,11 @@
 
 | Commande | Résultat |
 |---|---|
-| `npm run lint` | OK — frontmatter, manifeste, 14 recettes × 6 fichiers, références, liens, JSON, assets, secrets |
+| `npm run lint` | OK — frontmatter, manifeste, 30 recettes × 6 fichiers, références, mini projets, liens, JSON, assets, GIF, secrets |
 | `npm run lint:audit-test` | OK — 8 fixtures, règles attendues |
-| `npm run lint:demo` | OK — 14 cartes, toutes les interactions, mouvement réduit, réglage, toast |
+| `npm run lint:demo` | OK — 30 cartes, toutes les interactions, mouvement réduit, réglage, toast |
 | `npm run lint:capture` | OK — 5 captures générées dans `assets/` |
+| `npm run lint:gif` | OK — `assets/demo.gif` généré avec Playwright + ffmpeg |
 
 Le smoke test a réellement ouvert/fermé modal et drawer avec Escape, ouvert le popover,
 affiché le tooltip, plié/déplié l'accordéon, changé d'onglet, basculé switch et checkbox,
@@ -66,13 +73,14 @@ toast — sans erreur console.
 
 - Licence **MIT**, code, textes et assets originaux ; aucune recette, aucun texte, aucune
   capture de `transitions.dev` n'est copiée.
-- **Cinq stacks** avec le même contrat, pas seulement CSS + React.
+- **Cinq stacks** avec le même contrat, pas seulement CSS + React, plus un mini projet
+  exécutable par stack.
 - **A11y par défaut** : guard dans chaque recette, override applicatif, primitives natives,
   checklist par recette.
 - **Réglage en une ligne** réellement testé par la démo et le smoke test.
 - **Audit local, libre, sans compte ni service hébergé.**
 - **Page de démo auto-hébergeable**, sans build, qui importe les fichiers livrés.
-- **Périmètre curé** de 14 recettes produit, avec règles d'exclusion et gate de fréquence.
+- **Périmètre curé** de 30 recettes produit, avec règles d'exclusion et gate de fréquence.
 
 ## 5. Limites connues
 

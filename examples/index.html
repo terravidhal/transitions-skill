@@ -7,7 +7,7 @@
     <title>motionfold — live demo</title>
     <meta
       name="description"
-      content="Fourteen polished UI transitions, shown in the browser with reduced-motion and one-line tuning controls."
+      content="Thirty polished UI transitions, shown in the browser with reduced-motion and one-line tuning controls."
     />
     <link rel="stylesheet" href="../skills/motionfold/implementations/_shared/motion.css" />
     <link rel="stylesheet" href="../skills/motionfold/implementations/modal/style.css" />
@@ -24,16 +24,32 @@
     <link rel="stylesheet" href="../skills/motionfold/implementations/error-shake/style.css" />
     <link rel="stylesheet" href="../skills/motionfold/implementations/text-swap/style.css" />
     <link rel="stylesheet" href="../skills/motionfold/implementations/page-slide/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/bottom-sheet/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/command-palette/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/banner/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/lightbox/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/dropdown/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/radio-group/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/segmented-control/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/icon-swap/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/like-button/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/copy-button/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/spinner-to-check/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/number-pop/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/progress-bar/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/stepper/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/theme-reveal/style.css" />
+    <link rel="stylesheet" href="../skills/motionfold/implementations/inline-edit/style.css" />
     <link rel="stylesheet" href="./demo.css" />
   </head>
   <body>
     <header class="demo-header">
       <div>
         <p class="demo-kicker">motionfold</p>
-        <h1>Fourteen transitions, running here.</h1>
+        <h1>Thirty transitions, running here.</h1>
         <p class="demo-lede">
           Every card below is the real vanilla implementation. Change the theme, force reduced motion, or tune the
-          scale and curve once for the whole page.
+          scale and curve once for the whole page. The same recipes ship for React, Vue, Svelte, and Solid.
         </p>
       </div>
       <div class="demo-controls">
@@ -332,11 +348,280 @@
           </div>
         </div>
       </article>
+      <article class="demo-card" data-recipe="bottom-sheet">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Bottom sheet</h2>
+          <p>A mobile sheet rises from the edge with the modal focus contract.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn demo-btn-primary" type="button" data-open-sheet>Open sheet</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="command-palette">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Command palette</h2>
+          <p>A summoned search surface; filtering is instant, only the entrance moves.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn demo-btn-primary" type="button" data-open-command>Open commands <kbd>⌘K</kbd></button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="banner">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Banner</h2>
+          <p>An in-flow message slides in and collapses when dismissed.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <div class="mf-banner" data-mf-state="closed" data-banner-demo role="status">
+            <span class="mf-banner-icon" aria-hidden="true">◆</span>
+            <p class="mf-banner-text"><strong>Trial ends soon.</strong> 3 days left to upgrade.</p>
+            <button class="mf-banner-close" type="button" data-mf-dismiss aria-label="Dismiss">×</button>
+          </div>
+          <button class="demo-btn" type="button" data-banner-show>Show banner</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="lightbox">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Lightbox</h2>
+          <p>Media opens over a dimmed page; the image scales, the page does not.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="demo-btn demo-btn-primary" type="button" data-open-lightbox>Open image</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="dropdown">
+        <div class="demo-card-head">
+          <span class="demo-family">surface</span>
+          <h2>Dropdown</h2>
+          <p>An anchored listbox grows from its trigger; the value stays in place.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <div class="mf-dropdown" data-mf-state="closed" data-dropdown-demo>
+            <button class="mf-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span class="mf-dropdown-value">Newest first</span>
+              <span class="mf-dropdown-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <ul class="mf-dropdown-list" role="listbox" aria-label="Sort order">
+              <li class="mf-dropdown-item" role="option" aria-selected="true" data-value="newest">Newest first</li>
+              <li class="mf-dropdown-item" role="option" aria-selected="false" data-value="oldest">Oldest first</li>
+              <li class="mf-dropdown-item" role="option" aria-selected="false" data-value="alpha">A–Z</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="radio-group">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Radio group</h2>
+          <p>Native radios; only the dot and ring animate when the choice changes.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <fieldset class="mf-radio-group" data-radio-demo>
+            <legend class="mf-radio-legend">Billing period</legend>
+            <label class="mf-radio">
+              <input type="radio" name="billing" value="monthly" checked />
+              <span class="mf-radio-box" aria-hidden="true"><span class="mf-radio-dot"></span></span>
+              <span>Monthly</span>
+            </label>
+            <label class="mf-radio">
+              <input type="radio" name="billing" value="yearly" />
+              <span class="mf-radio-box" aria-hidden="true"><span class="mf-radio-dot"></span></span>
+              <span>Yearly · save 20%</span>
+            </label>
+          </fieldset>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="segmented-control">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Segmented control</h2>
+          <p>One pill translates between equal cells; no width is animated.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <div class="mf-segmented" role="group" aria-label="Range" data-segmented-demo>
+            <span class="mf-segmented-indicator" aria-hidden="true"></span>
+            <button class="mf-segmented-item" type="button" aria-pressed="true">Day</button>
+            <button class="mf-segmented-item" type="button" aria-pressed="false">Week</button>
+            <button class="mf-segmented-item" type="button" aria-pressed="false">Month</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="icon-swap">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Icon swap</h2>
+          <p>Two icons trade places in one cell; the control keeps its size.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="mf-icon-swap" type="button" aria-pressed="false" aria-label="Switch to list view" data-label-off="Switch to list view" data-label-on="Switch to grid view" data-mf-active="false" data-icon-swap-demo>
+            <span class="mf-icon-swap-layer" data-icon="off" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="2.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" /><rect x="10.5" y="2.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" /><rect x="2.5" y="10.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" /><rect x="10.5" y="10.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5" /></svg>
+            </span>
+            <span class="mf-icon-swap-layer" data-icon="on" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4.5h12M3 9h12M3 13.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+            </span>
+          </button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="like-button">
+        <div class="demo-card-head">
+          <span class="demo-family">feedback</span>
+          <h2>Like button</h2>
+          <p>The fill and the count confirm; the ring is only a flourish.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="mf-like" type="button" aria-pressed="false" aria-label="Like" data-mf-liked="false" data-like-demo>
+            <span class="mf-like-heart" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.2C5 8.2 7 6.5 9.2 6.5c1.3 0 2.3.6 2.8 1.4.5-.8 1.5-1.4 2.8-1.4C17 6.5 19 8.2 19 10.8 19 15.6 12 20 12 20Z" stroke-linejoin="round" /></svg>
+            </span>
+            <span class="mf-like-count">128</span>
+          </button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="copy-button">
+        <div class="demo-card-head">
+          <span class="demo-family">feedback</span>
+          <h2>Copy button</h2>
+          <p>The icon and label confirm once the clipboard write resolves.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="mf-copy" type="button" aria-label="Copy link" data-mf-copied="false" data-copy-text="https://motionfold.dev/project/atlas" data-copy-demo>
+            <span class="mf-copy-icon" aria-hidden="true">
+              <span data-icon="copy"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4" /><path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" /></svg></span>
+              <span data-icon="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            </span>
+            <span class="mf-copy-label">
+              <span data-label="idle">Copy link</span>
+              <span data-label="done">Copied</span>
+            </span>
+          </button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="spinner-to-check">
+        <div class="demo-card-head">
+          <span class="demo-family">feedback</span>
+          <h2>Spinner to check</h2>
+          <p>The ring fades and the check draws in the same cell.</p>
+        </div>
+        <div class="demo-stage">
+          <span class="mf-spinner" data-mf-state="loading" data-spinner-demo role="status" aria-busy="true">
+            <span class="mf-spinner-ring" aria-hidden="true"></span>
+            <span class="mf-spinner-check" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17.5L19 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+            <span class="mf-spinner-label mf-sr-only">Working</span>
+          </span>
+          <button class="demo-btn" type="button" data-spinner-run>Run task</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="number-pop">
+        <div class="demo-card-head">
+          <span class="demo-family">feedback</span>
+          <h2>Number pop</h2>
+          <p>A count lifts once after it changes, then settles.</p>
+        </div>
+        <div class="demo-stage">
+          <output class="mf-number" data-mf-bump="false" aria-live="polite" data-number-demo>
+            <span class="mf-number-value">2</span>
+          </output>
+          <button class="demo-btn" type="button" data-number-add>Add item</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="progress-bar">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Progress bar</h2>
+          <p>The fill scales from the left; the sheen is decoration only.</p>
+        </div>
+        <div class="demo-stage demo-stage-block" data-progress-demo>
+          <div class="mf-progress-row">
+            <div class="mf-progress-label"><span>Upload</span><span class="mf-progress-value">20%</span></div>
+            <div class="mf-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-label="Upload" style="--mf-progress: 20">
+              <div class="mf-progress-fill"></div>
+            </div>
+          </div>
+          <button class="demo-btn" type="button" data-progress-advance>Advance</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="stepper">
+        <div class="demo-card-head">
+          <span class="demo-family">navigation</span>
+          <h2>Stepper</h2>
+          <p>Ordered steps, a progress spine, and a short panel lift.</p>
+        </div>
+        <div class="demo-stage demo-stage-block" data-stepper-demo>
+          <div class="mf-stepper">
+            <div class="mf-stepper-track" aria-label="Progress">
+              <div class="mf-stepper-line" aria-hidden="true"><span></span></div>
+              <div class="mf-step" data-active="true" data-done="false" aria-current="step"><span class="mf-step-dot" aria-hidden="true"><span class="mf-step-index">1</span></span><span>Account</span></div>
+              <div class="mf-step" data-active="false" data-done="false"><span class="mf-step-dot" aria-hidden="true"><span class="mf-step-index">2</span></span><span>Workspace</span></div>
+              <div class="mf-step" data-active="false" data-done="false"><span class="mf-step-dot" aria-hidden="true"><span class="mf-step-index">3</span></span><span>Done</span></div>
+            </div>
+            <div class="mf-stepper-panels">
+              <div class="mf-step-panel" data-active="true"><h3 tabindex="-1">Account</h3><p>Choose the owner and the billing contact.</p></div>
+              <div class="mf-step-panel" data-active="false" hidden><h3 tabindex="-1">Workspace</h3><p>Name the workspace and invite the first teammate.</p></div>
+              <div class="mf-step-panel" data-active="false" hidden><h3 tabindex="-1">Done</h3><p>Review the choices and create the workspace.</p></div>
+            </div>
+          </div>
+          <div class="demo-row">
+            <button class="demo-btn" type="button" data-stepper-back>Back</button>
+            <button class="demo-btn demo-btn-primary" type="button" data-stepper-next>Next</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="theme-reveal">
+        <div class="demo-card-head">
+          <span class="demo-family">navigation</span>
+          <h2>Theme reveal</h2>
+          <p>A spatial theme change from the control, with an instant fallback.</p>
+        </div>
+        <div class="demo-stage">
+          <button class="mf-theme-reveal" type="button" data-theme-reveal>◐ Switch theme</button>
+        </div>
+      </article>
+
+      <article class="demo-card" data-recipe="inline-edit">
+        <div class="demo-card-head">
+          <span class="demo-family">state</span>
+          <h2>Inline edit</h2>
+          <p>The label and the input share a cell; Enter saves, Escape cancels.</p>
+        </div>
+        <div class="demo-stage demo-stage-block">
+          <div class="mf-inline-edit" data-mf-editing="false" data-inline-demo>
+            <button class="mf-inline-edit-view" type="button" aria-label="Edit project name">
+              <span class="mf-inline-edit-label">Project Atlas</span>
+              <span class="mf-inline-edit-pencil" aria-hidden="true">✎</span>
+            </button>
+            <form class="mf-inline-edit-form">
+              <input class="mf-inline-edit-input" aria-label="Project name" value="Project Atlas" />
+            </form>
+          </div>
+        </div>
+      </article>
+
     </main>
 
     <footer class="demo-footer">
       <p>
-        motionfold is MIT. The motion layer is <code>motion.css</code>; every recipe ships React, Vue, Svelte, Solid,
+        motionfold is MIT. The motion layer is <code>motion.css</code>; thirty recipes ship React, Vue, Svelte, Solid,
         and vanilla files. Read the skill at <code>skills/motionfold/SKILL.md</code>.
       </p>
       <p class="demo-token-readout">scale <code id="scale-out">1</code> · ease <code id="ease-out">smooth</code></p>
@@ -380,6 +665,43 @@
           <span class="mf-checkbox-label">Archived</span>
         </label>
       </div>
+    </dialog>
+
+    <dialog class="mf-sheet" aria-labelledby="sheet-title">
+      <div class="mf-sheet-handle" aria-hidden="true"></div>
+      <div class="mf-sheet-header">
+        <h2 class="mf-sheet-title" id="sheet-title">Share project</h2>
+        <button class="mf-sheet-close" type="button" data-mf-close aria-label="Close">×</button>
+      </div>
+      <div class="mf-sheet-body">
+        <p>Invite a teammate. The sheet traps focus, closes on Escape, and returns focus to the trigger.</p>
+        <label class="mf-field-label" for="sheet-email">Invite by email</label>
+        <input class="mf-input" id="sheet-email" type="email" placeholder="teammate@example.com" />
+      </div>
+      <div class="mf-sheet-actions">
+        <button class="demo-btn" type="button" data-mf-close>Cancel</button>
+        <button class="demo-btn demo-btn-primary" type="button" data-mf-close>Send invite</button>
+      </div>
+    </dialog>
+
+    <dialog class="mf-command" aria-labelledby="command-title">
+      <h2 class="mf-sr-only" id="command-title">Command palette</h2>
+      <input class="mf-command-input" type="search" placeholder="Type a command…" aria-label="Search commands" />
+      <ul class="mf-command-list" role="listbox" aria-label="Commands">
+        <li class="mf-command-item" role="option" aria-selected="true" data-command="new">New project <span>⌘N</span></li>
+        <li class="mf-command-item" role="option" aria-selected="false" data-command="invite">Invite teammate <span>⌘I</span></li>
+        <li class="mf-command-item" role="option" aria-selected="false" data-command="settings">Open settings <span>⌘,</span></li>
+        <li class="mf-command-item" role="option" aria-selected="false" data-command="docs">Search docs <span>⌘D</span></li>
+      </ul>
+      <p class="mf-command-hint">↑↓ to move · Enter to run · Esc to close</p>
+    </dialog>
+
+    <dialog class="mf-lightbox" aria-label="Image preview">
+      <figure class="mf-lightbox-figure">
+        <div class="mf-lightbox-image" role="img" aria-label="Abstract gradient artwork"></div>
+        <figcaption>Abstract study · motionfold demo asset</figcaption>
+      </figure>
+      <button class="mf-lightbox-close" type="button" data-mf-close aria-label="Close">×</button>
     </dialog>
 
     <div class="mf-toast-region" role="status" aria-live="polite" data-toast-region></div>

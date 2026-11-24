@@ -1,0 +1,122 @@
+/* Stepper — ordered steps with a progress spine and a short panel lift. */
+
+.mf-stepper {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.mf-stepper-track {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.4rem;
+}
+
+.mf-stepper-line {
+  position: absolute;
+  top: 0.72rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 2px;
+  background: color-mix(in oklab, CanvasText 14%, Canvas);
+  overflow: hidden;
+}
+
+.mf-stepper-line span {
+  display: block;
+  height: 100%;
+  background: CanvasText;
+  transform-origin: left center;
+  transform: scaleX(var(--mf-stepper-progress, 0));
+  transition: transform var(--mf-stepper-duration) var(--mf-stepper-ease);
+}
+
+.mf-step {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: color-mix(in oklab, CanvasText 56%, Canvas);
+}
+
+.mf-step-dot {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1.5px solid color-mix(in oklab, CanvasText 30%, Canvas);
+  border-radius: 50%;
+  background: Canvas;
+  font-size: 0.7rem;
+  font-weight: 600;
+  transition:
+    background-color var(--mf-stepper-duration) var(--mf-stepper-ease),
+    color var(--mf-stepper-duration) var(--mf-stepper-ease),
+    border-color var(--mf-stepper-duration) var(--mf-stepper-ease);
+}
+
+.mf-step[data-active="true"],
+.mf-step[data-done="true"] {
+  color: CanvasText;
+}
+
+.mf-step[data-active="true"] .mf-step-dot,
+.mf-step[data-done="true"] .mf-step-dot {
+  border-color: CanvasText;
+  background: CanvasText;
+  color: Canvas;
+}
+
+.mf-step[data-done="true"] .mf-step-dot::after {
+  content: "✓";
+}
+
+.mf-step[data-done="true"] .mf-step-index {
+  display: none;
+}
+
+.mf-stepper-panels {
+  display: grid;
+}
+
+.mf-step-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(var(--mf-stepper-distance));
+  pointer-events: none;
+  transition:
+    opacity var(--mf-stepper-duration) var(--mf-stepper-ease),
+    transform var(--mf-stepper-duration) var(--mf-stepper-ease);
+}
+
+.mf-step-panel[data-active="true"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.mf-step-panel h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+}
+
+.mf-step-panel p {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-step-dot,
+  :root:not([data-motion="full"]) .mf-stepper-line span,
+  :root:not([data-motion="full"]) .mf-step-panel {
+    transition-duration: 1ms;
+    transform: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-step-panel[data-active="true"] {
+    transform: none;
+  }
+}

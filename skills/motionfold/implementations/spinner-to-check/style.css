@@ -1,0 +1,67 @@
+/* Spinner to check — one cell, two states, no layout jump. */
+
+.mf-spinner {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.mf-spinner-ring {
+  width: 100%;
+  height: 100%;
+  border: 2px solid color-mix(in oklab, CanvasText 18%, Canvas);
+  border-top-color: CanvasText;
+  border-radius: 50%;
+  animation: mf-spinner-spin var(--mf-spinner-spin) linear infinite;
+  transition: opacity var(--mf-spinner-duration) var(--mf-spinner-ease);
+}
+
+.mf-spinner-check {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(var(--mf-spinner-draw));
+  transition:
+    opacity var(--mf-spinner-duration) var(--mf-spinner-ease),
+    transform var(--mf-spinner-duration) var(--mf-spinner-ease);
+}
+
+.mf-spinner-check path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset var(--mf-spinner-draw) var(--mf-spinner-ease);
+}
+
+.mf-spinner[data-mf-state="done"] .mf-spinner-ring {
+  opacity: 0;
+  animation-play-state: paused;
+}
+
+.mf-spinner[data-mf-state="done"] .mf-spinner-check {
+  opacity: 1;
+  transform: none;
+}
+
+.mf-spinner[data-mf-state="done"] .mf-spinner-check path {
+  stroke-dashoffset: 0;
+}
+
+@keyframes mf-spinner-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-spinner-ring {
+    animation: none;
+    transition-duration: 1ms;
+  }
+
+  :root:not([data-motion="full"]) .mf-spinner-check,
+  :root:not([data-motion="full"]) .mf-spinner-check path {
+    transition-duration: 1ms;
+  }
+}

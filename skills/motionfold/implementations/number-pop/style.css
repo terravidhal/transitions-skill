@@ -1,0 +1,29 @@
+/* Number pop — a one-shot lift after a value changes. */
+
+.mf-number {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.mf-number-value {
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+.mf-number[data-mf-bump="true"] .mf-number-value {
+  animation: mf-number-pop var(--mf-number-duration) var(--mf-number-ease);
+}
+
+@keyframes mf-number-pop {
+  0% { transform: none; }
+  35% { transform: translateY(calc(var(--mf-number-distance) * -1)) scale(var(--mf-number-scale)); }
+  100% { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-number[data-mf-bump="true"] .mf-number-value {
+    animation: none;
+  }
+}

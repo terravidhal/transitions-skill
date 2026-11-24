@@ -1,0 +1,78 @@
+/* Inline edit — a view and a form share one cell and cross-fade. */
+
+.mf-inline-edit {
+  display: inline-grid;
+}
+
+.mf-inline-edit-view,
+.mf-inline-edit-form {
+  grid-area: 1 / 1;
+  transition:
+    opacity var(--mf-inline-duration) var(--mf-inline-ease),
+    transform var(--mf-inline-duration) var(--mf-inline-ease);
+}
+
+.mf-inline-edit-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.45rem;
+  border: 1px dashed color-mix(in oklab, CanvasText 26%, Canvas);
+  border-radius: 0.45rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: text;
+  text-align: left;
+}
+
+.mf-inline-edit-view:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.mf-inline-edit-form {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  transform: translateY(var(--mf-inline-distance));
+  pointer-events: none;
+}
+
+.mf-inline-edit-input {
+  min-width: 12rem;
+  padding: 0.32rem 0.45rem;
+  border: 1px solid color-mix(in oklab, CanvasText 28%, Canvas);
+  border-radius: 0.45rem;
+  background: Canvas;
+  color: inherit;
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.mf-inline-edit[data-mf-editing="true"] .mf-inline-edit-view {
+  opacity: 0;
+  transform: translateY(calc(var(--mf-inline-distance) * -1));
+  pointer-events: none;
+}
+
+.mf-inline-edit[data-mf-editing="true"] .mf-inline-edit-form {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.mf-inline-edit-pencil {
+  color: color-mix(in oklab, CanvasText 46%, Canvas);
+  font-size: 0.75em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-inline-edit-view,
+  :root:not([data-motion="full"]) .mf-inline-edit-form {
+    transition-duration: 1ms;
+    transform: none;
+  }
+}

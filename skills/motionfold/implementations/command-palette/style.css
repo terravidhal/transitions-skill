@@ -1,0 +1,126 @@
+/* Command palette — a focused search surface that scales from the page. */
+
+.mf-command {
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: min(32rem, calc(100dvh - 4rem));
+  margin: 12vh auto auto;
+  padding: 0;
+  border: 1px solid color-mix(in oklab, CanvasText 14%, Canvas);
+  border-radius: 1rem;
+  background: Canvas;
+  color: CanvasText;
+  box-shadow: 0 32px 80px -32px rgb(0 0 0 / 0.55);
+  opacity: 0;
+  transform: translateY(calc(var(--mf-command-distance) * -1)) scale(var(--mf-command-scale));
+  transition:
+    opacity var(--mf-command-close-duration) var(--mf-command-ease),
+    transform var(--mf-command-close-duration) var(--mf-command-ease),
+    display var(--mf-command-close-duration) allow-discrete,
+    overlay var(--mf-command-close-duration) allow-discrete;
+}
+
+.mf-command[open] {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--mf-command-duration);
+}
+
+@starting-style {
+  .mf-command[open] {
+    opacity: 0;
+    transform: translateY(calc(var(--mf-command-distance) * -1)) scale(var(--mf-command-scale));
+  }
+}
+
+.mf-command::backdrop {
+  background: rgb(8 10 14 / 0.42);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition:
+    opacity var(--mf-command-close-duration) var(--mf-command-ease),
+    display var(--mf-command-close-duration) allow-discrete,
+    overlay var(--mf-command-close-duration) allow-discrete;
+}
+
+.mf-command[open]::backdrop {
+  opacity: 1;
+  transition-duration: var(--mf-command-duration);
+}
+
+@starting-style {
+  .mf-command[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.mf-command-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.1rem;
+  border: 0;
+  border-bottom: 1px solid color-mix(in oklab, CanvasText 12%, Canvas);
+  border-radius: 1rem 1rem 0 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+
+.mf-command-input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.mf-command-list {
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  overflow: auto;
+  max-height: 22rem;
+}
+
+.mf-command-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.55rem;
+  cursor: pointer;
+  font-size: 0.925rem;
+}
+
+.mf-command-item > span {
+  color: color-mix(in oklab, CanvasText 52%, Canvas);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.mf-command-item[aria-selected="true"] {
+  background: color-mix(in oklab, CanvasText 9%, Canvas);
+}
+
+.mf-command-item[hidden] {
+  display: none;
+}
+
+.mf-command-hint {
+  margin: 0;
+  padding: 0.55rem 1rem 0.75rem;
+  color: color-mix(in oklab, CanvasText 55%, Canvas);
+  font-size: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-command {
+    transition-duration: 120ms;
+    transform: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-command::backdrop {
+    transition-duration: 120ms;
+    backdrop-filter: none;
+  }
+}

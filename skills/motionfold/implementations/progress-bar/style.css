@@ -1,0 +1,56 @@
+/* Progress bar — a determinate fill scaled from the left edge. */
+
+.mf-progress {
+  position: relative;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, CanvasText 12%, Canvas);
+  overflow: hidden;
+}
+
+.mf-progress-fill {
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background: CanvasText;
+  transform-origin: left center;
+  transform: scaleX(calc(var(--mf-progress, 0) / 100));
+  transition: transform var(--mf-progress-duration) var(--mf-progress-ease);
+  overflow: hidden;
+}
+
+.mf-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.4), transparent);
+  transform: translateX(-100%);
+  animation: mf-progress-sheen var(--mf-progress-sheen) linear infinite;
+}
+
+@keyframes mf-progress-sheen {
+  to { transform: translateX(100%); }
+}
+
+.mf-progress-row {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.mf-progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.8125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-progress-fill {
+    transition-duration: 1ms;
+  }
+
+  :root:not([data-motion="full"]) .mf-progress-fill::after {
+    animation: none;
+    opacity: 0;
+  }
+}

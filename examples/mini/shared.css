@@ -1,0 +1,114 @@
+/* Shared shell for the five mini projects. The recipe CSS still comes from the skill. */
+
+:root {
+  color-scheme: light dark;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1.25rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+.mini {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.mini header p {
+  margin: 0.35rem 0 0;
+  max-width: 44rem;
+  color: color-mix(in oklab, CanvasText 64%, Canvas);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.mini h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.015em;
+}
+
+.mini-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.mini-card {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in oklab, CanvasText 13%, Canvas);
+  border-radius: 0.8rem;
+  background: color-mix(in oklab, Canvas 96%, CanvasText);
+}
+
+.mini-card h2 {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, CanvasText 55%, Canvas);
+}
+
+.mini-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mini-btn {
+  padding: 0.42rem 0.7rem;
+  border: 1px solid color-mix(in oklab, CanvasText 18%, Canvas);
+  border-radius: 0.5rem;
+  background: Canvas;
+  color: inherit;
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.mini-btn.primary {
+  border-color: transparent;
+  background: CanvasText;
+  color: Canvas;
+}
+
+.mini-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.mini-panel {
+  padding: 0.5rem 0;
+  color: color-mix(in oklab, CanvasText 72%, Canvas);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.mini .mf-tabs {
+  display: inline-flex;
+}
+
+.mini-toast-region {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: grid;
+  gap: 0.5rem;
+  width: min(22rem, calc(100vw - 2rem));
+}
+
+.mini-success-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}

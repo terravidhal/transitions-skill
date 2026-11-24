@@ -1,0 +1,47 @@
+/* Theme reveal — a circular clip-path on the root view transition. */
+
+.mf-theme-reveal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid color-mix(in oklab, CanvasText 16%, Canvas);
+  border-radius: 0.55rem;
+  background: Canvas;
+  color: CanvasText;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.mf-theme-reveal:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--mf-theme-duration);
+  animation-timing-function: var(--mf-theme-ease);
+}
+
+::view-transition-new(root) {
+  animation-name: mf-theme-reveal;
+  clip-path: circle(0 at var(--mf-theme-x, 50%) var(--mf-theme-y, 50%));
+}
+
+@keyframes mf-theme-reveal {
+  to { clip-path: circle(var(--mf-theme-radius) at var(--mf-theme-x, 50%) var(--mf-theme-y, 50%)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"])::view-transition-old(root),
+  :root:not([data-motion="full"])::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+:root[data-motion="reduced"]::view-transition-old(root),
+:root[data-motion="reduced"]::view-transition-new(root) {
+  animation: none;
+}

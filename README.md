@@ -1,6 +1,6 @@
 # motionfold
 
-**A deck of polished UI transitions for every stack — accessible by default, tunable in one line.**
+**A deck of thirty polished UI transitions for every stack — accessible by default, tunable in one line.**
 
 ```bash
 npx skills add terravidhal/motionfold
@@ -9,18 +9,18 @@ npx skills add terravidhal/motionfold
 Works with Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode, and any agent
 that reads `SKILL.md`.
 
-Your agent stops hand-rolling keyframes. It picks one of fourteen product-focused recipes,
+Your agent stops hand-rolling keyframes. It picks one of thirty product-focused recipes,
 applies the CSS and the implementation for your framework, keeps focus and ARIA intact, and
 respects reduced motion.
 
 ![Before: display toggles and ad-hoc timing. After: origin-aware surfaces, faster exits, and a reduced-motion path.](assets/before-after.png)
 
-![The fourteen recipes in the live demo.](assets/readme/demo-desktop-light.png)
+![The thirty recipes in the live demo.](assets/demo.gif)
 
 ## What it does
 
-- **Fourteen transitions** for real product moments: modal, drawer, popover, tooltip, toast,
-  accordion, tabs, switch, checkbox, skeleton, success check, error shake, text swap, page slide.
+- **Thirty transitions** for real product moments: surfaces, state changes, feedback, and
+  navigation.
 - **Five stacks, one contract**: vanilla CSS/JS, React, Vue, Svelte, and Solid. Same classes,
   same ARIA, same timing.
 - **`prefers-reduced-motion` in every recipe**, plus `data-motion="reduced|full"` for an app
@@ -32,6 +32,7 @@ respects reduced motion.
   without editing anything.
 - **A live demo** that runs offline with a theme toggle, a reduced-motion switch, a speed
   slider, and a curve select.
+- **Five mini projects** that import five real recipes each: HTML, React, Vue, Svelte, Solid.
 
 ## Install
 
@@ -52,27 +53,60 @@ cp -r skills/motionfold ~/.claude/skills/motionfold
 ```
 
 The skill installs text only: `SKILL.md`, references, the shared CSS, the recipe CSS, the five
-implementations, and the audit script. The demo, the captures, and the evals stay in the
-repository.
+implementations, and the audit script. The demo, the mini projects, the captures, and the
+evals stay in the repository.
 
-## The fourteen transitions
+## The thirty transitions
 
-| Recipe | Family | Use it when | Avoid it when |
-|---|---|---|---|
-| Modal | surface | A blocking decision or focused task | A quick confirmation or a menu |
-| Drawer | surface | A side panel for navigation or filters | A short menu or a centered task |
-| Popover | surface | A menu anchored to a trigger | A blocking decision or main nav |
-| Tooltip | surface | A short hint on hover or focus | Essential information or touch only |
-| Toast | surface | A transient async confirmation | An error that needs a decision |
-| Accordion | state | A header reveals a body in place | Primary navigation |
-| Tabs | state | Peer views with a moving indicator | Sequential steps or page navigation |
-| Switch | state | A boolean setting that applies now | A form value submitted later |
-| Checkbox | state | Multiple selection or consent | An instant setting |
-| Skeleton | state | Loading with a known structure | A very short or unknown wait |
-| Success check | feedback | An action just succeeded | A passive status change |
-| Error shake | feedback | One field failed validation | A system failure or the whole form |
-| Text swap | state | A short status label changes in place | A paragraph or the main content |
-| Page slide | navigation | List ↔ detail, step ↔ step | A keyboard-heavy or frequent path |
+### Surfaces
+
+| Recipe | Use it when | Avoid it when |
+|---|---|---|
+| Modal | A blocking decision or focused task | A quick confirmation or a menu |
+| Drawer | A side panel for navigation or filters | A short menu or a centered task |
+| Bottom sheet | A mobile task rises from the edge | A desktop side panel or a short menu |
+| Command palette | A summoned, searchable set of commands | A simple menu or a blocking decision |
+| Popover | A menu or action panel anchored to a trigger | A blocking decision or main nav |
+| Dropdown | A listbox that keeps the current value visible | A free-form command search |
+| Lightbox | Media opens for a closer look | Inline media that should stay in flow |
+| Tooltip | A short hint on hover or focus | Essential information or touch only |
+| Toast | A transient async confirmation | An error that needs a decision |
+| Banner | A page-level message that stays until dismissed | A transient confirmation |
+
+### State
+
+| Recipe | Use it when | Avoid it when |
+|---|---|---|
+| Accordion | A header reveals a body in place | Primary navigation |
+| Tabs | Peer views with a moving indicator | Sequential steps or page navigation |
+| Segmented control | Two to four compact peer filters | More than four options |
+| Stepper | Ordered steps in a short wizard | Peer views or a long page flow |
+| Switch | A boolean setting that applies now | A form value submitted later |
+| Checkbox | Multiple selection or consent | An instant setting |
+| Radio group | One exclusive choice in a small set | An immediate on/off setting |
+| Icon swap | Two familiar icons toggle in place | A long label change or three states |
+| Skeleton | Loading with a known structure | A very short or unknown wait |
+| Progress bar | A task with a known completion | A very short wait or unknown duration |
+| Inline edit | A short value can be renamed in place | A long form or cross-field validation |
+| Text swap | A short status label changes in place | A paragraph or the main content |
+
+### Feedback
+
+| Recipe | Use it when | Avoid it when |
+|---|---|---|
+| Success check | An action just succeeded | A passive status change |
+| Error shake | One field failed validation | A system failure or the whole form |
+| Spinner to check | A short task resolves in the same spot | A long task with a known percentage |
+| Like button | A lightweight appreciation toggles | A destructive or quiet action |
+| Copy button | A clipboard write succeeds | A destructive or long-running action |
+| Number pop | A small count changes on purpose | Continuously updating telemetry |
+
+### Navigation
+
+| Recipe | Use it when | Avoid it when |
+|---|---|---|
+| Page slide | List ↔ detail, step ↔ step | A keyboard-heavy or frequent path |
+| Theme reveal | A deliberate theme switch deserves a spatial reveal | A theme that must follow the OS instantly |
 
 Full decision rules and exclusions are in
 [`skills/motionfold/references/choosing.md`](skills/motionfold/references/choosing.md).
@@ -88,7 +122,7 @@ Everything, one line:
 One recipe, one line:
 
 ```css
-:root { --mf-modal-duration: 200ms; }
+:root { --mf-modal-duration: 200ms; --mf-sheet-duration: 280ms; }
 ```
 
 One instance, one line:
@@ -106,7 +140,10 @@ CSS variables; the stylesheet stays the source of truth.
 npm run demo
 ```
 
-Open <http://localhost:4173/examples/index.html>. No build, no dependency.
+Open <http://localhost:4173/examples/index.html>. No build, no dependency. The gallery runs
+all thirty recipes, including the new bottom sheet, command palette, banner, lightbox,
+dropdown, radio group, segmented control, icon swap, like button, copy button, spinner to
+check, number pop, progress bar, stepper, theme reveal, and inline edit.
 
 | Desktop light | Desktop dark |
 |---|---|
@@ -115,6 +152,21 @@ Open <http://localhost:4173/examples/index.html>. No build, no dependency.
 | Mobile light | Mobile dark |
 |---|---|
 | ![Demo, mobile, light](assets/readme/demo-mobile-light.png) | ![Demo, mobile, dark](assets/readme/demo-mobile-dark.png) |
+
+### Mini projects
+
+Each mini project imports five real recipes from the skill:
+
+| Project | Stack | Recipes |
+|---|---|---|
+| [`examples/mini/html`](examples/mini/html/) | CSS + vanilla JS, no build | modal, tabs, switch, toast, success check |
+| [`examples/mini/react`](examples/mini/react/) | React + Vite | modal, tabs, switch, toast, success check |
+| [`examples/mini/vue`](examples/mini/vue/) | Vue + Vite | modal, tabs, switch, toast, success check |
+| [`examples/mini/svelte`](examples/mini/svelte/) | Svelte 5 + Vite | modal, tabs, switch, toast, success check |
+| [`examples/mini/solid`](examples/mini/solid/) | Solid + Vite | modal, tabs, switch, toast, success check |
+
+The HTML project needs no install. The framework projects carry only their own build
+dependencies; those never ship with the skill.
 
 ## Audit
 
@@ -130,7 +182,8 @@ reduced-motion guards, slow durations, untransitioned overlays, and inconsistent
 
 ## What it will not do
 
-- Animate a keyboard-heavy action (command palette, arrow-key navigation, typing).
+- Animate a keyboard-heavy action (arrow-key navigation, typing) when the frequency gate says
+  no.
 - Use `transition: all` or animate layout without a documented reason.
 - Make motion the only signal of success, error, or selection.
 - Add an animation library or a runtime dependency.
@@ -145,23 +198,30 @@ motionfold/
 │   ├── SKILL.md             # the agent's instructions
 │   ├── recipes.json         # the manifest and source of truth
 │   ├── references/          # choosing, tokens, a11y, stacks, audit, recipes
-│   ├── implementations/     # 14 recipes x (CSS + 5 stacks)
+│   ├── implementations/     # 30 recipes x (CSS + 5 stacks)
 │   └── scripts/audit.mjs    # local scan
-├── examples/                # live demo, before/after, captures, smoke test
+├── examples/
+│   ├── index.html           # live demo, zero build
+│   ├── mini/                # five framework mini projects
+│   ├── before-after.html    # our own comparison page
+│   └── scripts/             # capture, GIF, smoke test
 ├── scripts/                 # repository checks and audit fixtures
 ├── evals/                   # behavioral evaluation prompts
-├── assets/                  # screenshots
+├── assets/                  # screenshots, GIF, before/after
 └── .github/workflows/       # lint and audit fixtures
 ```
 
 Maintainer checks:
 
 ```bash
-npm run lint              # frontmatter, manifest, links, JSON, assets, secrets
+npm run lint              # frontmatter, manifest, links, JSON, assets, secrets, mini projects
 npm run lint:audit-test   # audit fixtures
+npm run lint:demo         # Playwright smoke test over the 30 recipes
+npm run lint:capture      # screenshots
+npm run lint:gif          # assets/demo.gif
 npm run demo              # open the demo
 ```
 
 ## License
 
-MIT. `LICENSE`. The recipes, text, and screenshots are original to this repository.
+MIT. `LICENSE`. The recipes, text, screenshots, and GIF are original to this repository.

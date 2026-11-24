@@ -115,6 +115,97 @@
   --mf-page-ease: var(--mf-ease);
   --mf-page-distance: var(--mf-distance-lg);
   --mf-page-blur: var(--mf-blur-md);
+
+  /* Bottom sheet */
+  --mf-sheet-duration: var(--mf-duration-base);
+  --mf-sheet-close-duration: var(--mf-duration-fast);
+  --mf-sheet-ease: var(--mf-ease);
+  --mf-sheet-distance: 100%;
+
+  /* Command palette */
+  --mf-command-duration: var(--mf-duration-base);
+  --mf-command-close-duration: var(--mf-duration-fast);
+  --mf-command-ease: var(--mf-ease);
+  --mf-command-distance: var(--mf-distance-lg);
+  --mf-command-scale: 0.97;
+
+  /* Banner */
+  --mf-banner-duration: var(--mf-duration-base);
+  --mf-banner-close-duration: var(--mf-duration-fast);
+  --mf-banner-ease: var(--mf-ease);
+  --mf-banner-distance: var(--mf-distance-md);
+
+  /* Lightbox */
+  --mf-lightbox-duration: var(--mf-duration-slow);
+  --mf-lightbox-close-duration: var(--mf-duration-base);
+  --mf-lightbox-ease: var(--mf-ease);
+  --mf-lightbox-scale: 0.94;
+
+  /* Dropdown */
+  --mf-dropdown-duration: var(--mf-duration-fast);
+  --mf-dropdown-close-duration: var(--mf-duration-micro);
+  --mf-dropdown-ease: var(--mf-ease);
+  --mf-dropdown-distance: var(--mf-distance-xs);
+  --mf-dropdown-scale: 0.98;
+
+  /* Radio group */
+  --mf-radio-duration: var(--mf-duration-fast);
+  --mf-radio-ease: var(--mf-ease);
+  --mf-radio-dot-scale: 1;
+
+  /* Segmented control */
+  --mf-seg-duration: var(--mf-duration-base);
+  --mf-seg-ease: var(--mf-ease);
+  --mf-seg-index: 0;
+
+  /* Icon swap */
+  --mf-icon-swap-duration: var(--mf-duration-fast);
+  --mf-icon-swap-ease: var(--mf-ease);
+  --mf-icon-swap-rotate: 90deg;
+  --mf-icon-swap-scale: 0.85;
+
+  /* Like button */
+  --mf-like-duration: var(--mf-duration-fast);
+  --mf-like-ease: var(--mf-ease-spring);
+  --mf-like-scale: 1.15;
+  --mf-like-burst-duration: var(--mf-duration-slow);
+
+  /* Copy button */
+  --mf-copy-duration: var(--mf-duration-fast);
+  --mf-copy-ease: var(--mf-ease);
+  --mf-copy-scale: 0.8;
+
+  /* Spinner to check */
+  --mf-spinner-duration: var(--mf-duration-base);
+  --mf-spinner-ease: var(--mf-ease);
+  --mf-spinner-spin: calc(700ms * var(--mf-scale));
+  --mf-spinner-draw: var(--mf-duration-slow);
+
+  /* Number pop */
+  --mf-number-duration: var(--mf-duration-fast);
+  --mf-number-ease: var(--mf-ease-spring);
+  --mf-number-scale: 1.12;
+  --mf-number-distance: var(--mf-distance-xs);
+
+  /* Progress bar */
+  --mf-progress-duration: var(--mf-duration-slow);
+  --mf-progress-ease: var(--mf-ease);
+  --mf-progress-sheen: calc(1200ms * var(--mf-scale));
+
+  /* Stepper */
+  --mf-stepper-duration: var(--mf-duration-base);
+  --mf-stepper-ease: var(--mf-ease);
+  --mf-stepper-distance: var(--mf-distance-md);
+
+  /* Theme reveal */
+  --mf-theme-duration: var(--mf-duration-emphasis);
+  --mf-theme-ease: var(--mf-ease);
+  --mf-theme-radius: 100vmax;
+
+  /* Inline edit */
+  --mf-inline-duration: var(--mf-duration-fast);
+  --mf-inline-ease: var(--mf-ease);
+  --mf-inline-distance: var(--mf-distance-xs);
 }
 
 /* App-level override. Use data-motion="reduced" for tests and demos,

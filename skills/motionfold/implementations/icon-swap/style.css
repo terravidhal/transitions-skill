@@ -1,0 +1,56 @@
+/* Icon swap — two stacked icons trade places inside one button. */
+
+.mf-icon-swap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid color-mix(in oklab, CanvasText 16%, Canvas);
+  border-radius: 0.6rem;
+  background: Canvas;
+  color: CanvasText;
+  cursor: pointer;
+}
+
+.mf-icon-swap-layer {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity var(--mf-icon-swap-duration) var(--mf-icon-swap-ease),
+    transform var(--mf-icon-swap-duration) var(--mf-icon-swap-ease);
+}
+
+.mf-icon-swap-layer[data-icon="off"] {
+  opacity: 1;
+  transform: none;
+}
+
+.mf-icon-swap-layer[data-icon="on"] {
+  opacity: 0;
+  transform: rotate(calc(var(--mf-icon-swap-rotate) * -1)) scale(var(--mf-icon-swap-scale));
+}
+
+.mf-icon-swap[data-mf-active="true"] .mf-icon-swap-layer[data-icon="off"] {
+  opacity: 0;
+  transform: rotate(var(--mf-icon-swap-rotate)) scale(var(--mf-icon-swap-scale));
+}
+
+.mf-icon-swap[data-mf-active="true"] .mf-icon-swap-layer[data-icon="on"] {
+  opacity: 1;
+  transform: none;
+}
+
+.mf-icon-swap:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-icon-swap-layer {
+    transition-duration: 1ms;
+    transform: none;
+  }
+}

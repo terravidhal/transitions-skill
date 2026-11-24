@@ -1,0 +1,83 @@
+/* Radio group — a native radio whose dot scales into place. */
+
+.mf-radio-group {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mf-radio-legend {
+  padding: 0;
+  margin-bottom: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.mf-radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.mf-radio input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mf-radio-box {
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1.5px solid color-mix(in oklab, CanvasText 34%, Canvas);
+  border-radius: 50%;
+  background: Canvas;
+  transition:
+    border-color var(--mf-radio-duration) var(--mf-radio-ease),
+    background-color var(--mf-radio-duration) var(--mf-radio-ease);
+}
+
+.mf-radio-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: CanvasText;
+  transform: scale(0);
+  transition: transform var(--mf-radio-duration) var(--mf-radio-ease);
+}
+
+.mf-radio input:checked + .mf-radio-box {
+  border-color: CanvasText;
+}
+
+.mf-radio input:checked + .mf-radio-box .mf-radio-dot {
+  transform: scale(var(--mf-radio-dot-scale));
+}
+
+.mf-radio input:focus-visible + .mf-radio-box {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-radio-box,
+  :root:not([data-motion="full"]) .mf-radio-dot {
+    transition-duration: 1ms;
+  }
+
+  :root:not([data-motion="full"]) .mf-radio-dot {
+    transform: none;
+  }
+
+  :root:not([data-motion="full"]) .mf-radio input:checked + .mf-radio-box .mf-radio-dot {
+    transform: scale(var(--mf-radio-dot-scale));
+  }
+}

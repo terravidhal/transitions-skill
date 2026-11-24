@@ -1,0 +1,68 @@
+/* Copy button — the icon and label swap after a successful write. */
+
+.mf-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid color-mix(in oklab, CanvasText 16%, Canvas);
+  border-radius: 0.55rem;
+  background: Canvas;
+  color: CanvasText;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.mf-copy-icon {
+  position: relative;
+  display: inline-grid;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.mf-copy-icon > span,
+.mf-copy-label > span {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity var(--mf-copy-duration) var(--mf-copy-ease),
+    transform var(--mf-copy-duration) var(--mf-copy-ease);
+}
+
+.mf-copy-label {
+  position: relative;
+  display: inline-grid;
+}
+
+.mf-copy [data-icon="check"],
+.mf-copy [data-label="done"] {
+  opacity: 0;
+  transform: scale(var(--mf-copy-scale)) rotate(-12deg);
+}
+
+.mf-copy[data-mf-copied="true"] [data-icon="copy"],
+.mf-copy[data-mf-copied="true"] [data-label="idle"] {
+  opacity: 0;
+  transform: scale(var(--mf-copy-scale)) rotate(12deg);
+}
+
+.mf-copy[data-mf-copied="true"] [data-icon="check"],
+.mf-copy[data-mf-copied="true"] [data-label="done"] {
+  opacity: 1;
+  transform: none;
+}
+
+.mf-copy:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mf-copy-icon > span,
+  :root:not([data-motion="full"]) .mf-copy-label > span {
+    transition-duration: 1ms;
+    transform: none;
+  }
+}
